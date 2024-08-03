@@ -1,23 +1,26 @@
 {
   "expo": {
-    "name": "acervo-thomaz",
-    "slug": "acervo-thomaz",
+    "name": "nativecn-app",
+    "slug": "nativecn-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#f3f3f3"
+      "backgroundColor": "#ffffff"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#f3f3f3"
+        "backgroundColor": "#ffffff"
       }
     },
     "web": {
