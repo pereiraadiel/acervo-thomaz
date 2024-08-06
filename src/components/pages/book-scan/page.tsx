@@ -1,10 +1,14 @@
-import { MainTemplate } from "@/components/templates/main.template"
-import { Title } from "@/components/atoms/title.atom"
-import useCameraPermissions from "@/hooks/useCameraPermission.hook"
 import { BookScanView } from "./view";
+import useCameraPermissions from "@/hooks/useCameraPermission.hook"
+import useBarCode from "@/hooks/useBarCode.hook";
+import useExternalBook from "../../../hooks/useExternalBook.hook";
 
 const BookScanPage = () =>{
-	const methods = useCameraPermissions();
+	const methods = {
+		camera: useCameraPermissions(),
+		barcode: useBarCode(),
+		book: useExternalBook()
+	}
 
 	return <BookScanView {...methods}/>;
 }

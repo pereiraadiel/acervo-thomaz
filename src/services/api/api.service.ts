@@ -17,10 +17,11 @@ class ApiService implements ApiServiceInterface {
 
   async get<T>(path: string): Promise<T> {
     const response = await this.api.get<T>(path);
+    console.log("api response", response.data);
     return response.data;
   }
 
-  async put<T>(path: string, data:any): Promise<T> {
+  async put<T>(path: string, data: any): Promise<T> {
     const response = await this.api.put<T>(path, data);
     return response.data;
   }
@@ -53,6 +54,5 @@ class Singleton {
 const singleton = new Singleton();
 const apiService = singleton.getInstance();
 Object.freeze(apiService);
-
 
 export { apiService };
