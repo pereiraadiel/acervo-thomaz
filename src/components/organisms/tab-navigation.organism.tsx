@@ -2,6 +2,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomePage } from '@/components/pages/home/page';
 import { colors } from '@/styles/colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { BookScanPage } from '../pages/book-scan/page';
+import { WishlistPage } from '../pages/wishlist/page';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,12 +29,12 @@ const TabNavigationOrganism = () => {
           <MaterialCommunityIcons name="bookshelf" color={color} size={size} />
         ),
         }}/>
-      <Tab.Screen name="Scan" component={HomePage}  options={{
+      <Tab.Screen name="Scan" component={BookScanPage}  options={{
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons name="line-scan" color={color} size={size} />
         ),
         }}/>
-      <Tab.Screen name="Wishlist" component={HomePage}  options={{
+      <Tab.Screen name="Wishlist" component={WishlistPage}  options={{
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons name="tag-heart" color={color} size={size} />
         ),
