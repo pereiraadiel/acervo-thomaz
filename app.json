@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "nativecn-app",
-    "slug": "nativecn-app",
+    "name": "acervo-thomaz",
+    "slug": "acervo-thomaz",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "dev.adiel.acervothomaz"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "df5db24f-07f5-4b4d-8fcd-83d0c299efe8"
+      }
     }
   }
 }

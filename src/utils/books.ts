@@ -1,5 +1,8 @@
+import { BookModel } from "@/models/book.model";
+
 export const BOOKS = [
   {
+    id: "",
     title: "Dom Casmurro",
     description:
       "Um dos romances mais famosos de Machado de Assis, explorando a vida de Bentinho e Capitu.",
@@ -9,6 +12,7 @@ export const BOOKS = [
     status: "readed",
   },
   {
+    id: "",
     title: "Sapiens: Uma Breve História da Humanidade",
     description:
       "Uma narrativa sobre a história da humanidade desde a Idade da Pedra até a era moderna.",
@@ -18,6 +22,7 @@ export const BOOKS = [
     status: "not-readed",
   },
   {
+    id: "",
     title: "1984",
     description:
       "Um romance distópico que explora temas de totalitarismo e vigilância.",
@@ -26,6 +31,7 @@ export const BOOKS = [
     status: "reading",
   },
   {
+    id: "",
     title: "O Pequeno Príncipe",
     description:
       "Uma obra clássica que aborda temas como amizade, amor e perda.",
@@ -35,6 +41,7 @@ export const BOOKS = [
     status: "abandoned",
   },
   {
+    id: "",
     title: "A Revolução dos Bichos",
     description:
       "Uma fábula satírica sobre uma revolução de animais em uma fazenda.",
@@ -44,6 +51,7 @@ export const BOOKS = [
     status: "not-readed",
   },
   {
+    id: "",
     title: "O Poder do Hábito",
     description:
       "Um olhar sobre como os hábitos se formam e como podem ser mudados.",
@@ -53,30 +61,37 @@ export const BOOKS = [
     status: "readed",
   },
   {
+    id: "",
     title: "Cem Anos de Solidão",
     description:
       "Uma saga multi-geracional da família Buendía em uma cidade fictícia.",
-    imageUrl: "http://static.fnac-static.com/multimedia/PT/images_produits/PT/ZoomPE/4/1/3/9789722000314.jpg",
+    imageUrl:
+      "http://static.fnac-static.com/multimedia/PT/images_produits/PT/ZoomPE/4/1/3/9789722000314.jpg",
     author: "Gabriel García Márquez",
     status: "reading",
   },
   {
+    id: "",
     title: "A Arte da Guerra",
     description:
       "Um tratado militar clássico que aborda estratégias e táticas de guerra.",
-    imageUrl: "https://www.lpm.com.br/livros/imagens/arte_guerra_classicos_9788525429896_hd.jpg",
+    imageUrl:
+      "https://www.lpm.com.br/livros/imagens/arte_guerra_classicos_9788525429896_hd.jpg",
     author: "Sun Tzu",
     status: "abandoned",
   },
   {
+    id: "",
     title: "O Alquimista",
     description:
       "A jornada de um jovem pastor em busca de seu tesouro pessoal.",
-    imageUrl: "https://images-na.ssl-images-amazon.com/images/I/81slUinjTlS.jpg",
+    imageUrl:
+      "https://images-na.ssl-images-amazon.com/images/I/81slUinjTlS.jpg",
     author: "Paulo Coelho",
     status: "not-readed",
   },
   {
+    id: "",
     title: "O Hobbit",
     description:
       "A aventura de Bilbo Bolseiro em busca de um tesouro guardado por um dragão.",
@@ -85,6 +100,7 @@ export const BOOKS = [
     status: "readed",
   },
   {
+    id: "",
     title: "SCRUM",
     description: "A arte de fazer o dobro do trabalho na metade do tempo",
     author: "J.J Sutherland",
@@ -93,6 +109,7 @@ export const BOOKS = [
     status: "not-readed",
   },
   {
+    id: "",
     title: "O Alienista",
     description:
       "Texto integral - Questões de vestibular, e agora eu coloco qualquer coisa para passar do limite de caracteres e ver o que acontece",
@@ -102,6 +119,7 @@ export const BOOKS = [
     status: "reading",
   },
   {
+    id: "",
     title: "Padre Pio",
     description: "Os Milagres desconhecidos do santo dos estigmas",
     author: "José Maria Zavala",
@@ -109,4 +127,4 @@ export const BOOKS = [
       "http://www.paulus.com.br/portal/wp-content/uploads/2012/10/Padre-Pio-Capa.jpg",
     status: "abandoned",
   },
-];
+] as BookModel[];

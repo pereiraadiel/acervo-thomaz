@@ -1,22 +1,8 @@
-import { useState, useEffect } from "react";
-import { BOOKS } from "../utils/books";
-
-type Book = {
-  title: string;
-  description: string;
-  imageUrl: string;
-  author: string;
-  status: "readed" | "reading" | "not-readed" | "abandoned";
-};
+import { useContext } from "react";
+import { BooksContext } from "@/contexts/book.context";
 
 const useBooks = () => {
-  const [books, setBooks] = useState<Book[]>([]);
-
-  useEffect(() => {
-    const booksData: Book[] = BOOKS as any;
-
-    setBooks(booksData);
-  }, []);
+  const books = useContext(BooksContext);
 
   const getBooksByStatus = (
     status: "readed" | "reading" | "not-readed" | "abandoned"
