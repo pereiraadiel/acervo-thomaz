@@ -49,8 +49,8 @@ const BookDetails: React.FC<BookDetailsProps> = ({
 			<Card.Footer className="flex-col gap-1 items-start flex-wrap">
 				<Text className="text-sm text-gray-500 w-full">
 					{book.publishedDate} · {book.publisher}
-					{'\n'} Idioma: {book.language} 
-					{'\n'} Páginas: {book.pageCount} 
+					{'\n'}Idioma: {book.language} 
+					{book.pageCount > 0 && `\nPáginas: ${book.pageCount}`}
 					{book.categories && `\nCategorias: ${book.categories?.join(', ')}`}	
 				</Text>
 				<Text className="text-sm text-gray-400 w-full">{book.author}</Text>

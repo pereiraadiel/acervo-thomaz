@@ -1,7 +1,5 @@
 import { View } from 'react-native';
 import { MainTemplate } from "@/components/templates/main.template";
-import { Title } from "@/components/atoms/title.atom";
-import { Paragraph } from "@/components/atoms/paragraph.atom";
 import { Input } from '@/components/atoms/input.atom';
 import { CameraMolecule } from '@/components/molecules/camera.molecule';
 import { BookScanInterface } from './interface';
@@ -43,20 +41,19 @@ const BookScanView: React.FC<BookScanInterface> = ({
 
 	return (
 		<MainTemplate>
-			{isCameraOpened ? (
+			{isCameraOpened && (
 				<CameraMolecule
 					scanned={scanned}
 					onScan={onScan} 
 					dismissCamera={dismissCamera}
 				/>
-			) : canAskAgain && (
-				<ScannerButton onPress={() => {requestCamera(); setScanned(false)}} />
 			)}
 
 			{scanned ? (
 				book &&	<BookDetails {...book} fetching={fetching}/>
 			) : (
-				<View className='mt-2'>
+				<View className='mt-2 flex-row'>
+					{(isCameraOpened === false && canAskAgain) && <ScannerButton onPress={() => {requestCamera(); setScanned(false)}} />}
 					<Input 
 						label='Pesquisar' 
 						placeholder='Pesquisar por nome do autor, ou titulo da obra' 
