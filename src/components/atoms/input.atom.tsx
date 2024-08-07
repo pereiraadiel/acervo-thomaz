@@ -11,7 +11,7 @@ export interface InputProps
   inputClasses?: string
 }
 
-const InputAtom = forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
+const Input = forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
   ({ className, label, labelClasses, inputClasses, ...props }, ref) => (
     <View className={cn("flex flex-col gap-1.5", className)}>
       {label && (
@@ -33,4 +33,4 @@ const InputAtom = forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
   )
 )
 
-export { InputAtom }
+export { Input }

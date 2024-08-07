@@ -2,7 +2,7 @@ import "@/styles/global.css"
 
 import { StatusBar } from "expo-status-bar"
 import { DarkTheme, NavigationContainer } from "@react-navigation/native"
-import { ToastProvider } from "@/components/Toast"
+import { ToastProvider } from "@/contexts/toast.context"
 import { BooksProvider } from "@/contexts/book.context"
 import { ExternalBookProvider } from "@/contexts/external-book.context"
 import { TabNavigationOrganism } from "@/components/organisms/tab-navigation.organism"

@@ -16,7 +16,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "expo": "~50.0.11",
-    "expo-blur": "^13.0.2",
     "expo-camera": "~14.1.3",
     "expo-status-bar": "~1.11.1",
     "nativewind": "^4.0.36",
