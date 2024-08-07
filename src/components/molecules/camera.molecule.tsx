@@ -15,7 +15,7 @@ const CameraMolecule: React.FC<CameraMoleculeProps> = ({
 	return (
 		<View className={`w-full mt-2 h-64 border ${scanned ? 'border-green-400': 'border-blue-400'}`}>
 			<CameraView
-				onBarcodeScanned={scanned ? undefined : (r) => {onScan(r); dismissCamera()}}
+				onBarcodeScanned={scanned ? undefined : ({type, data}) => {onScan({type, data}); dismissCamera();}}
 				style={StyleSheet.absoluteFillObject}
 				barcodeScannerSettings={{
 					barcodeTypes: ["ean13", "ean8"],

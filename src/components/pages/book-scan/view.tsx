@@ -25,19 +25,6 @@ const BookScanView: React.FC<BookScanInterface> = ({
 		book
 	}
 }) => {
-	console.info('BookScanView', {
-		hasCameraPermission,
-		isCameraOpened,
-		requestCamera,
-		dismissCamera,
-		canAskAgain,
-		onScan,
-		result,
-		scanned,
-		setScanned,
-		book
-	});
-
 	if (!hasCameraPermission) {
 		return (
 			<MainTemplate>

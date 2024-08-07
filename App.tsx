@@ -6,19 +6,12 @@ import { ToastProvider } from "@/contexts/toast.context"
 import { BooksProvider } from "@/contexts/book.context"
 import { ExternalBookProvider } from "@/contexts/external-book.context"
 import { TabNavigationOrganism } from "@/components/organisms/tab-navigation.organism"
-import useBarCode from "@/hooks/useBarCode.hook"
 
-export default function App() {
-  const {
-    result: {
-      data: isbn
-    }
-  } = useBarCode();
-  
+export default function App() {  
   return (
     <ToastProvider position="top">
       <BooksProvider>
-        <ExternalBookProvider isbn={isbn}>
+        <ExternalBookProvider>
           <NavigationContainer theme={DarkTheme} >
             <TabNavigationOrganism/>
           </NavigationContainer>

@@ -1,7 +1,7 @@
 import { BookScanView } from "./view";
 import useCameraPermissions from "@/hooks/useCameraPermission.hook"
 import useBarCode from "@/hooks/useBarCode.hook";
-import useExternalBook from "../../../hooks/useExternalBook.hook";
+import useExternalBook from "@/hooks/useExternalBook.hook";
 
 const BookScanPage = () =>{
 	const methods = {
