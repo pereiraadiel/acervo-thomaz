@@ -6,6 +6,7 @@ import { Input } from '@/components/atoms/input.atom';
 import { CameraMolecule } from '@/components/molecules/camera.molecule';
 import { BookScanInterface } from './interface';
 import { ScannerButton } from '@/components/atoms/scanner-button.atom';
+import { BookDetails } from '../../organisms/book-details.organism';
 
 const BookScanView: React.FC<BookScanInterface> = ({
 	camera: { 
@@ -53,12 +54,7 @@ const BookScanView: React.FC<BookScanInterface> = ({
 			)}
 
 			{scanned ? (
-				<View className='mt-2'>
-					<Title>Código Escaneado:</Title>
-					<Title>Tipo: {result?.type}</Title>
-					<Title>Valor: {result?.data}</Title>
-					{book && <Paragraph>{JSON.stringify(book)}</Paragraph>}
-				</View>
+				book &&	<BookDetails {...book} fetching={fetching}/>
 			) : (
 				<View className='mt-2'>
 					<Input 

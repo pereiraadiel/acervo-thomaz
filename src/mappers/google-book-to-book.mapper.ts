@@ -4,6 +4,7 @@ import { BookModel } from "@/models/book.model";
 const googleBookToBookMapper = (googleBook: GoogleBook): BookModel => {
   if (googleBook.items) {
     const item = googleBook.items[0];
+    console.log("googleBookToBookMapper · item: ", item);
     return {
       title: item.volumeInfo.title,
       subtitle: item.volumeInfo.subtitle,
@@ -13,7 +14,7 @@ const googleBookToBookMapper = (googleBook: GoogleBook): BookModel => {
       categories: item.volumeInfo.categories,
       language: item.volumeInfo.language,
       author: item.volumeInfo.authors.join(", "),
-      imageUrl: item.volumeInfo.imageLinks.thumbnail,
+      imageUrl: item.volumeInfo?.imageLinks?.thumbnail || "",
       description: item.volumeInfo.description,
       id: item.volumeInfo.industryIdentifiers[0].identifier,
       status: "not-readed",

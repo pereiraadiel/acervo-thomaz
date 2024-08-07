@@ -18,7 +18,6 @@ const useCameraPermissions = () => {
     setCanAskAgain(initialCanAskAgain);
 
     if (isGranted) {
-      setIsCameraOpened(true);
       return;
     }
 

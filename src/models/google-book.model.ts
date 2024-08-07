@@ -11,9 +11,12 @@ export type GoogleBookItem = {
     printType: string;
     categories: string[];
     maturityRating: string;
-    imageLinks: {
+    imageLinks?: {
       smallThumbnail: string;
       thumbnail: string;
+      small?: string;
+      medium?: string;
+      large?: string;
     };
     language: string;
   };
