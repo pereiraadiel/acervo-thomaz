@@ -1,9 +1,9 @@
 import useCameraPermissions from "@/hooks/useCameraPermission.hook";
 import useBarCode from "@/hooks/useBarCode.hook";
-import useExternalBook from "@/hooks/useExternalBook.hook";
+import useBook from "@/hooks/useBook.hook";
 
 export interface BookScanInterface {
   camera: ReturnType<typeof useCameraPermissions>;
   barcode: ReturnType<typeof useBarCode>;
-  book: ReturnType<typeof useExternalBook>;
+  book: ReturnType<typeof useBook>;
 }

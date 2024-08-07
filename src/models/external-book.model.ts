@@ -1,1 +1,5 @@
-export type ExternalBookModel = any;
+
+
+export type ExternalBookModel = {
+
+}

@@ -1,5 +1,5 @@
-import { ExternalBookModel } from "@/models/external-book.model";
+import { BookModel } from "@/models/book.model";
 
 export interface IsbnApiServiceInterface {
-	getBookInfoByIsbn(isbn: string): Promise<ExternalBookModel>
+  getBookInfoByIsbn(isbn: string): Promise<BookModel>;
 }

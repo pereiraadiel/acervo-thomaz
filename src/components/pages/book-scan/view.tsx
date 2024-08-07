@@ -22,7 +22,8 @@ const BookScanView: React.FC<BookScanInterface> = ({
 		setScanned
 	},
 	book: {
-		book
+		book,
+		fetching
 	}
 }) => {
 	if (!hasCameraPermission) {
