@@ -1,3 +1,5 @@
+export type BookStatus = "readed" | "reading" | "not-readed" | "abandoned";
+
 export type BookModel = {
   id: string;
   title: string;
@@ -10,5 +12,5 @@ export type BookModel = {
   pageCount: number;
   categories: string[];
   language: string;
-  status: "readed" | "reading" | "not-readed" | "abandoned";
+  status: BookStatus;
 };

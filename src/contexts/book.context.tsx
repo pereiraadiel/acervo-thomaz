@@ -7,6 +7,7 @@ const Provider = BookContext.Provider;
 interface BookContextType {
   book: BookModel | undefined;
   fetchBookInfoByIsbn: (isbn: string) => void;
+  setBook: (book: BookModel) => void;
   fetching: boolean;
 };
 
@@ -30,6 +31,7 @@ const BookProvider = ({ children }: BookProviderProps) => {
   const [bookContext, setBookContext] = useState<BookContextType>({
     book,
     fetchBookInfoByIsbn,
+    setBook,
     fetching,
   });
 
@@ -37,6 +39,7 @@ const BookProvider = ({ children }: BookProviderProps) => {
     setBookContext({
       book,
       fetchBookInfoByIsbn,
+      setBook,
       fetching,
     });
   }, [book, fetching]);

@@ -9,8 +9,8 @@ interface ScannerButtonProps {
 
 const ScannerButton: React.FC<ScannerButtonProps> = ({ onPress }) => {
 	return (
-		<View className='py-2 mx-2 flex-col items-center justify-center'>
-			<TouchableOpacity onPress={onPress} className='flex-col items-center justify-center bg-gray-600 p-2 gap-1 rounded-md'>
+		<View className='flex-col items-center justify-center h-full'>
+			<TouchableOpacity onPress={onPress} className='flex-col items-center h-full justify-center bg-gray-800 p-2 gap-1 rounded-md'>
 				<MaterialCommunityIcons name="line-scan" color={colors.green[400]} size={24} />
 				<Text className='text-green-400'>Escanear</Text>
 			</TouchableOpacity>

@@ -52,12 +52,13 @@ const BookScanView: React.FC<BookScanInterface> = ({
 			{scanned ? (
 				book &&	<BookDetails {...book} fetching={fetching}/>
 			) : (
-				<View className='mt-2 flex-row'>
+				<View className='mt-2 flex-row items-center justify-center gap-2'>
 					{(isCameraOpened === false && canAskAgain) && <ScannerButton onPress={() => {requestCamera(); setScanned(false)}} />}
 					<Input 
 						label='Pesquisar' 
 						placeholder='Pesquisar por nome do autor, ou titulo da obra' 
 						onPressIn={dismissCamera}
+						className='w-auto flex-1'
 					/>
 				</View>
 			)}

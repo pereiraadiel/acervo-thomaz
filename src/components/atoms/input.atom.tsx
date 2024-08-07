@@ -16,7 +16,7 @@ const Input = forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
     <View className={cn("flex flex-col gap-1.5", className)}>
       {label && (
         <Text
-          className={cn("text-white text-base font-bold mb-1", labelClasses)}
+          className={cn("text-white text-base font-bold mb-0.25", labelClasses)}
         >
           {label}
         </Text>
