@@ -20,7 +20,7 @@ export const colors = {
 
   orange: {
     400: "#FFA500",
-    500: "#FF7500",
+    500: "#F86838",
   },
 
   gray: {

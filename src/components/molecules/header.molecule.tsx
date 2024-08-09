@@ -1,5 +1,5 @@
 import { Text, View } from "react-native"
-import { LogoAtom } from "@/components/atoms/logo.atom";
+import { LogoAtom } from "@/components/atoms/logo";
 
 interface HeaderMoleculeProps {
 	title?: string

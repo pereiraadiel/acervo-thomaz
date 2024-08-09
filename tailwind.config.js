@@ -1,4 +1,4 @@
-import { colors } from "./src/styles/colors"
+import { colors } from "./src/styles/colors";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,7 +7,15 @@ module.exports = {
   theme: {
     extend: {
       colors,
+      fontFamily: {
+        days_one: ["DaysOne_400Regular"],
+        lemon: ["Lemon_400Regular"],
+        lexend: ["Lexend_400Regular", "Lexend_700Bold"],
+      },
+      lineHeight: {
+        "extra-loose": "1.1",
+      },
     },
   },
   plugins: [],
-}
+};
