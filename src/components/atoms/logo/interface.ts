@@ -1,6 +1,6 @@
 export type LogoVariant = "default" | "small";
 
-export type LogoAtomProps = {
+export type LogoAtomProps  = {
   className?: string;
   variant?: LogoVariant;
 };

@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import { MainTemplate } from "@/components/templates/main.template";
-import { Input } from '@/components/atoms/input.atom';
+import { InputAtom } from '@/components/atoms/input';
 import { CameraMolecule } from '@/components/molecules/camera.molecule';
 import { BookScanInterface } from './interface';
 import { ScannerButton } from '@/components/atoms/scanner-button.atom';
@@ -29,7 +29,7 @@ const BookScanView: React.FC<BookScanInterface> = ({
 		return (
 			<MainTemplate>
 				<View className='mt-2'>
-					<Input 
+					<InputAtom 
 						label='Pesquisar' 
 						placeholder='Pesquisar por nome do autor, ou titulo da obra' 
 						onPressIn={dismissCamera}
@@ -54,11 +54,13 @@ const BookScanView: React.FC<BookScanInterface> = ({
 			) : (
 				<View className='mt-2 flex-row items-center justify-center gap-2'>
 					{(isCameraOpened === false && canAskAgain) && <ScannerButton onPress={() => {requestCamera(); setScanned(false)}} />}
-					<Input 
+					<InputAtom 
 						label='Pesquisar' 
-						placeholder='Pesquisar por nome do autor, ou titulo da obra' 
+						placeholder='Pesquisar autor, titulo da obra' 
+						variant='search'
 						onPressIn={dismissCamera}
 						className='w-auto flex-1'
+						error='Erro ao buscar livro'
 					/>
 				</View>
 			)}
