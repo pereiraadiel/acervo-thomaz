@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MaterialIcons, Octicons } from "@expo/vector-icons";
 import { colors } from "@/styles/colors";
+import React from "react";
 
 const variants = {
   password: <MaterialIcons name='password' size={20} color={colors.gray[500]} />,
@@ -10,7 +11,6 @@ const variants = {
   name: <Octicons name="person" size={20} color={colors.gray[500]}/>,
 };
 
-
 const useInputAtom = () => {
   const [variant, setVariant] = useState<keyof typeof variants>("name");
   const [error, setError] = useState<string>();
@@ -18,6 +18,7 @@ const useInputAtom = () => {
     border: 'border-gray-500',
     text: 'text-gray-500'
   });
+  const [Icon, setIcon] = useState<React.ReactElement>(variants[variant]);
 
   useEffect(() => {
     if (error) {
@@ -25,11 +26,17 @@ const useInputAtom = () => {
         border: 'border-red-500',
         text: 'text-red-500'
       });
+      setIcon(
+        React.cloneElement(variants[variant], { color: colors.red[500] })
+      );
     } else {
       setColor({
         border: 'border-gray-500',
         text: 'text-gray-500'
       });
+      setIcon(
+        React.cloneElement(variants[variant], { color: colors.gray[500] })
+      );
     }
   }, [error]);
 
@@ -39,7 +46,7 @@ const useInputAtom = () => {
     error,
     setError,
     color,
-    Icon: variants[variant],
+    Icon,
   };
 };
 

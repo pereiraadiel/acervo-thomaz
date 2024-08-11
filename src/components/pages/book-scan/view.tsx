@@ -1,10 +1,10 @@
 import { View } from 'react-native';
+import { BookScanInterface } from './interface';
 import { MainTemplate } from "@/components/templates/main.template";
 import { InputAtom } from '@/components/atoms/input';
 import { CameraMolecule } from '@/components/molecules/camera.molecule';
-import { BookScanInterface } from './interface';
 import { ScannerButton } from '@/components/atoms/scanner-button.atom';
-import { BookDetails } from '../../organisms/book-details.organism';
+import { BookDetails } from '@/components/organisms/book-details.organism';
 
 const BookScanView: React.FC<BookScanInterface> = ({
 	camera: { 
@@ -60,7 +60,6 @@ const BookScanView: React.FC<BookScanInterface> = ({
 						variant='search'
 						onPressIn={dismissCamera}
 						className='w-auto flex-1'
-						error='Erro ao buscar livro'
 					/>
 				</View>
 			)}

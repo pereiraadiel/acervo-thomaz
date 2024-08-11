@@ -26,10 +26,11 @@ const InputAtom: React.FC<InputAtomProps> = ({
 		className,
 		Icon,
 		color,
+		error,
 		...rest
 	}
 
-	return <InputAtomView {...methods} Icon={Icon} />;
+	return <InputAtomView {...methods} />;
 }
 
 export { InputAtom }

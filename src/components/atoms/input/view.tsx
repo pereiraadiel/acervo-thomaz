@@ -14,7 +14,7 @@ const InputAtomView = forwardRef<React.ElementRef<typeof TextInput>, InputAtomVi
   ...props
 }, ref) => {
   return (
-    <View className={cn(`flex flex-col gap-1 rounded-lg text-white bg-gray-800 border ${color.border}`, className)}>
+    <View className={cn(`flex flex-col gap-1 rounded-lg text-white border ${color.border}`, className)}>
       <View className={cn('flex flex-row gap-1.5 pl-1.5 py-0.5 items-center')}>
         {Icon}
         <Text
@@ -22,6 +22,9 @@ const InputAtomView = forwardRef<React.ElementRef<typeof TextInput>, InputAtomVi
         >
           {label}
         </Text>
+        {error && (
+          <Text className={cn('text-red-500 text-xs pl-1.5 flex-1')}>{error}</Text>
+        )}
       </View>
 
       <TextInput
@@ -31,9 +34,6 @@ const InputAtomView = forwardRef<React.ElementRef<typeof TextInput>, InputAtomVi
         )}
         {...props}
       />
-      {error && (
-        <Text className={cn('text-red-500 text-xs pl-1.5')}>{error}</Text>
-      )}
     </View>
   )
 });
