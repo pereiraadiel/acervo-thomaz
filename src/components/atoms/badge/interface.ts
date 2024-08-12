@@ -14,6 +14,7 @@ export type BadgeVariant =
 export interface BadgeAtomProps {
   variant?: BadgeVariant;
   onPress?: () => void;
+  isActive: boolean;
 }
 
 export interface BadgeAtomViewProps extends TouchableOpacityProps {

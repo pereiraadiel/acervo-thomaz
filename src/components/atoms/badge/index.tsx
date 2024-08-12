@@ -3,12 +3,11 @@ import { useBadgeAtom } from "./hook";
 import { BadgeAtomProps } from "./interface";
 import { BadgeAtomView } from "./view";
 
-const BadgeAtom: React.FC<BadgeAtomProps> = ({ onPress, variant = 'save' }) => {
+const BadgeAtom: React.FC<BadgeAtomProps> = ({ onPress, variant = 'save', isActive }) => {
 	const {
 		Icon,
 		text,
 		color,
-		isActive,
 		setIsActive,
 		setVariant,
 	} = useBadgeAtom();
@@ -16,7 +15,7 @@ const BadgeAtom: React.FC<BadgeAtomProps> = ({ onPress, variant = 'save' }) => {
 	useEffect(() => {
 		setVariant(variant);
 		setIsActive(isActive)
-	}, [variant]);
+	}, [variant, isActive]);
 
 	const handlePress = () => {
 		setIsActive(!isActive);

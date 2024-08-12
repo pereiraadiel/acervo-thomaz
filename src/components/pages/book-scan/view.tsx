@@ -5,6 +5,7 @@ import { InputAtom } from '@/components/atoms/input';
 import { CameraMolecule } from '@/components/molecules/camera.molecule';
 import { ScannerButton } from '@/components/atoms/scanner-button.atom';
 import { BookDetails } from '@/components/organisms/book-details.organism';
+import { TabsMolecule } from '../../molecules/tabs';
 
 const BookScanView: React.FC<BookScanInterface> = ({
 	camera: { 
@@ -28,13 +29,20 @@ const BookScanView: React.FC<BookScanInterface> = ({
 	if (!hasCameraPermission) {
 		return (
 			<MainTemplate>
-				<View className='mt-2'>
+				<TabsMolecule
+					initialTab='search'
+					tabs={[
+						{name: 'search', component: <InputAtom label='Pesquisar' placeholder='Pesquisar por nome do autor, ou titulo da obra'/>},
+						{name: 'scan-barcode', component: <ScannerButton onPress={requestCamera}/>}
+					]}
+				/>
+				{/* <View className='mt-2'>
 					<InputAtom 
 						label='Pesquisar' 
 						placeholder='Pesquisar por nome do autor, ou titulo da obra' 
 						onPressIn={dismissCamera}
 					/>
-				</View>
+				</View> */}
 			</MainTemplate>
 		);
 	}

@@ -30,8 +30,8 @@ const useBadgeAtom = () => {
 	const [isActive, setIsActive] = useState(false);
 	const [text, setText] = useState(variantTexts[variant]);
 	const [color, setColor] = useState({
-		text: 'text-gray-600',
-		background: 'bg-gray-600',
+		text: 'text-gray-700',
+		background: 'bg-gray-700',
 	});
 	const [Icon, setIcon] = useState<React.ReactElement>(variants[variant]);
 
