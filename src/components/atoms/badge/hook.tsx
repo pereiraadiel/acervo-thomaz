@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import React from "react";
 
 const variants = {
-	search: <Octicons name="search" size={20} color={colors.gray[500]} />,
-	readed: <Octicons name="bookmark" size={20} color={colors.green[500]} />,
-	"not-readed": <Octicons name="bookmark" size={20} color={colors.red[500]} />,
-	reading: <Octicons name="bookmark" size={20} color={colors.orange[500]} />,
-	abandoned: <Octicons name="bookmark" size={20} color={colors.red[500]} />,
-	desired: <Octicons name="bookmark" size={20} color={colors.blue[500]} />,
-	"scan-barcode": <Ionicons name="barcode-sharp" size={20} color={colors.gray[500]} />,
-	save: <Octicons name="bookmark" size={20} color={colors.gray[500]} />,
+	search: <Octicons name="search" size={20} color={colors.gray[600]} />,
+	readed: <Octicons name="bookmark" size={20} color={colors.green[600]} />,
+	"not-readed": <Octicons name="bookmark" size={20} color={colors.red[600]} />,
+	reading: <Octicons name="bookmark" size={20} color={colors.orange[600]} />,
+	abandoned: <Octicons name="bookmark" size={20} color={colors.red[600]} />,
+	desired: <Octicons name="bookmark" size={20} color={colors.blue[600]} />,
+	"scan-barcode": <Ionicons name="barcode-sharp" size={20} color={colors.gray[600]} />,
+	save: <Octicons name="bookmark" size={20} color={colors.gray[600]} />,
 };
 
 const variantTexts = {
@@ -30,22 +30,22 @@ const useBadgeAtom = () => {
 	const [isActive, setIsActive] = useState(false);
 	const [text, setText] = useState(variantTexts[variant]);
 	const [color, setColor] = useState({
-		text: 'text-gray-500',
-		background: 'bg-gray-500',
+		text: 'text-gray-600',
+		background: 'bg-gray-600',
 	});
 	const [Icon, setIcon] = useState<React.ReactElement>(variants[variant]);
 
 	useEffect(() => {
 		const activeColor = isActive ? '' : '/40';
 		const baseColors = {
-			search: { text: 'text-white', background: `bg-gray-500${activeColor}`, icon: colors.white },
-			readed: { text: 'text-black', background: `bg-green-500${activeColor}`, icon: colors.black },
-			"not-readed": { text: 'text-white', background: `bg-red-500${activeColor}`, icon: colors.white },
-			"scan-barcode": { text: 'text-white', background: `bg-gray-500${activeColor}`, icon: colors.white },
-			reading: { text: 'text-white', background: `bg-orange-500${activeColor}`, icon: colors.white },
-			abandoned: { text: 'text-white', background: `bg-red-500${activeColor}`, icon: colors.white },
-			desired: { text: 'text-white', background: `bg-blue-500${activeColor}`, icon: colors.white },
-			save: { text: 'text-white', background: `bg-gray-500${activeColor}`, icon: colors.white },
+			search: { text: 'text-white', background: `bg-gray-600${activeColor}`, icon: colors.white },
+			readed: { text: isActive ? 'text-black' : 'text-white', background: `bg-green-600${activeColor}`, icon: isActive ? colors.black: colors.white },
+			"not-readed": { text: 'text-white', background: `bg-red-600${activeColor}`, icon: colors.white },
+			"scan-barcode": { text: 'text-white', background: `bg-gray-600${activeColor}`, icon: colors.white },
+			reading: { text: 'text-white', background: `bg-orange-600${activeColor}`, icon: colors.white },
+			abandoned: { text: 'text-white', background: `bg-red-600${activeColor}`, icon: colors.white },
+			desired: { text: 'text-white', background: `bg-blue-600${activeColor}`, icon: colors.white },
+			save: { text: 'text-white', background: `bg-gray-600${activeColor}`, icon: colors.white },
 		};
 
 		const selectedVariant = baseColors[variant] || baseColors.search;

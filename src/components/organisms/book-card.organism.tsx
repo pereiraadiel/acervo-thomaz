@@ -1,6 +1,6 @@
 import { Image, Text } from "react-native";
 import { Card } from "../molecules/card.molecule";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 
 interface BookCardProps {
 	title: string;
@@ -25,7 +25,7 @@ const BookCard: React.FC<BookCardProps> = ({
 				<Card.Description className="text-ellipsis line-clamp-2" >{description}</Card.Description>
 			</Card.Header>
 			<Card.Footer>
-				<Text className="text-sm text-gray-400">{author}</Text>
+				<Text className="text-sm text-gray-700">{author}</Text>
 			</Card.Footer>
 		</Card>
   )

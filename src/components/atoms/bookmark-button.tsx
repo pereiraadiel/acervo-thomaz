@@ -23,13 +23,13 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({className, variant = 'no
 		abandoned: <Text className="text-red-400 text-sm font-bold">Abandonado</Text>
 	}
 
-	const color = variants[variant] || colors.gray[400];	
+	const color = variants[variant] || colors.gray[700];	
 	const iconName = fill ? 'bookmark' : 'bookmark-outline';
 	const labelField = labelFields[variant] || labelFields['not-readed'];
 
 	return (
 		<TouchableOpacity 
-			className={cn`rounded-full bg-gray-700 h-12 flex items-center justify-center ${className} ${fill ? 'px-4 flex-row gap-2': 'w-12'}`}
+			className={cn`rounded-full bg-gray-500 h-12 flex items-center justify-center ${className} ${fill ? 'px-4 flex-row gap-2': 'w-12'}`}
 			onPress={onPress}
 			>
 			<Ionicons name={iconName} size={24} color={color}/>

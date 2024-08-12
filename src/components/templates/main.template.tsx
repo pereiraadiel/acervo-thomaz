@@ -9,9 +9,9 @@ interface MainTemplateProps {
 
 const MainTemplate: React.FC<MainTemplateProps> = ({ children, headerTitle }) => {
 	return (
-		<View className="flex-1 bg-gray-700">
+		<View className="flex-1 bg-gray-400">
 			<HeaderMolecule title={headerTitle}/>
-			<ScrollView className={cn(`flex-1 bg-gray-700 px-2`)}>
+			<ScrollView className={cn(`flex-1 bg-gray-400 px-2`)}>
 				{children}
 			</ScrollView>
 			{/* <Footer /> */}

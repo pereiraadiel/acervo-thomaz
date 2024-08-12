@@ -8,12 +8,20 @@ const BadgeAtom: React.FC<BadgeAtomProps> = ({ onPress, variant = 'save' }) => {
 		Icon,
 		text,
 		color,
+		isActive,
+		setIsActive,
 		setVariant,
 	} = useBadgeAtom();
 
 	useEffect(() => {
 		setVariant(variant);
+		setIsActive(isActive)
 	}, [variant]);
+
+	const handlePress = () => {
+		setIsActive(!isActive);
+		onPress && onPress();
+	}
 
 	const methods = {
 		text,
@@ -21,7 +29,7 @@ const BadgeAtom: React.FC<BadgeAtomProps> = ({ onPress, variant = 'save' }) => {
 		color,
 	}
 
-	return <BadgeAtomView onPress={onPress} {...methods}  />;
+	return <BadgeAtomView onPress={handlePress} {...methods}  />;
 }
 
 export { BadgeAtom };

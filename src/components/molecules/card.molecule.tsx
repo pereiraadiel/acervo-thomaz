@@ -8,7 +8,7 @@ function Card({
 }: React.ComponentPropsWithoutRef<typeof View>) {
   return (
     <View
-      className={cn('rounded-xl bg-gray-800 ml-2 overflow-hidden', className)}
+      className={cn('rounded-xl bg-gray-500 ml-2 overflow-hidden', className)}
       {...props}
     />
   );
@@ -42,7 +42,7 @@ function CardDescription({
 }: React.ComponentPropsWithoutRef<typeof Text>) {
   return (
     <Text
-      className={cn('text-sm text-gray-500', className)}
+      className={cn('text-sm text-gray-800', className)}
       {...props}
     />
   );
@@ -102,7 +102,7 @@ function SimpleCard({
       )}
       {footer && (
         <CardFooter>
-          <Text className="text-sm text-muted-foreground">{footer}</Text>
+          <Text className="text-sm text-muted-foreground text-gray-700">{footer}</Text>
         </CardFooter>
       )}
     </Card>

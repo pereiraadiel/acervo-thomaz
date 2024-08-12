@@ -25,7 +25,7 @@ const BookDetails: React.FC<BookDetailsProps> = ({
 	if(fetching) {
 		return (
 			<View>
-				<Text className="text-md text-gray-400">Carregando...</Text>
+				<Text className="text-md text-gray-700">Carregando...</Text>
 			</View>
 		)
 	}
@@ -55,13 +55,13 @@ const BookDetails: React.FC<BookDetailsProps> = ({
 				</TouchableOpacity>
 			</Card.Header>
 			<Card.Footer className="flex-col gap-1 items-start flex-wrap">
-				<Text className="text-sm text-gray-500 w-full">
+				<Text className="text-sm text-gray-700 w-full">
 					{book.publishedDate} · {book.publisher}
 					{'\n'}Idioma: {book.language} 
 					{book.pageCount > 0 && `\nPáginas: ${book.pageCount}`}
 					{book.categories && `\nCategorias: ${book.categories?.join(', ')}`}	
 				</Text>
-				<Text className="text-sm text-gray-400 w-full">{book.author}</Text>
+				<Text className="text-sm text-gray-700 w-full">{book.author}</Text>
 			</Card.Footer>
 
 			<View className="flex-row gap-2 justify-around w-[280px]">

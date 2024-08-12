@@ -13,7 +13,7 @@ const CameraMolecule: React.FC<CameraMoleculeProps> = ({
 	dismissCamera
 }) => {
 	return (
-		<View className={`w-full mt-2 h-64 border ${scanned ? 'border-green-400': 'border-blue-400'}`}>
+		<View className={`w-full mt-2 h-64 border ${scanned ? 'border-green-400': 'border-yellow-400'}`}>
 			<CameraView
 				onBarcodeScanned={scanned ? undefined : ({type, data}) => {onScan({type, data}); dismissCamera();}}
 				style={StyleSheet.absoluteFillObject}
