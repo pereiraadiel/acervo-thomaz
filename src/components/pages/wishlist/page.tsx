@@ -1,5 +1,5 @@
 import { MainTemplate } from "@/components/templates/main.template"
-import { Title } from "@/components/atoms/title.atom"
+import { Title } from "@/components/atoms/title"
 
 const WishlistPage = () =>{
 	return (

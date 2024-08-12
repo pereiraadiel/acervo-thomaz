@@ -2,7 +2,7 @@ import { BookModel } from "@/models/book.model";
 
 export const BOOKS = [
   {
-    id: "",
+    id: "123",
     title: "Dom Casmurro",
     description:
       "Um dos romances mais famosos de Machado de Assis, explorando a vida de Bentinho e Capitu.",
@@ -12,7 +12,7 @@ export const BOOKS = [
     status: "readed",
   },
   {
-    id: "",
+    id: "321",
     title: "Sapiens: Uma Breve História da Humanidade",
     description:
       "Uma narrativa sobre a história da humanidade desde a Idade da Pedra até a era moderna.",
@@ -22,7 +22,7 @@ export const BOOKS = [
     status: "not-readed",
   },
   {
-    id: "",
+    id: "456",
     title: "1984",
     description:
       "Um romance distópico que explora temas de totalitarismo e vigilância.",
@@ -31,7 +31,7 @@ export const BOOKS = [
     status: "reading",
   },
   {
-    id: "",
+    id: "654",
     title: "O Pequeno Príncipe",
     description:
       "Uma obra clássica que aborda temas como amizade, amor e perda.",
@@ -41,7 +41,7 @@ export const BOOKS = [
     status: "abandoned",
   },
   {
-    id: "",
+    id: "789",
     title: "A Revolução dos Bichos",
     description:
       "Uma fábula satírica sobre uma revolução de animais em uma fazenda.",
@@ -51,7 +51,7 @@ export const BOOKS = [
     status: "not-readed",
   },
   {
-    id: "",
+    id: "987",
     title: "O Poder do Hábito",
     description:
       "Um olhar sobre como os hábitos se formam e como podem ser mudados.",
@@ -61,7 +61,7 @@ export const BOOKS = [
     status: "readed",
   },
   {
-    id: "",
+    id: "012",
     title: "Cem Anos de Solidão",
     description:
       "Uma saga multi-geracional da família Buendía em uma cidade fictícia.",
@@ -71,7 +71,7 @@ export const BOOKS = [
     status: "reading",
   },
   {
-    id: "",
+    id: "210",
     title: "A Arte da Guerra",
     description:
       "Um tratado militar clássico que aborda estratégias e táticas de guerra.",
@@ -81,7 +81,7 @@ export const BOOKS = [
     status: "abandoned",
   },
   {
-    id: "",
+    id: "234",
     title: "O Alquimista",
     description:
       "A jornada de um jovem pastor em busca de seu tesouro pessoal.",
@@ -91,7 +91,7 @@ export const BOOKS = [
     status: "not-readed",
   },
   {
-    id: "",
+    id: "432",
     title: "O Hobbit",
     description:
       "A aventura de Bilbo Bolseiro em busca de um tesouro guardado por um dragão.",
@@ -100,7 +100,7 @@ export const BOOKS = [
     status: "readed",
   },
   {
-    id: "",
+    id: "345",
     title: "SCRUM",
     description: "A arte de fazer o dobro do trabalho na metade do tempo",
     author: "J.J Sutherland",
@@ -109,7 +109,7 @@ export const BOOKS = [
     status: "not-readed",
   },
   {
-    id: "",
+    id: "543",
     title: "O Alienista",
     description:
       "Texto integral - Questões de vestibular, e agora eu coloco qualquer coisa para passar do limite de caracteres e ver o que acontece",
@@ -119,7 +119,7 @@ export const BOOKS = [
     status: "reading",
   },
   {
-    id: "",
+    id: "567",
     title: "Padre Pio",
     description: "Os Milagres desconhecidos do santo dos estigmas",
     author: "José Maria Zavala",

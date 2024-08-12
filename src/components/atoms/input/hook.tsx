@@ -18,7 +18,12 @@ const useInputAtom = () => {
     border: 'border-gray-800',
     text: 'text-gray-800'
   });
+
   const [Icon, setIcon] = useState<React.ReactElement>(variants[variant]);
+
+  useEffect(() => {
+    setVariant(variant)
+  }, [])
 
   useEffect(() => {
     if (error) {

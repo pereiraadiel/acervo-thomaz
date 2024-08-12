@@ -1,6 +1,6 @@
 import { ScrollView, View } from "react-native";
-import { HeaderMolecule } from "../molecules/header.molecule";
-import { cn } from "../../lib/utils";
+import { HeaderMolecule } from "@/components/molecules/header.molecule";
+import { cn } from "@/lib/utils";
 
 interface MainTemplateProps {
 	children: React.ReactNode;

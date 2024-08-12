@@ -1,9 +1,7 @@
 import React from 'react';
 import useBooks from '@/hooks/useBooks.hook';
-import { BookCollection } from '@/components/organisms/book-collection.organism';
 import { MainTemplate } from '@/components/templates/main.template';
-import { BadgeAtom } from '../../atoms/badge';
-import { TabsMolecule } from '../../molecules/tabs';
+import { TabsMolecule } from '@/components/molecules/tabs';
 import { Text } from 'react-native';
 
 const HomeView : React.FC<ReturnType<typeof useBooks>> = ({
@@ -14,15 +12,12 @@ const HomeView : React.FC<ReturnType<typeof useBooks>> = ({
   const Books = () => {
     return (
       <>
-        <BookCollection title='Lidos' description='Livros que possuo e já foram lidos pelo menos uma vez' books={readedBooks}/>
-        <BookCollection title='Não Lidos' description='Livros que possuo mas ainda não li' books={notReadedBooks}/>
-        <BookCollection title='Abandonados' description='Livros que possuo, comecei a ler mas não conclui' books={abandonedBooks}/>
       </>
     )
   }
   return (
     <MainTemplate>
-      <TabsMolecule initialTab='readed' tabs={
+      <TabsMolecule initialTab='reading' tabs={
         [
           {name: 'reading', component: <Text className='text-white'>Lendo</Text>},
           {name: 'abandoned', component: <Text className='text-white'>Abandonados</Text>},

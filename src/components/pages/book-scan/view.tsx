@@ -1,13 +1,14 @@
 import { View } from 'react-native';
 import { BookScanInterface } from './interface';
 import { MainTemplate } from "@/components/templates/main.template";
-import { InputAtom } from '@/components/atoms/input';
 import { CameraMolecule } from '@/components/molecules/camera.molecule';
 import { ScannerButton } from '@/components/atoms/scanner-button.atom';
-import { BookDetails } from '@/components/organisms/book-details.organism';
 import { TabsMolecule } from '@/components/molecules/tabs';
+import { SearchMolecule } from '@/components/molecules/search';
+import { BookListOrganism } from '@/components/organisms/bookList';
 import { useFocusEffect } from '@react-navigation/native';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import useBooks from '@/hooks/useBooks.hook';
 
 const BookScanView: React.FC<BookScanInterface> = ({
 	camera: { 
@@ -33,6 +34,16 @@ const BookScanView: React.FC<BookScanInterface> = ({
 		setScanned(false);
 		dismissCamera();
 	}, []));
+
+
+	const { allBooks } = useBooks()
+
+	const [books, setBooks] = useState(allBooks);
+
+	const handleSearch = (term: string) => {
+		setBooks(allBooks.filter(book => book.title.toLowerCase().includes(term.toLowerCase())))
+	}
+
 	let scanBarcodeComponent: React.ReactNode;
 
 	if (!hasCameraPermission) {
@@ -46,7 +57,8 @@ const BookScanView: React.FC<BookScanInterface> = ({
 			/>
 		);
 	} else if (scanned && book) {
-		scanBarcodeComponent = <BookDetails {...book} fetching={fetching}/>;
+		// scanBarcodeComponent = <BookDetails {...book} fetching={fetching}/>;
+		scanBarcodeComponent = <></>;
 	} else {
 		scanBarcodeComponent = (
 			<ScannerButton 
@@ -66,13 +78,15 @@ const BookScanView: React.FC<BookScanInterface> = ({
 					{
 						name: 'search', 
 						component: (
-							<InputAtom 
-								label='Pesquisar' 
-								placeholder='Pesquisar autor, título da obra'
-								variant='search'
-								onPressIn={dismissCamera}
-								className='w-auto flex-1'
-							/>
+							<>
+								<SearchMolecule
+									placeholder='Pesquisar autor, título da obra'
+									onSearch={handleSearch}
+									onPressIn={dismissCamera}
+								/>
+								<BookListOrganism books={books}/>
+								
+							</>
 						)
 					},
 					{
