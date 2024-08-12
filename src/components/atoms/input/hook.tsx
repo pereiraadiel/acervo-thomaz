@@ -15,27 +15,27 @@ const useInputAtom = () => {
   const [variant, setVariant] = useState<keyof typeof variants>("name");
   const [error, setError] = useState<string>();
   const [color, setColor] = useState({
-    border: 'border-gray-500',
-    text: 'text-gray-500'
+    border: 'border-gray-800',
+    text: 'text-gray-800'
   });
   const [Icon, setIcon] = useState<React.ReactElement>(variants[variant]);
 
   useEffect(() => {
     if (error) {
       setColor({
-        border: 'border-red-500',
-        text: 'text-red-500'
+        border: 'border-red-600',
+        text: 'text-red-600'
       });
       setIcon(
-        React.cloneElement(variants[variant], { color: colors.red[500] })
+        React.cloneElement(variants[variant], { color: colors.red[600] })
       );
     } else {
       setColor({
-        border: 'border-gray-500',
-        text: 'text-gray-500'
+        border: 'border-gray-800',
+        text: 'text-gray-800'
       });
       setIcon(
-        React.cloneElement(variants[variant], { color: colors.gray[500] })
+        React.cloneElement(variants[variant], { color: colors.gray[800] })
       );
     }
   }, [error]);

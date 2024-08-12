@@ -5,7 +5,9 @@ import { InputAtom } from '@/components/atoms/input';
 import { CameraMolecule } from '@/components/molecules/camera.molecule';
 import { ScannerButton } from '@/components/atoms/scanner-button.atom';
 import { BookDetails } from '@/components/organisms/book-details.organism';
-import { TabsMolecule } from '../../molecules/tabs';
+import { TabsMolecule } from '@/components/molecules/tabs';
+import { useFocusEffect } from '@react-navigation/native';
+import { useCallback } from 'react';
 
 const BookScanView: React.FC<BookScanInterface> = ({
 	camera: { 
@@ -26,51 +28,63 @@ const BookScanView: React.FC<BookScanInterface> = ({
 		fetching
 	}
 }) => {
+
+	useFocusEffect(useCallback(() => {
+		setScanned(false);
+		dismissCamera();
+	}, []));
+	let scanBarcodeComponent: React.ReactNode;
+
 	if (!hasCameraPermission) {
-		return (
-			<MainTemplate>
-				<TabsMolecule
-					initialTab='search'
-					tabs={[
-						{name: 'search', component: <InputAtom label='Pesquisar' placeholder='Pesquisar por nome do autor, ou titulo da obra'/>},
-						{name: 'scan-barcode', component: <ScannerButton onPress={requestCamera}/>}
-					]}
-				/>
-				{/* <View className='mt-2'>
-					<InputAtom 
-						label='Pesquisar' 
-						placeholder='Pesquisar por nome do autor, ou titulo da obra' 
-						onPressIn={dismissCamera}
-					/>
-				</View> */}
-			</MainTemplate>
+		scanBarcodeComponent = <ScannerButton onPress={requestCamera}/>;
+	} else if (isCameraOpened && !scanned) {
+		scanBarcodeComponent = (
+			<CameraMolecule
+				scanned={scanned}
+				onScan={onScan} 
+				dismissCamera={dismissCamera}
+			/>
+		);
+	} else if (scanned && book) {
+		scanBarcodeComponent = <BookDetails {...book} fetching={fetching}/>;
+	} else {
+		scanBarcodeComponent = (
+			<ScannerButton 
+				onPress={() => {
+					requestCamera(); 
+					setScanned(false);
+				}} 
+			/>
 		);
 	}
 
 	return (
 		<MainTemplate>
-			{isCameraOpened && (
-				<CameraMolecule
-					scanned={scanned}
-					onScan={onScan} 
-					dismissCamera={dismissCamera}
-				/>
-			)}
-
-			{scanned ? (
-				book &&	<BookDetails {...book} fetching={fetching}/>
-			) : (
-				<View className='mt-2 flex-row items-center justify-center gap-2'>
-					{(isCameraOpened === false && canAskAgain) && <ScannerButton onPress={() => {requestCamera(); setScanned(false)}} />}
-					<InputAtom 
-						label='Pesquisar' 
-						placeholder='Pesquisar autor, titulo da obra' 
-						variant='search'
-						onPressIn={dismissCamera}
-						className='w-auto flex-1'
-					/>
-				</View>
-			)}
+			<TabsMolecule
+				initialTab={'search'}
+				tabs={[
+					{
+						name: 'search', 
+						component: (
+							<InputAtom 
+								label='Pesquisar' 
+								placeholder='Pesquisar autor, título da obra'
+								variant='search'
+								onPressIn={dismissCamera}
+								className='w-auto flex-1'
+							/>
+						)
+					},
+					{
+						name: 'scan-barcode', 
+						component: (
+							<View className='flex-1'>
+								{scanBarcodeComponent}
+							</View>
+						)
+					}
+				]}
+			/>
 		</MainTemplate>
 	);
 }

@@ -28,7 +28,7 @@ const InputAtomView = forwardRef<React.ElementRef<typeof TextInput>, InputAtomVi
       </View>
 
       <TextInput
-        placeholderTextColor={colors.gray[400]}
+        placeholderTextColor={colors.gray[800]}
         className={cn(
           "pb-1 px-4 text-white bg-transparent rounded-lg"
         )}

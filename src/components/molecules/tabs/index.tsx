@@ -12,7 +12,7 @@ const TabsMolecule: React.FC<TabsMoleculeProps> = ({
 	 } = useTabsMolecule(initialTab);
 
 	const component = tabs.find((tab) => tab.name === actualTab)?.component;
-	
+
 	const methods = {
 		children: component,
 		onChangeTab: handleTabChange,
