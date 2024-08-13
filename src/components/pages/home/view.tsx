@@ -10,12 +10,6 @@ const HomeView : React.FC<ReturnType<typeof useBooks>> = ({
 	abandonedBooks,
   readingBooks
 }) => {
-  const Books = () => {
-    return (
-      <>
-      </>
-    )
-  }
   return (
     <MainTemplate>
       <TabsMolecule initialTab='reading' tabs={

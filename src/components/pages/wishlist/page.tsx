@@ -1,12 +1,16 @@
-import { MainTemplate } from "@/components/templates/main.template"
-import { Title } from "@/components/atoms/title"
+import { WishlistPageProps } from "./interface"
+import { WishlistPageView } from "./view"
+import { useWishlistPage } from "./hook"
 
-const WishlistPage = () =>{
-	return (
-		<MainTemplate>
-			<Title>Lista de desejos</Title>
-		</MainTemplate>
-	)
+const WishlistPage: React.FC<WishlistPageProps> = () =>{
+	const { books, onSearch } = useWishlistPage()
+	
+	const methods = {
+		onSearch,
+		books
+	}
+
+	return <WishlistPageView {...methods}/>
 }
 
 export { WishlistPage }

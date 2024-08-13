@@ -127,4 +127,22 @@ export const BOOKS = [
       "http://www.paulus.com.br/portal/wp-content/uploads/2012/10/Padre-Pio-Capa.jpg",
     status: "abandoned",
   },
+  {
+    id: "765",
+    title: "Harry Poter e a pedra filosofal",
+    description: "O primeiro livro da saga de Harry Potter",
+    author: "J.K. Rowling",
+    imageUrl:
+      "https://images.trustinnews.pt/uploads/sites/5/2019/10/10091435Harry-Potter-e-a-Pedra-Filosofal.jpg",
+    status: "desired",
+  },
+  {
+    id: "147",
+    title: "Matilda (Edição Especial)",
+    description: "Matilda é uma menina brilhante e muito inteligente",
+    author: "Roald Dahl",
+    imageUrl:
+      "https://cdn.record.com.br/wp-content/uploads/2022/06/10150352/23457-1011x1536.jpeg",
+    status: "desired",
+  },
 ] as BookModel[];

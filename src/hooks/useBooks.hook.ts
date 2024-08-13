@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import { BooksContext } from "@/contexts/books.context";
+import { BookStatus } from "@/models/book.model";
 
 const useBooks = () => {
   const books = useContext(BooksContext);
 
-  const getBooksByStatus = (
-    status: "readed" | "reading" | "not-readed" | "abandoned"
-  ) => {
+  const getBooksByStatus = (status: BookStatus) => {
     return books.filter((book) => book.status === status);
   };
 
@@ -16,6 +15,7 @@ const useBooks = () => {
     readingBooks: getBooksByStatus("reading"),
     notReadedBooks: getBooksByStatus("not-readed"),
     abandonedBooks: getBooksByStatus("abandoned"),
+    desiredBooks: getBooksByStatus("desired"),
   };
 };
 
