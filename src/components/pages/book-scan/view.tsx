@@ -82,7 +82,6 @@ const BookScanView: React.FC<BookScanInterface> = ({
 								<SearchMolecule
 									placeholder='Pesquisar autor, título da obra'
 									onSearch={handleSearch}
-									onPressIn={dismissCamera}
 								/>
 								<BookListOrganism books={books}/>
 								

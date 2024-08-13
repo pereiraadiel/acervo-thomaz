@@ -5,7 +5,7 @@ import { SearchMoleculeViewProps } from "./interface"
 const SearchMoleculeView: React.FC<SearchMoleculeViewProps> = ({
 	setSearchTerm,
 	searchTerm,
-	onPressIn,
+	onEndEditing,
 	placeholder
 }) => {
 	return (
@@ -14,8 +14,8 @@ const SearchMoleculeView: React.FC<SearchMoleculeViewProps> = ({
 				variant="search" 
 				label="Pesquisar" 
 				placeholder={placeholder}
-				onPressIn={onPressIn}
 				onChangeText={setSearchTerm}
+				onEndEditing={onEndEditing}
 				value={searchTerm}/>
 		</View>
 	)

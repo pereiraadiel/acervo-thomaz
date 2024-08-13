@@ -6,21 +6,45 @@ const googleBookToBookMapper = (googleBook: GoogleBook): BookModel => {
     const item = googleBook.items[0];
     console.log("googleBookToBookMapper · item: ", item);
     return {
-      title: item.volumeInfo.title,
-      subtitle: item.volumeInfo.subtitle,
-      publishedDate: item.volumeInfo.publishedDate,
-      publisher: item.volumeInfo.publisher,
-      pageCount: item.volumeInfo.pageCount,
-      categories: item.volumeInfo.categories,
-      language: item.volumeInfo.language,
-      author: item.volumeInfo.authors.join(", "),
+      title: item.volumeInfo?.title || '',
+      subtitle: item.volumeInfo?.subtitle || '',
+      publishedDate: item.volumeInfo?.publishedDate || '',
+      publisher: item.volumeInfo?.publisher || '',
+      pageCount: item.volumeInfo?.pageCount || 0,
+      categories: item.volumeInfo?.categories || '',
+      language: item.volumeInfo?.language || '',
+      author: item.volumeInfo?.authors?.join(", ") || '',
       imageUrl: item.volumeInfo?.imageLinks?.thumbnail || "",
-      description: item.volumeInfo.description,
-      id: item.volumeInfo.industryIdentifiers[0].identifier,
+      description: item.volumeInfo?.description || '',
+      id: item.volumeInfo.id,
       status: "not-readed",
     };
   }
   return {} as BookModel;
 };
 
-export { googleBookToBookMapper };
+const googleBookToBooksMapper = (googleBook: GoogleBook): BookModel[] => {
+  if (googleBook.items) {
+    const items = googleBook.items;
+    console.log("googleBookToBookMapper · item: ", items);
+    return items.map((item) => {
+      return {
+        title: item.volumeInfo?.title || '',
+        subtitle: item.volumeInfo?.subtitle || '',
+        publishedDate: item.volumeInfo?.publishedDate || '',
+        publisher: item.volumeInfo?.publisher || '',
+        pageCount: item.volumeInfo?.pageCount || 0,
+        categories: item.volumeInfo?.categories || '',
+        language: item.volumeInfo?.language || '',
+        author: item.volumeInfo?.authors?.join(", ") || '',
+        imageUrl: item.volumeInfo?.imageLinks?.thumbnail || "",
+        description: item.volumeInfo?.description || '',
+        id: item.volumeInfo.id,
+        status: "not-readed",
+      };
+    });
+  }
+  return []
+}
+
+export { googleBookToBookMapper, googleBookToBooksMapper };

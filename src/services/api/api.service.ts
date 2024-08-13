@@ -17,7 +17,6 @@ class ApiService implements ApiServiceInterface {
 
   async get<T>(path: string): Promise<T> {
     const response = await this.api.get<T>(path);
-    console.log("api response", response.data);
     return response.data;
   }
 

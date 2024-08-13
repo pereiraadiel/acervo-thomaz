@@ -21,31 +21,31 @@ const BookMoleculeView: React.FC<BookMoleculeViewProps> = ({
 			</View>
 
 			<View className="pb-2">
-				<TitleAtom numberOfLines={1} ellipsizeMode="tail">{book.title}</TitleAtom>
+				<TitleAtom numberOfLines={1} ellipsizeMode="clip" className="pr-2">{book.title}</TitleAtom>
 				
 				<SubtitleAtom className="line-clamp-1 mb-1">{book.subtitle}</SubtitleAtom>
 				
-				<ParagraphAtom numberOfLines={1} ellipsizeMode="tail">
+				<ParagraphAtom numberOfLines={1} ellipsizeMode="clip" className="pr-2">
 					{book.description}
 				</ParagraphAtom>
 
-				<ParagraphAtom numberOfLines={1} ellipsizeMode="tail">
+				<ParagraphAtom numberOfLines={1} ellipsizeMode="clip" className="pr-2">
 					Autor: {book.author}
 				</ParagraphAtom>
 				
-				<ParagraphAtom numberOfLines={1} ellipsizeMode="tail">
+				<ParagraphAtom numberOfLines={1} ellipsizeMode="clip" className="pr-2">
 					Publicado: {book.publishedDate} | {book.publisher}
 				</ParagraphAtom>
 				
-				<ParagraphAtom numberOfLines={1} ellipsizeMode="tail">
+				<ParagraphAtom numberOfLines={1} ellipsizeMode="clip" className="pr-2">
 					Categorias: {book.categories}
 				</ParagraphAtom>
 				
-				<ParagraphAtom numberOfLines={1} ellipsizeMode="tail">
+				<ParagraphAtom numberOfLines={1} ellipsizeMode="clip" className="pr-2">
 					Idiomas: {book.language}
 				</ParagraphAtom>
 
-				<ParagraphAtom numberOfLines={1} ellipsizeMode="tail">
+				<ParagraphAtom numberOfLines={1} ellipsizeMode="clip" className="pr-2">
 					Páginas: {book.pageCount}
 				</ParagraphAtom>
 			</View>

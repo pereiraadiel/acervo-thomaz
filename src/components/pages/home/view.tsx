@@ -2,12 +2,13 @@ import React from 'react';
 import useBooks from '@/hooks/useBooks.hook';
 import { MainTemplate } from '@/components/templates/main.template';
 import { TabsMolecule } from '@/components/molecules/tabs';
-import { Text } from 'react-native';
+import { BookListOrganism } from '@/components/organisms/bookList';
 
 const HomeView : React.FC<ReturnType<typeof useBooks>> = ({
 	readedBooks,
 	notReadedBooks,
-	abandonedBooks
+	abandonedBooks,
+  readingBooks
 }) => {
   const Books = () => {
     return (
@@ -19,10 +20,10 @@ const HomeView : React.FC<ReturnType<typeof useBooks>> = ({
     <MainTemplate>
       <TabsMolecule initialTab='reading' tabs={
         [
-          {name: 'reading', component: <Text className='text-white'>Lendo</Text>},
-          {name: 'abandoned', component: <Text className='text-white'>Abandonados</Text>},
-          {name: 'not-readed', component: <Text className='text-white'>Não lidos</Text>},
-          {name: 'readed', component: <Text className='text-white'>Lidos</Text>},
+          {name: 'reading', component: <BookListOrganism books={readingBooks}/>},
+          {name: 'abandoned', component:  <BookListOrganism books={abandonedBooks}/>},
+          {name: 'not-readed', component:  <BookListOrganism books={notReadedBooks}/>},
+          {name: 'readed', component:  <BookListOrganism books={readedBooks}/>},
         ]
       }/>
     </MainTemplate>

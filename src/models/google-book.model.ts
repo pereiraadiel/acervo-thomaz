@@ -1,5 +1,6 @@
 export type GoogleBookItem = {
   volumeInfo: {
+    id: string;
     title: string;
     subtitle: string;
     authors: string[];

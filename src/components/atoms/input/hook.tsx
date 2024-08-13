@@ -12,7 +12,7 @@ const variants = {
 };
 
 const useInputAtom = () => {
-  const [variant, setVariant] = useState<keyof typeof variants>("name");
+  const [variant, setVariant] = useState<keyof typeof variants>('name');
   const [error, setError] = useState<string>();
   const [color, setColor] = useState({
     border: 'border-gray-800',
