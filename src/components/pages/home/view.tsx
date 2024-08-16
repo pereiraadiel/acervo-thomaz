@@ -11,7 +11,7 @@ const HomeView : React.FC<ReturnType<typeof useBooks>> = ({
   readingBooks
 }) => {
   return (
-    <MainTemplate>
+    <MainTemplate headerTitle={'Sua Estante'} headerSubtitle={'Encontre um livro da sua estante'}>
       <TabsMolecule initialTab='reading' tabs={
         [
           {name: 'reading', component: <BookListOrganism books={readingBooks}/>},
@@ -19,7 +19,8 @@ const HomeView : React.FC<ReturnType<typeof useBooks>> = ({
           {name: 'not-readed', component:  <BookListOrganism books={notReadedBooks}/>},
           {name: 'readed', component:  <BookListOrganism books={readedBooks}/>},
         ]
-      }/>
+      }
+      />
     </MainTemplate>
   );
 }

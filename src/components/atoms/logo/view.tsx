@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { cn } from "@/lib/utils";
 import { LogoAtomViewProps } from "./interface";
 
@@ -6,11 +6,10 @@ const LogoAtomView: React.FC<LogoAtomViewProps> = ({className, variant, color}) 
 	return (
 		<View className={cn(`flex items-center justify-center ${className}`)}>
 			{variant === 'small' ? (
-				<Text className={`text-3xl font-bold ${color.bottom} font-lemon uppercase leading-extra-loose`}>Thz</Text>
+				<Image source={require('@/assets/logo-small.png')} style={{width: 100, height: 100}} />
 			): (
 				<>
-					<Text className={`text-2xl font-regular ${color.top} font-lexend lowercase leading-extra-loose`}>Acervo</Text>
-					<Text className={`text-3xl font-bold ${color.bottom} font-lemon uppercase leading-extra-loose`}>Thomaz</Text>
+					<Image source={require('@/assets/logo.png')} style={{width: 120, height:48}}/>
 				</>
 			)}
 		</View>

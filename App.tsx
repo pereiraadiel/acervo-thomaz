@@ -6,10 +6,7 @@ import { ToastProvider } from "@/contexts/toast.context"
 import { BooksProvider } from "@/contexts/books.context"
 import { BookProvider } from "@/contexts/book.context"
 import { TabNavigationOrganism } from "@/components/organisms/tab-navigation.organism"
-import { useFonts, Lemon_400Regular } from '@expo-google-fonts/lemon';
-import { Lexend_400Regular, Lexend_700Bold } from '@expo-google-fonts/lexend';
-import { DaysOne_400Regular } from '@expo-google-fonts/dev';
-import * as SplashScreen from 'expo-splash-screen';
+import { useFonts, Lemon_400Regular, DaysOne_400Regular, Lexend_400Regular, Lexend_700Bold } from '@expo-google-fonts/dev';
 
 export default function App() {  
   const [fontsLoaded] = useFonts({
@@ -19,9 +16,7 @@ export default function App() {
     DaysOne_400Regular
   });
 
-  if (!fontsLoaded) {
-    SplashScreen.preventAutoHideAsync();
-  }
+  if (!fontsLoaded) {}
 
   return (
     <ToastProvider position="top">

@@ -8,7 +8,7 @@ const WishlistPageView: React.FC<WishlistPageViewProps> = ({
 	books
 }) =>{
 	return (
-		<MainTemplate>
+		<MainTemplate headerTitle="Lista de desejados" headerSubtitle="Livros que você deseja adquirir">
 			<SearchMolecule onSearch={onSearch}/>
 			<BookListOrganism books={books}/>
 		</MainTemplate>

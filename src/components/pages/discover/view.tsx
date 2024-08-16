@@ -27,7 +27,7 @@ const DiscoverPageView: React.FC<DiscoverPageViewProps> = ({
 	)
 
 	return (
-		<MainTemplate>
+		<MainTemplate headerTitle="Descobrir" headerSubtitle="Encontre um livro e adicione-o a sua estante">
 			<TabsMolecule
 				initialTab="search"
 				tabs={[
