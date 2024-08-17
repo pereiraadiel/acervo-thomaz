@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Animated, Dimensions } from "react-native";
-import { useSharedValue, withTiming } from "react-native-reanimated";
+import { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { TabInterface } from "./interface";
 import { Gesture, HandlerStateChangeEvent, PanGestureHandlerEventPayload } from "react-native-gesture-handler";
 
@@ -10,6 +10,12 @@ const useTabsScroll = (tabs: TabInterface[], currentTab: string, onChangeTab: (t
 	const END_POSITION = Dimensions.get('window').width * 0.25;
 	const toLeft = useSharedValue(true);
 	const position = useSharedValue(0);
+	const animatedStyle = useAnimatedStyle(() => {
+		return {
+			flex:1,
+			transform: [{ translateX: position.value }],
+		};
+	})
 
 	const handlePageChange = (index: number) => {
     setCurrentPage(index);
@@ -56,7 +62,7 @@ const useTabsScroll = (tabs: TabInterface[], currentTab: string, onChangeTab: (t
 			}
 		};
 
-		return { currentPage, handlePageChange, onGestureEvent, panGesture, position, onHandlerStateChange };
+		return { currentPage, handlePageChange, onGestureEvent, panGesture, position, onHandlerStateChange, animatedStyle };
 }
 
 

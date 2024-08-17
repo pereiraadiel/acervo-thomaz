@@ -1,4 +1,3 @@
-import { LoadingAtom } from "../../atoms/loading";
 import { useDiscoverPage } from "./hook";
 import { DiscoverPageProps } from "./interface";
 import { DiscoverPageView } from "./view";

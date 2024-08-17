@@ -1,0 +1,5 @@
+const useTabNavigation = () => {
+	
+}
+
+export { useTabNavigation };

@@ -5,7 +5,7 @@ import { DarkTheme, NavigationContainer } from "@react-navigation/native"
 import { ToastProvider } from "@/contexts/toast.context"
 import { BooksProvider } from "@/contexts/books.context"
 import { BookProvider } from "@/contexts/book.context"
-import { TabNavigationOrganism } from "@/components/organisms/tab-navigation.organism"
+import { TabNavigationOrganism } from "@/components/organisms/tabNavigation"
 import { useFonts, Lemon_400Regular, DaysOne_400Regular, Lexend_400Regular, Lexend_700Bold } from '@expo-google-fonts/dev';
 
 export default function App() {  
@@ -24,6 +24,7 @@ export default function App() {
         <BookProvider>
           <NavigationContainer theme={DarkTheme} >
             <TabNavigationOrganism/>
+            <></>
           </NavigationContainer>
         </BookProvider>
       </BooksProvider>

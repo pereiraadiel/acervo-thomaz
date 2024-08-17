@@ -25,9 +25,8 @@ const variantTexts = {
 	save: 'Salvar',
 };
 
-const useBadgeAtom = () => {
+const useBadgeAtom = (isActive: boolean) => {
 	const [variant, setVariant] = useState<keyof typeof variants>("readed");
-	const [isActive, setIsActive] = useState(false);
 	const [text, setText] = useState(variantTexts[variant]);
 	const [color, setColor] = useState({
 		text: 'text-gray-700',
@@ -65,7 +64,6 @@ const useBadgeAtom = () => {
 		text,
 		color,
 		Icon,
-		setIsActive,
 		isActive,
 	};
 };

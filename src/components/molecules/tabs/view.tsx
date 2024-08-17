@@ -24,13 +24,13 @@ const TabsMoleculeView: React.FC<TabsMoleculeViewProps> = ({ children, onChangeT
         <View className="w-[90%] h-0.5 bg-gray-600" />
       </View>
 
-			<GestureHandlerRootView>
+			<GestureHandlerRootView className='flex flex-1'>
 				<GestureDetector gesture={scroll.panGesture} >
 					<PanGestureHandler
 						onGestureEvent={scroll.onGestureEvent}
 						onHandlerStateChange={scroll.onHandlerStateChange}
 					>
-						<Animated.View style={[{ flex: 1, transform: [{ translateX:  scroll.position.value }] }]}>
+						<Animated.View style={[{ flex: 1, transform: [{ translateX:  scroll.position.value }]}]}>
 							{children}
 						</Animated.View>
 					</PanGestureHandler>

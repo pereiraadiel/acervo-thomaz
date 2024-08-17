@@ -10,18 +10,13 @@ const useCameraPermissions = () => {
   const { addToast } = useToast();
 
   const requestPermissions = async () => {
-    const { status, canAskAgain: initialCanAskAgain } =
-      await Camera.getCameraPermissionsAsync();
-    const isGranted = status === "granted";
-
-    setHasPermission(isGranted);
-    setCanAskAgain(initialCanAskAgain);
+    const isGranted = await verifyCameraPermissions();
 
     if (isGranted) {
       return;
     }
 
-    if (initialCanAskAgain) {
+    if (canAskAgain) {
       addToast("Por favor permita o acesso a sua câmera", "info");
 
       const { status: newStatus, canAskAgain: newCanAskAgain } =
@@ -45,17 +40,28 @@ const useCameraPermissions = () => {
   };
 
   useEffect(() => {
-    requestPermissions();
+    verifyCameraPermissions();
   }, []);
 
   useFocusEffect(
     useCallback(() => {
-      requestPermissions();
+      verifyCameraPermissions();
       return () => {
         setIsCameraOpened(false);
       };
     }, [])
   );
+
+  const verifyCameraPermissions = async () => {
+    const { status, canAskAgain: initialCanAskAgain } =
+      await Camera.getCameraPermissionsAsync();
+    const isGranted = status === "granted";
+
+    setHasPermission(isGranted);
+    setCanAskAgain(initialCanAskAgain);
+
+    return isGranted;
+  };
 
   const requestCamera = () => {
     if (hasPermission === true) {
@@ -75,6 +81,7 @@ const useCameraPermissions = () => {
     canAskAgain,
     requestCamera,
     dismissCamera,
+    verifyCameraPermissions,
   };
 };
 

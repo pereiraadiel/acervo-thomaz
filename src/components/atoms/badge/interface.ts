@@ -15,11 +15,13 @@ export interface BadgeAtomProps {
   variant?: BadgeVariant;
   onPress?: () => void;
   isActive: boolean;
+  className?: string;
 }
 
 export interface BadgeAtomViewProps extends TouchableOpacityProps {
   text: string;
   Icon: React.ReactElement;
+  className?: string;
   color: {
     text: string;
     background: string;

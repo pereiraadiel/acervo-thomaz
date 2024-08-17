@@ -1,13 +1,19 @@
-import { View } from "react-native"
-import { AntDesign} from '@expo/vector-icons'
-import { colors } from "@/styles/colors";
+import { useLoadingAtom } from "./hook";
+import { LoadingAtomProps } from "./interface";
+import { LoadingAtomView } from "./view";
 
-const LoadingAtom = () => {
-	return (
-		<View>
-			<AntDesign name="loading2" size={24} color={colors.orange[500]} className="animation-spin" />
-		</View>
-	)
+const LoadingAtom: React.FC<LoadingAtomProps> = ({
+	variant = 'default',
+	position = 'center'
+}) => {
+	const {iconSize, positionStyle } = useLoadingAtom(variant, position);
+
+	const methods = {
+		iconSize,
+		positionStyle
+	}
+
+	return <LoadingAtomView {...methods}/>
 }
 
-export { LoadingAtom };
+export { LoadingAtom }
