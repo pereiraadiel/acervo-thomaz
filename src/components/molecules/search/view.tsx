@@ -1,5 +1,5 @@
 import { View } from "react-native"
-import { InputAtom } from "@/components/atoms/input"
+import { LabeledInputAtom } from "@/components/atoms/labeledInput"
 import { SearchMoleculeViewProps } from "./interface"
 
 const SearchMoleculeView: React.FC<SearchMoleculeViewProps> = ({
@@ -10,7 +10,7 @@ const SearchMoleculeView: React.FC<SearchMoleculeViewProps> = ({
 }) => {
 	return (
 		<View>
-			<InputAtom 
+			<LabeledInputAtom 
 				variant="search" 
 				label="Pesquisar" 
 				placeholder={placeholder}

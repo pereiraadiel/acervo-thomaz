@@ -1,41 +1,30 @@
-import { Text, TextInput, View } from "react-native"
+import { TextInput, View } from "react-native";
+import { AntDesign } from '@expo/vector-icons'
+import { InputAtomViewProps } from "./interface";
+import { colors } from "@/styles/colors";
 
-import { cn } from '@/lib/utils'
-import { colors } from "@/styles/colors"
-import { InputAtomViewProps } from "./interface"
-import { forwardRef } from "react"
+const InputAtomView: React.FC<InputAtomViewProps> = ({
+	type,
+	className,
+	...props
+}) => {
 
-const InputAtomView = forwardRef<React.ElementRef<typeof TextInput>, InputAtomViewProps>(({
-  className,
-  label,
-  Icon,
-  color,
-  error,
-  ...props
-}, ref) => {
-  return (
-    <View className={cn(`flex flex-col gap-1 rounded-lg text-white border ${color.border}`, className)}>
-      <View className={cn('flex flex-row gap-1.5 pl-1.5 py-0.5 items-center')}>
-        {Icon}
-        <Text
-          className={cn(`${color.text} text-base font-bold`)}
-        >
-          {label}
-        </Text>
-        {error && (
-          <Text className={cn('text-red-500 text-xs pl-1.5 flex-1')}>{error}</Text>
-        )}
-      </View>
+	return (
+		<View className="relative">
+			<TextInput 
+				multiline={type === "multiline"}
+				className={`w-full p-2 bg-gray-600 rounded-lg ${type === 'multiline' && 'min-h-24'} border border-gray-900 text-white ${className}`}
+				placeholderTextColor={colors.gray[800]}
+				{...props}
+			/>
+			<AntDesign 
+				name={type === 'search' ? 'search1' : 'edit'}
+				size={24} 
+				color={colors.gray[900]} 
+				className="absolute right-4 top-6"
+			/>
+		</View>
+	)
+}
 
-      <TextInput
-        placeholderTextColor={colors.gray[800]}
-        className={cn(
-          "pb-1 px-4 text-white bg-transparent rounded-lg"
-        )}
-        {...props}
-      />
-    </View>
-  )
-});
-
-export { InputAtomView }
+export { InputAtomView };

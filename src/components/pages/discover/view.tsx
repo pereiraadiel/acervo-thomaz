@@ -4,7 +4,7 @@ import { BookListOrganism } from "@/components/organisms/bookList";
 import { DiscoverPageViewProps } from "./interface";
 import { LoadingAtom } from "@/components/atoms/loading";
 import { TabsMolecule } from "@/components/molecules/tabs";
-import { BookScanner } from "../../organisms/bookScanner";
+import { BookScanner } from "@/components/organisms/bookScanner";
 
 const DiscoverPageView: React.FC<DiscoverPageViewProps> = ({
 	books,
