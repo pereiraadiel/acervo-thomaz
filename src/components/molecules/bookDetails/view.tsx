@@ -5,8 +5,8 @@ import { SubtitleAtom } from "@/components/atoms/subtitle";
 import { ParagraphAtom } from "@/components/atoms/paragraph";
 import { BadgeAtom } from "@/components/atoms/badge";
 import { ProgressAtom } from "@/components/atoms/progress";
-import { LabeledInputAtom } from "@/components/atoms/labeledInput";
-import { InputAtom } from "../../atoms/input";
+import { InputAtom } from "@/components/atoms/input";
+import { NoteMolecule } from "../note";
 
 const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 	book
@@ -44,14 +44,32 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 						</View>
 					</View>
 
-					<ProgressAtom progress={50} variant="default"/>
+					<ProgressAtom progress={37} variant="default"/>
 				</View>
 			</View>
 
 			<InputAtom
 				type='multiline'
-				className="mb-28 m-4"
+				className="mt-6 mx-4 mb-2"
 				placeholder="Registre uma resenha sobre o que você achou do livro"
+			/>
+
+			<NoteMolecule
+				content="Gostei muito do livro, recomendo a leitura"
+				date="15/09/2021"
+				className="mt-1"
+			/>
+
+			<NoteMolecule
+				content="Gostei muito do livro, recomendo a leitura"
+				date="15/09/2021"
+				className="mt-1"
+			/>
+
+			<NoteMolecule
+				content="Gostei muito do livro, recomendo a leitura"
+				date="15/09/2021"
+				className="mb-28 mt-1"
 			/>
 		</>
 	)

@@ -1,5 +1,5 @@
 import { TextInput, View } from "react-native";
-import { AntDesign } from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons';
 import { InputAtomViewProps } from "./interface";
 import { colors } from "@/styles/colors";
 
@@ -13,7 +13,7 @@ const InputAtomView: React.FC<InputAtomViewProps> = ({
 		<View className="relative">
 			<TextInput 
 				multiline={type === "multiline"}
-				className={`w-full p-2 bg-gray-600 rounded-lg ${type === 'multiline' && 'min-h-24'} border border-gray-900 text-white ${className}`}
+				className={`w-full p-2 bg-gray-500 rounded-lg ${type === 'multiline' && 'min-h-24'} text-white ${className}`}
 				placeholderTextColor={colors.gray[800]}
 				{...props}
 			/>
