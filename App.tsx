@@ -6,6 +6,7 @@ import { ToastProvider } from "@/contexts/toast.context"
 import { BooksProvider } from "@/contexts/books.context"
 import { BookProvider } from "@/contexts/book.context"
 import { TabNavigationOrganism } from "@/components/organisms/tabNavigation"
+import { StackNavigation } from "@/components/organisms/stackNavigation"
 import { useFonts, Lemon_400Regular, DaysOne_400Regular, Lexend_400Regular, Lexend_700Bold } from '@expo-google-fonts/dev';
 
 export default function App() {  
@@ -23,7 +24,8 @@ export default function App() {
       <BooksProvider>
         <BookProvider>
           <NavigationContainer theme={DarkTheme} >
-            <TabNavigationOrganism/>
+            <StackNavigation/>
+            {/* <TabNavigationOrganism/> */}
             <></>
           </NavigationContainer>
         </BookProvider>

@@ -6,12 +6,18 @@ interface MainTemplateProps {
 	children: React.ReactNode;
 	headerTitle?: string;
 	headerSubtitle?: string;
+	headerVariant?: 'default' | 'with-back';
 }
 
-const MainTemplate: React.FC<MainTemplateProps> = ({ children, headerTitle, headerSubtitle }) => {
+const MainTemplate: React.FC<MainTemplateProps> = ({ children, headerTitle, headerSubtitle, headerVariant }) => {
 	return (
-		<View className="flex-1 bg-gray-400">
-			<HeaderMolecule title={headerTitle} color="secondary" subtitle={headerSubtitle} />
+		<View className="flex-1 bg-gray-400 relative">
+			<HeaderMolecule 
+				title={headerTitle} 
+				color="secondary" 
+				subtitle={headerSubtitle} 
+				variant={headerVariant}
+			/>
 			<ScrollView className={cn(`flex-1 bg-gray-400`)}>
 				{children}
 			</ScrollView>

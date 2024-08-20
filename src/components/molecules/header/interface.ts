@@ -3,6 +3,7 @@ export interface HeaderMoleculeProps {
   subtitle?: string;
   variant?: "default" | "with-back";
   color: "accent" | "secondary";
+  className?: string;
 }
 
 export interface HeaderMoleculeViewProps {
@@ -10,4 +11,5 @@ export interface HeaderMoleculeViewProps {
   subtitle?: string;
   variant?: "default" | "with-back";
   color: "accent" | "secondary";
+  className?: string;
 }

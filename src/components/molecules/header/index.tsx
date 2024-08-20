@@ -7,7 +7,8 @@ const HeaderMolecule: React.FC<HeaderMoleculeProps> = ({
 	title: initialTitle,
 	subtitle: initialSubtitle,
 	variant: initialVariant = 'default',
-	color: initialColor
+	color: initialColor,
+	className
 }) => {
 
 	const {
@@ -37,7 +38,8 @@ const HeaderMolecule: React.FC<HeaderMoleculeProps> = ({
 		title,
 		subtitle,
 		variant,
-		color
+		color,
+		className
 	} as const
 
 	return <HeaderMoleculeView {...methods}/>

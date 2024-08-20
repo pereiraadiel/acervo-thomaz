@@ -10,7 +10,7 @@ const LinearProgress: React.FC<ProgressAtomViewProps> = ({ progress = 0 }) => {
 
   return (
 		<>
-			<View className="w-40 bg-gray-700 h-1 relative">
+			<View className="w-40 bg-gray-700 h-1 relative rounded-lg overflow-hidden">
 				<View
 					style={{ width: progressWidthInPixels }}
 					className="bg-green-500 h-1 absolute left-0 top-0"
@@ -48,7 +48,7 @@ const CircularProgress: React.FC<ProgressAtomViewProps> = ({ progress = 0 }) => 
 						strokeDashoffset={strokeDashoffset}
 					/>
 				</Svg>
-				{<Text className="text-green-500 font-bold absolute top-5 left-3">{progress}%</Text>}
+				{<Text className="text-green-500 font-bold absolute top-[15px] left-3">{progress}%</Text>}
 			</View>
     );
 }

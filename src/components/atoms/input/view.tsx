@@ -1,11 +1,12 @@
 import { TextInput, View } from "react-native";
-import { AntDesign } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { InputAtomViewProps } from "./interface";
 import { colors } from "@/styles/colors";
 
 const InputAtomView: React.FC<InputAtomViewProps> = ({
 	type,
 	className,
+	onSubmit,
 	...props
 }) => {
 
@@ -13,15 +14,16 @@ const InputAtomView: React.FC<InputAtomViewProps> = ({
 		<View className="relative">
 			<TextInput 
 				multiline={type === "multiline"}
-				className={`w-full p-2 bg-gray-500 rounded-lg ${type === 'multiline' && 'min-h-24'} text-white ${className}`}
+				className={`w-[92%] p-2 pr-12 pl-4 bg-gray-400 border-x-2 border-b-2 border-gray-800 rounded-2xl ${type === 'multiline' && 'min-h-16 flex items-start'} text-white ${className}`}
 				placeholderTextColor={colors.gray[800]}
 				{...props}
 			/>
-			<AntDesign 
-				name={type === 'search' ? 'search1' : 'edit'}
+			<Feather 
+				name={type === 'search' ? 'search' : 'edit'}
 				size={24} 
 				color={colors.gray[900]} 
-				className="absolute right-4 top-6"
+				className="absolute right-8 bottom-8"
+				onPress={onSubmit}
 			/>
 		</View>
 	)

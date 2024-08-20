@@ -6,15 +6,34 @@ import { ParagraphAtom } from "@/components/atoms/paragraph";
 import { BadgeAtom } from "@/components/atoms/badge";
 import { ProgressAtom } from "@/components/atoms/progress";
 import { InputAtom } from "@/components/atoms/input";
-import { NoteMolecule } from "../note";
+import { NoteMolecule } from "@/components/molecules/note";
+import useToast from "@/hooks/useToast.hook";
+import { useState } from "react";
 
 const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 	book
 }) => {
 	console.log('book', book);
+	const [inputValue, setInputValue] = useState('');
+	const { addToast } = useToast()
+	const [notes, setNotes] = useState<{content: string, date: string}[]>([]);
+
+	const addNote = (note: {content: string, date: string}) => {
+		setNotes([...notes, note]);
+	}
+
+	const onSubmit = () => {
+		addToast('Resenha adicionada com sucesso', 'success');
+		addNote({
+			content: inputValue,
+			date: new Date().toISOString()
+		});
+		setInputValue('');
+	}
+
 	return (
 		<>
-			<View className="z-10 w-full h-[480px] rounded-b-2xl overflow-hidden">
+			<View className="z-10 w-auto h-[580px] rounded-b-2xl overflow-hidden">
 				<Image source={{uri: book.imageUrl}} resizeMode="cover" style={{
 					width: '100%',
 					height: '100%'
@@ -48,29 +67,30 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 				</View>
 			</View>
 
+			<TitleAtom className="ml-4 mt-6">Minhas Resenhas</TitleAtom>
+			<SubtitleAtom className="ml-4 mb-2">Minhas analises feitas ao longo da leitura do livro</SubtitleAtom>
+			
 			<InputAtom
 				type='multiline'
-				className="mt-6 mx-4 mb-2"
-				placeholder="Registre uma resenha sobre o que você achou do livro"
+				className="mt-2 mx-4 mb-2"
+				value={inputValue}
+				onChangeText={setInputValue}
+				onSubmitEditing={() => onSubmit()}
+				onEndEditing={() => onSubmit()}
+				onSubmit={onSubmit}
+				placeholder="Registre uma resenha sobre o atual momento de sua leitura"
 			/>
 
-			<NoteMolecule
-				content="Gostei muito do livro, recomendo a leitura"
-				date="15/09/2021"
-				className="mt-1"
-			/>
-
-			<NoteMolecule
-				content="Gostei muito do livro, recomendo a leitura"
-				date="15/09/2021"
-				className="mt-1"
-			/>
-
-			<NoteMolecule
-				content="Gostei muito do livro, recomendo a leitura"
-				date="15/09/2021"
-				className="mb-28 mt-1"
-			/>
+			{notes.map((note, index) => (
+				<NoteMolecule
+					key={index}
+					content={note.content}
+					date={note.date}
+					className="mt-1"
+				/>
+			))}
+			
+			<View className="h-20"/>
 		</>
 	)
 }

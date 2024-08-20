@@ -9,14 +9,15 @@ const HeaderMoleculeView: React.FC<HeaderMoleculeViewProps> = ({
   title,
   subtitle,
   variant,
-  color
+  color,
+  className
 }) => {
   const statusBarHeight = (StatusBar.currentHeight  || 0) + 8;
 
   return (
     <View
       style={{ paddingTop: statusBarHeight }}
-      className={`${color === "accent" ? "bg-orange-600" : "bg-gray-500"} flex flex-row gap-2 justify-between pb-2 px-4`}
+      className={`${color === "accent" ? "bg-orange-600" : "bg-gray-500"} flex flex-row gap-2 justify-between pb-2 px-4 ${className}`}
     >
 			<View className="flex-row items-center gap-2">
 				{variant === "with-back" && (
