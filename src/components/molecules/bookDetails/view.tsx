@@ -26,7 +26,6 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 
 	const variant = variants[book.status];
 
-	const isReviewable = book.status === 'reading' || book.status === 'readed' || book.status === 'abandoned';
 	const isNotReaded = book.status === 'not-readed' || book.status === 'desired' || book.status === 'unknown';
 
 	return (

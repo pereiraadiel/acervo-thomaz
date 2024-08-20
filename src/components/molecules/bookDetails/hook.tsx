@@ -10,8 +10,9 @@ const useBookDetails = (bookStatus: BookStatus) => {
 	const addNote = (note: {content: string, date: string}) => {
 		setNotes([...notes, note]);
 	}
-
+	
 	const onSubmit = () => {
+		if(inputValue === '') return;
 		const toastContent = bookStatus === 'not-readed' || bookStatus === 'desired' || bookStatus === 'unknown' ? 'Anotação adicionada com sucesso' : 'Resenha adicionada com sucesso';
 		addToast(toastContent, 'success');
 		addNote({

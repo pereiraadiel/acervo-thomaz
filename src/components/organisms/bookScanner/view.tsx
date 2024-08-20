@@ -20,15 +20,6 @@ const BookScannerView: React.FC<BookScannerViewProps> = ({ camera, scan, barcode
 			</View>
 		)
 	}
-
-	if(barcode.scanned) {
-		return (
-			<View>
-				<TitleAtom>Livro escaneado</TitleAtom>
-				<SubtitleAtom>ISBN: {barcode.result.data}</SubtitleAtom>
-			</View>
-		)
-	}
 	
 	return (
 		<View className="flex flex-col items-center justify-center mx-4">
