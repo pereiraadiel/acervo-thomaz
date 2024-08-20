@@ -11,7 +11,7 @@ const BookDetailsMolecule: React.FC<BookDetailsMoleculeProps> = ({
 		inputValue,
 		setInputValue,
 		notes
-	} = useBookDetails();
+	} = useBookDetails(book.status);
 
 	const methods = {
 		book,

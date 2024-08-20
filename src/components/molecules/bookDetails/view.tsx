@@ -27,6 +27,8 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 	const variant = variants[book.status];
 
 	const isReviewable = book.status === 'reading' || book.status === 'readed' || book.status === 'abandoned';
+	const isNotReaded = book.status === 'not-readed' || book.status === 'desired' || book.status === 'unknown';
+
 	return (
 		<>
 			{book.imageUrl && (
@@ -68,34 +70,30 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 				</View>
 			</View>
 
+			<TitleAtom className="ml-4 mt-6">{isNotReaded ? 'Anotações': 'Minhas Resenhas'}</TitleAtom>
+			<SubtitleAtom className="ml-4 mb-2">
+				{isNotReaded ? 'Registre anotações sobre o livro' : 'Minhas análises feitas ao longo da leitura do livro'}
+			</SubtitleAtom>
 			
-			{isReviewable && (
-				<>
-					<TitleAtom className="ml-4 mt-6">Minhas Resenhas</TitleAtom>
-					<SubtitleAtom className="ml-4 mb-2">Minhas análises feitas ao longo da leitura do livro</SubtitleAtom>
-					
-					<InputAtom
-						type='multiline'
-						className="mt-2 mx-4 mb-2"
-						value={inputValue}
-						onChangeText={setInputValue}
-						onSubmitEditing={() => onSubmit()}
-						onEndEditing={() => onSubmit()}
-						onSubmit={onSubmit}
-						placeholder="Registre uma resenha sobre o atual momento de sua leitura"
-					/>
+			<InputAtom
+				type='multiline'
+				className="mt-2 mx-4 mb-2"
+				value={inputValue}
+				onChangeText={setInputValue}
+				onSubmitEditing={() => onSubmit()}
+				onEndEditing={() => onSubmit()}
+				onSubmit={onSubmit}
+				placeholder={isNotReaded ? 'Faça uma anotação sobre o livro...': "Registre uma resenha sobre a sua leitura..."}
+			/>
 
-					{notes.map((note, index) => (
-						<NoteMolecule
-							key={index}
-							content={note.content}
-							date={note.date}
-							className="mt-1"
-						/>
-					))}
-				</>
-			)}
-
+			{notes.map((note, index) => (
+				<NoteMolecule
+					key={index}
+					content={note.content}
+					date={note.date}
+					className="mt-1"
+				/>
+			))}
 		</>
 	)
 }

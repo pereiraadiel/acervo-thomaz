@@ -6,18 +6,20 @@ const googleBookToBookMapper = (googleBook: GoogleBook): BookModel => {
     const item = googleBook.items[0];
     console.log("googleBookToBookMapper · item: ", item);
     return {
-      title: item.volumeInfo?.title || '',
-      subtitle: item.volumeInfo?.subtitle || '',
-      publishedDate: item.volumeInfo?.publishedDate || '',
-      publisher: item.volumeInfo?.publisher || '',
+      title: item.volumeInfo?.title || "",
+      subtitle: item.volumeInfo?.subtitle || "",
+      publishedDate: item.volumeInfo?.publishedDate || "",
+      publisher: item.volumeInfo?.publisher || "",
       pageCount: item.volumeInfo?.pageCount || 0,
-      categories: item.volumeInfo?.categories || '',
-      language: item.volumeInfo?.language || '',
-      author: item.volumeInfo?.authors?.join(", ") || '',
+      categories: item.volumeInfo?.categories || "",
+      language: item.volumeInfo?.language || "",
+      author: item.volumeInfo?.authors?.join(", ") || "",
       imageUrl: item.volumeInfo?.imageLinks?.thumbnail || "",
-      description: item.volumeInfo?.description || '',
+      description: item.volumeInfo?.description || "",
+      readedPageCount: 0,
+      progress: 0,
       id: item.volumeInfo.id,
-      status: "not-readed",
+      status: "unknown",
     };
   }
   return {} as BookModel;
@@ -29,22 +31,24 @@ const googleBookToBooksMapper = (googleBook: GoogleBook): BookModel[] => {
     console.log("googleBookToBookMapper · item: ", items);
     return items.map((item) => {
       return {
-        title: item.volumeInfo?.title || '',
-        subtitle: item.volumeInfo?.subtitle || '',
-        publishedDate: item.volumeInfo?.publishedDate || '',
-        publisher: item.volumeInfo?.publisher || '',
+        title: item.volumeInfo?.title || "",
+        subtitle: item.volumeInfo?.subtitle || "",
+        publishedDate: item.volumeInfo?.publishedDate || "",
+        publisher: item.volumeInfo?.publisher || "",
         pageCount: item.volumeInfo?.pageCount || 0,
-        categories: item.volumeInfo?.categories || '',
-        language: item.volumeInfo?.language || '',
-        author: item.volumeInfo?.authors?.join(", ") || '',
+        categories: item.volumeInfo?.categories || "",
+        language: item.volumeInfo?.language || "",
+        author: item.volumeInfo?.authors?.join(", ") || "",
         imageUrl: item.volumeInfo?.imageLinks?.thumbnail || "",
-        description: item.volumeInfo?.description || '',
+        description: item.volumeInfo?.description || "",
         id: item.volumeInfo.id,
-        status: "not-readed",
+        readedPageCount: 0,
+        progress: 0,
+        status: "unknown",
       };
     });
   }
-  return []
-}
+  return [];
+};
 
 export { googleBookToBookMapper, googleBookToBooksMapper };
