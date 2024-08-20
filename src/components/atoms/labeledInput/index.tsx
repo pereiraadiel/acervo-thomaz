@@ -1,42 +1,42 @@
-import { useEffect } from "react";
+import { useEffect, forwardRef } from "react";
 import { useLabeledInputAtom } from "./hook";
 import { LabeledInputAtomProps } from "./interface";
 import { LabeledInputAtomView } from "./view";
-import { KeyboardTypeOptions } from "react-native";
+import { KeyboardTypeOptions, TextInput } from "react-native";
 
-const LabeledInputAtom: React.FC<LabeledInputAtomProps> = ({
-	className,
-	label,
-	variant = 'name',
-	error,
-	ref,
-	...rest
-}) => {
-	
-	const { Icon, color, setError } = useLabeledInputAtom(variant)
+const LabeledInputAtom = forwardRef<React.ElementRef<typeof TextInput>, LabeledInputAtomProps>(({
+    className,
+    label,
+    variant = 'name',
+    error,
+    ...rest
+}, ref) => {
+    
+    const { Icon, color, setError } = useLabeledInputAtom(variant)
 
-	useEffect(() => {
-		setError(error);
-	}, [error])
+    useEffect(() => {
+        setError(error);
+    }, [error])
 
   const keyboardType: KeyboardTypeOptions = 
-		variant === 'email' || variant === 'username' 
-			? 'email-address' 
-			:	'default'
+        variant === 'email' || variant === 'username' 
+            ? 'email-address' 
+            :	'default'
 
 
-	const methods = {
-		label,
-		className,
-		Icon,
-		color,
-		error,
-		keyboardType,
-		variant,
-		...rest
-	}
+    const methods = {
+        label,
+        className,
+        Icon,
+        color,
+        error,
+        keyboardType,
+        variant,
+				ref,
+        ...rest
+    }
 
-	return <LabeledInputAtomView {...methods} ref={ref} />;
-}
+    return <LabeledInputAtomView {...methods} />;
+})
 
 export { LabeledInputAtom }

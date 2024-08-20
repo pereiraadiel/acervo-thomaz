@@ -12,10 +12,15 @@ const LabeledInputAtomView = forwardRef<React.ElementRef<typeof TextInput>, Labe
   keyboardType,
   variant,
   error,
+  onFocus,
   ...props
 }, ref) => {
+  
+
   return (
-    <View className={cn(`flex flex-col gap-1 rounded-lg text-white border ${color.border}`, className)}>
+    <View className={cn(`flex flex-col gap-1 rounded-lg text-white border ${color.border}`, className)}
+      onTouchStart={onFocus}
+    >
       <View className={cn('flex flex-row gap-1.5 pl-1.5 py-0.5 items-center')}>
         {Icon}
         <Text

@@ -20,6 +20,7 @@ const LoginFormOrganismView: React.FC<LoginFormOrganismViewProps> = ({
 }) => {
 
 	const passwordInputRef = useRef<TextInput>(null);
+	const emailInputRef = useRef<TextInput>(null);
 
 	if(loading) return <LoadingAtom/>
 
@@ -36,10 +37,12 @@ const LoginFormOrganismView: React.FC<LoginFormOrganismViewProps> = ({
 					value={email}
 					error={error.email}
 					onChangeText={setEmail}
+					onFocus={() => emailInputRef.current?.focus()}
+					ref={emailInputRef}
 					returnKeyType="next"
 					onKeyPress={key => key.nativeEvent.key === 'Enter' && passwordInputRef.current?.focus()}
-					onSubmitEditing={() => passwordInputRef.current?.focus()} // Foca no próximo campo
-					blurOnSubmit={false} // Impede que o teclado feche
+					onSubmitEditing={() => passwordInputRef.current?.focus()}
+					blurOnSubmit={false} 
 				/>
 				<LabeledInputAtom 
 					label="Senha" 
@@ -48,10 +51,11 @@ const LoginFormOrganismView: React.FC<LoginFormOrganismViewProps> = ({
 					error={error.password}
 					value={password}
 					onChangeText={setPassword}
-					ref={passwordInputRef} // Referência para o campo de senha
+					onFocus={() => passwordInputRef.current?.focus()}
+					ref={passwordInputRef} 
 					returnKeyType="done"
-					onKeyPress={key => key.nativeEvent.key === 'Enter' && handleSignUp()} // Chama o submit quando o usuário pressiona "Enter"
-					onSubmitEditing={handleSignUp} // Chama o submit quando o usuário pressiona "Done"
+					onKeyPress={key => key.nativeEvent.key === 'Enter' && handleSignUp()} 
+					onSubmitEditing={handleSignUp} 
 				/>
 				<SubtitleAtom className="text-gray-800 my-2" onPress={handleResetPassword}>Esqueci minha senha</SubtitleAtom>
 				

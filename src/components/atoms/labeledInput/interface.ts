@@ -23,6 +23,7 @@ export interface LabeledInputAtomViewProps {
   keyboardType: KeyboardTypeOptions;
   variant?: LabeledInputVariant;
   ref?: React.RefObject<TextInput>;
+  onFocus?: () => void;
   color: {
     border: string;
     text: string;
