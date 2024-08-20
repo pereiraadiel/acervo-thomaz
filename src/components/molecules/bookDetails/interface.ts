@@ -5,5 +5,9 @@ export interface BookDetailsMoleculeProps {
 }
 
 export interface BookDetailsMoleculeViewProps {
+  inputValue: string;
+  setInputValue: (value: string) => void;
+  onSubmit: () => void;
   book: BookModel;
+  notes: { content: string; date: string }[];
 }

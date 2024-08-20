@@ -3,7 +3,6 @@ import useBooks from '@/hooks/useBooks.hook';
 import { MainTemplate } from '@/components/templates/main.template';
 import { TabsMolecule } from '@/components/molecules/tabs';
 import { BookListOrganism } from '@/components/organisms/bookList';
-import { BookDetailsMolecule } from '../../molecules/bookDetails';
 
 const HomeView : React.FC<ReturnType<typeof useBooks>> = ({
 	readedBooks,

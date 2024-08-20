@@ -4,14 +4,14 @@ import { BookMoleculeView } from "./view";
 
 const BookMolecule: React.FC<BookMoleculeProps> = ({
 	book,
-	onPressIn,
+	onPress,
 }) => {
 	const { setBook } = useBookMolecule();
 
 	const methods = {
 		book,
 		setBook,
-		onPressIn,
+		onPress,
 	}
 
 	// if(!book) return <LoadingAtom/>

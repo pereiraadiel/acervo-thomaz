@@ -3,7 +3,8 @@ export type BookStatus =
   | "reading"
   | "not-readed"
   | "abandoned"
-  | "desired";
+  | "desired"
+  | "unknown";
 
 export type BookModel = {
   id: string;
@@ -15,7 +16,10 @@ export type BookModel = {
   publisher: string;
   publishedDate: string;
   pageCount: number;
+  readedPageCount: number;
   categories: string[];
-  language: string;
   status: BookStatus;
+  language: string;
+  rating?: number;
+  progress: number;
 };

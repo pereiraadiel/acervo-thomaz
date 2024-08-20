@@ -5,3 +5,9 @@ export interface TabNavigationOrganismViewProps {
 }
 
 export interface TabNavigationOrganismProps {}
+
+export type RootTabNavigationParamList = {
+  Estante: undefined;
+  Descobrir: undefined;
+  Desejados: undefined;
+};

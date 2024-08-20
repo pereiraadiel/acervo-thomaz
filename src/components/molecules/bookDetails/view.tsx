@@ -7,42 +7,40 @@ import { BadgeAtom } from "@/components/atoms/badge";
 import { ProgressAtom } from "@/components/atoms/progress";
 import { InputAtom } from "@/components/atoms/input";
 import { NoteMolecule } from "@/components/molecules/note";
-import useToast from "@/hooks/useToast.hook";
-import { useState } from "react";
 
 const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
-	book
+	inputValue,
+	onSubmit,
+	setInputValue,
+	book,
+	notes
 }) => {
-	console.log('book', book);
-	const [inputValue, setInputValue] = useState('');
-	const { addToast } = useToast()
-	const [notes, setNotes] = useState<{content: string, date: string}[]>([]);
+	const variants = {
+		'readed': 'readed',
+		'reading': 'reading',
+		'not-readed': 'not-readed',
+		'abandoned': 'abandoned',
+		'desired': 'desired',
+		'unknown': 'save'
+	} as const
 
-	const addNote = (note: {content: string, date: string}) => {
-		setNotes([...notes, note]);
-	}
+	const variant = variants[book.status];
 
-	const onSubmit = () => {
-		addToast('Resenha adicionada com sucesso', 'success');
-		addNote({
-			content: inputValue,
-			date: new Date().toISOString()
-		});
-		setInputValue('');
-	}
-
+	const isReviewable = book.status === 'reading' || book.status === 'readed' || book.status === 'abandoned';
 	return (
 		<>
-			<View className="z-10 w-auto h-[580px] rounded-b-2xl overflow-hidden">
-				<Image source={{uri: book.imageUrl}} resizeMode="cover" style={{
-					width: '100%',
-					height: '100%'
-				}}/>
-			</View>
+			{book.imageUrl && (
+				<View className="z-10 w-auto h-[580px] rounded-b-2xl overflow-hidden">
+					<Image source={{uri: book.imageUrl}} resizeMode="cover" style={{
+						width: '100%',
+						height: '100%'
+					}}/>
+				</View>
+			)}
 
 			<View className="z-20 flex items-center px-4">
-				<View className="bg-gray-500 w-full rounded-2xl p-4 -mt-2 pt-4 min-h-80 flex items-center">
-					<BadgeAtom className="mb-2" variant="save" isActive/>
+				<View className="bg-gray-500 w-full rounded-2xl p-4 -mt-2 pt-4 flex items-center">
+					<BadgeAtom className="mb-2" variant={variant} isActive/>
 					<TitleAtom className="text-center">{book.title}</TitleAtom>
 					<SubtitleAtom className="text-center" >{book.subtitle}</SubtitleAtom>
 					<ParagraphAtom className="text-left mt-4 text-gray-900">{book.description}</ParagraphAtom>
@@ -63,34 +61,41 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 						</View>
 					</View>
 
-					<ProgressAtom progress={37} variant="default"/>
+					<View className="mt-4 flex items-center">
+						<ProgressAtom progress={book.progress} variant="default" />
+						<ParagraphAtom>páginas lidas: {book.readedPageCount}/{book.pageCount}</ParagraphAtom>
+					</View>
 				</View>
 			</View>
 
-			<TitleAtom className="ml-4 mt-6">Minhas Resenhas</TitleAtom>
-			<SubtitleAtom className="ml-4 mb-2">Minhas analises feitas ao longo da leitura do livro</SubtitleAtom>
 			
-			<InputAtom
-				type='multiline'
-				className="mt-2 mx-4 mb-2"
-				value={inputValue}
-				onChangeText={setInputValue}
-				onSubmitEditing={() => onSubmit()}
-				onEndEditing={() => onSubmit()}
-				onSubmit={onSubmit}
-				placeholder="Registre uma resenha sobre o atual momento de sua leitura"
-			/>
+			{isReviewable && (
+				<>
+					<TitleAtom className="ml-4 mt-6">Minhas Resenhas</TitleAtom>
+					<SubtitleAtom className="ml-4 mb-2">Minhas análises feitas ao longo da leitura do livro</SubtitleAtom>
+					
+					<InputAtom
+						type='multiline'
+						className="mt-2 mx-4 mb-2"
+						value={inputValue}
+						onChangeText={setInputValue}
+						onSubmitEditing={() => onSubmit()}
+						onEndEditing={() => onSubmit()}
+						onSubmit={onSubmit}
+						placeholder="Registre uma resenha sobre o atual momento de sua leitura"
+					/>
 
-			{notes.map((note, index) => (
-				<NoteMolecule
-					key={index}
-					content={note.content}
-					date={note.date}
-					className="mt-1"
-				/>
-			))}
-			
-			<View className="h-20"/>
+					{notes.map((note, index) => (
+						<NoteMolecule
+							key={index}
+							content={note.content}
+							date={note.date}
+							className="mt-1"
+						/>
+					))}
+				</>
+			)}
+
 		</>
 	)
 }

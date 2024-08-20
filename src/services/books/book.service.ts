@@ -9,6 +9,10 @@ class BookService implements BookServiceInterface {
   async loadBooks(): Promise<BookModel[]> {
     return this.apiService.get("books");
   }
+
+  async getById(id: string): Promise<BookModel> {
+    return this.apiService.get(`books/${id}`);
+  }
 }
 
 class Singleton {

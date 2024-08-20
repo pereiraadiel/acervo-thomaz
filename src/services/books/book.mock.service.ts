@@ -3,6 +3,12 @@ import { BookModel } from "@/models/book.model";
 import { BOOKS } from "@/utils/books";
 
 class BookMockService implements BookServiceInterface {
+  async getById(id: string): Promise<BookModel> {
+    console.log("getById: ", id);
+    console.log(BOOKS.map((book) => book.id));
+    return BOOKS.find((book) => book.id === id) || ({} as BookModel);
+  }
+
   async loadBooks(): Promise<BookModel[]> {
     return BOOKS;
   }

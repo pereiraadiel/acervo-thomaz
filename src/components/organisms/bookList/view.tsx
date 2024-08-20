@@ -7,9 +7,9 @@ const BookListOrganismView: React.FC<BookListOrganismViewProps> = ({
 	onBookPress
 }) => {
 	return (
-		<ScrollView>
+		<ScrollView >
 			{books.map(book => (
-				<BookMolecule key={book.id} book={book} onPressIn={() => onBookPress(book.id)}/>
+				<BookMolecule key={book.id} book={book} onPress={() => onBookPress(book.id)}/>
 			))}
 		</ScrollView>
 	)

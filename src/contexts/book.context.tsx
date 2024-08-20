@@ -1,6 +1,7 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { BookModel } from "@/models/book.model";
 import { isbnApiService } from "@/services/isbn-api/google-isbn-api.service";
+import { bookMockService } from "../services/books/book.mock.service";
 
 const BookContext = createContext<BookContextType[]>([]);
 const Provider = BookContext.Provider;
@@ -8,6 +9,7 @@ interface BookContextType {
   book: BookModel | undefined;
   fetchBookInfoByIsbn: (isbn: string) => void;
   setBook: (book: BookModel) => void;
+  getById(bookId: string): void;
   fetching: boolean;
 };
 
@@ -27,12 +29,22 @@ const BookProvider = ({ children }: BookProviderProps) => {
     .catch((err) => console.error(err))
     .finally(() => setFetching(false));
   };
+
+  const getById = useCallback((bookId: string) => {
+    setFetching(true);
+    bookMockService
+    .getById(bookId)
+    .then(setBook)
+    .catch((err) => console.error(err))
+    .finally(() => setFetching(false));
+  }, []);
   
   const [bookContext, setBookContext] = useState<BookContextType>({
     book,
     fetchBookInfoByIsbn,
     setBook,
     fetching,
+    getById
   });
 
   useEffect(() => {
@@ -41,6 +53,7 @@ const BookProvider = ({ children }: BookProviderProps) => {
       fetchBookInfoByIsbn,
       setBook,
       fetching,
+      getById
     });
   }, [book, fetching]);
   

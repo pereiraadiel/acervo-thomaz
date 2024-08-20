@@ -1,12 +1,20 @@
 import { useState } from "react"
 import { BookModel } from "@/models/book.model"
+import { useNavigation } from "@react-navigation/native"
+import useBook from "@/hooks/useBook.hook"
 
-const useBookListOrganism = () => {
-	const [books, setBooks] = useState<BookModel[]>([])
+const useBookListOrganism = (initialBooks: BookModel[] = []) => {
+	const { navigate } = useNavigation<any>()
+
+	const {  getById } = useBook()
+
+	const onBookPress = (id: string) => {
+		getById(id); // colocar o livro no contexto
+		navigate("BookDetails") // navegar para a tela de detalhes
+	}
 
 	return {
-		books,
-		setBooks
+		onBookPress
 	}
 }
 

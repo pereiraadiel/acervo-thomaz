@@ -3,9 +3,9 @@ import { HomePage } from '@/components/pages/home/page';
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import { WishlistPage } from '@/components/pages/wishlist/page';
 import { DiscoverPage } from '@/components/pages/discover/page';
-import { TabNavigationOrganismViewProps } from './interface';
+import { RootTabNavigationParamList, TabNavigationOrganismViewProps } from './interface';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootTabNavigationParamList>();
 
 const TabNavigationOrganismView: React.FC<TabNavigationOrganismViewProps> = ({screenOptions}) => {
 	return (

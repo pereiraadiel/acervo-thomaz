@@ -1,9 +1,10 @@
 import React from "react";
 import { View, StatusBar } from "react-native";
-import { Ionicons, AntDesign } from '@expo/vector-icons'
+import { Ionicons, Octicons } from '@expo/vector-icons'
 import { HeaderMoleculeViewProps } from "./interface";
 import { TitleAtom } from "@/components/atoms/title";
 import { SubtitleAtom } from "@/components/atoms/subtitle";
+import { useNavigation } from "@react-navigation/native";
 
 const HeaderMoleculeView: React.FC<HeaderMoleculeViewProps> = ({
   title,
@@ -14,6 +15,8 @@ const HeaderMoleculeView: React.FC<HeaderMoleculeViewProps> = ({
 }) => {
   const statusBarHeight = (StatusBar.currentHeight  || 0) + 8;
 
+  const { goBack } = useNavigation();
+
   return (
     <View
       style={{ paddingTop: statusBarHeight }}
@@ -21,19 +24,19 @@ const HeaderMoleculeView: React.FC<HeaderMoleculeViewProps> = ({
     >
 			<View className="flex-row items-center gap-2">
 				{variant === "with-back" && (
-					<View className="py-2 pr-2">
+					<View className="py-2 pr-2" onTouchEnd={() => goBack()}>
 						<Ionicons name="chevron-back" size={24} color="white" />
 					</View>
 				)}
 
 				<View>
 					<TitleAtom>{title}</TitleAtom>
-					<SubtitleAtom>{subtitle}</SubtitleAtom>
+					{subtitle && <SubtitleAtom>{subtitle}</SubtitleAtom> }
 				</View>
 			</View>
 
       <View className="flex-row mr-4 items-center py-2">
-        <AntDesign name="user" size={24} color="white" />
+        <Octicons name="person" size={24} color="white" />
       </View>
     </View>
   );

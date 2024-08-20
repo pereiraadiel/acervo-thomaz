@@ -2,11 +2,11 @@ import { BookModel } from "@/models/book.model";
 
 export interface BookMoleculeProps {
   book: BookModel;
-  onPressIn: () => void;
+  onPress: () => void;
 }
 
 export interface BookMoleculeViewProps {
   book: BookModel;
   setBook: (book: BookModel) => void;
-  onPressIn: () => void;
+  onPress: () => void;
 }
