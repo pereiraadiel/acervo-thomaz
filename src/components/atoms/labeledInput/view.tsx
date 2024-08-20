@@ -1,5 +1,4 @@
 import { Text, TextInput, View } from "react-native"
-
 import { cn } from '@/lib/utils'
 import { colors } from "@/styles/colors"
 import { LabeledInputAtomViewProps } from "./interface"
@@ -10,6 +9,8 @@ const LabeledInputAtomView = forwardRef<React.ElementRef<typeof TextInput>, Labe
   label,
   Icon,
   color,
+  keyboardType,
+  variant,
   error,
   ...props
 }, ref) => {
@@ -32,6 +33,9 @@ const LabeledInputAtomView = forwardRef<React.ElementRef<typeof TextInput>, Labe
         className={cn(
           "pb-1 px-4 text-white bg-transparent rounded-lg"
         )}
+        keyboardType={keyboardType}
+        secureTextEntry={variant === 'password'}
+        ref={ref}
         {...props}
       />
     </View>

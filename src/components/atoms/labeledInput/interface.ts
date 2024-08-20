@@ -1,4 +1,4 @@
-import { TextInput } from "react-native";
+import { KeyboardTypeOptions, TextInput } from "react-native";
 
 export type LabeledInputVariant =
   | "password"
@@ -12,6 +12,7 @@ export interface LabeledInputAtomProps
   label: string;
   error?: string;
   variant?: LabeledInputVariant;
+  ref?: React.RefObject<TextInput>;
 }
 
 export interface LabeledInputAtomViewProps {
@@ -19,6 +20,9 @@ export interface LabeledInputAtomViewProps {
   label: string;
   error?: string;
   Icon: React.ReactElement;
+  keyboardType: KeyboardTypeOptions;
+  variant?: LabeledInputVariant;
+  ref?: React.RefObject<TextInput>;
   color: {
     border: string;
     text: string;

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { MaterialIcons, Octicons } from "@expo/vector-icons";
 import { colors } from "@/styles/colors";
 import React from "react";
+import { LabeledInputVariant } from "./interface";
 
 const variants = {
   password: <MaterialIcons name='password' size={20} color={colors.gray[500]} />,
@@ -11,8 +12,7 @@ const variants = {
   name: <Octicons name="person" size={20} color={colors.gray[500]}/>,
 };
 
-const useLabeledInputAtom = () => {
-  const [variant, setVariant] = useState<keyof typeof variants>('name');
+const useLabeledInputAtom = (variant: LabeledInputVariant) => {
   const [error, setError] = useState<string>();
   const [color, setColor] = useState({
     border: 'border-gray-800',
@@ -20,10 +20,6 @@ const useLabeledInputAtom = () => {
   });
 
   const [Icon, setIcon] = useState<React.ReactElement>(variants[variant]);
-
-  useEffect(() => {
-    setVariant(variant)
-  }, [])
 
   useEffect(() => {
     if (error) {
@@ -46,8 +42,6 @@ const useLabeledInputAtom = () => {
   }, [error]);
 
   return {
-    variant,
-    setVariant,
     error,
     setError,
     color,
