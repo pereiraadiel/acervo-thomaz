@@ -15,7 +15,6 @@ const LabeledInputAtomView = forwardRef<React.ElementRef<typeof TextInput>, Labe
   onFocus,
   ...props
 }, ref) => {
-  
 
   return (
     <View className={cn(`flex flex-col gap-1 rounded-lg text-white border ${color.border}`, className)}

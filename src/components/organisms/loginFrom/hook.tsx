@@ -9,7 +9,9 @@ const useLoginFormOrganism = () => {
 
 	const { navigate } = useNavigation<any>()
 
-	const handleResetPassword = () => {}
+	const handleResetPassword = () => {
+		navigate('Recover');
+	}
 
 	const handleSignUp = () => {
 		navigate('Register');

@@ -7,8 +7,9 @@ import { LabeledInputVariant } from "./interface";
 const variants = {
   password: <MaterialIcons name='password' size={20} color={colors.gray[500]} />,
   email: <MaterialIcons name="alternate-email" size={20} color={colors.gray[500]}/>,
+  code: <MaterialIcons name="numbers" size={20} color={colors.gray[500]}/>,
   search: <Octicons name="search" size={20} color={colors.gray[500]}/>,
-  username: <Octicons name="person" size={20} color={colors.gray[500]}/>,
+  username: <Octicons name="id-badge" size={20} color={colors.gray[500]}/>,
   name: <Octicons name="person" size={20} color={colors.gray[500]}/>,
 };
 

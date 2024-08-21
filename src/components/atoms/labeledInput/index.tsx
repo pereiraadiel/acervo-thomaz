@@ -21,7 +21,9 @@ const LabeledInputAtom = forwardRef<React.ElementRef<typeof TextInput>, LabeledI
   const keyboardType: KeyboardTypeOptions = 
         variant === 'email' || variant === 'username' 
             ? 'email-address' 
-            :	'default'
+            :	variant === 'code' 
+                ? 'number-pad'
+                : 'default'
 
 
     const methods = {

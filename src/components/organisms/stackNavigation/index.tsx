@@ -3,6 +3,7 @@ import { TabNavigationOrganism } from '@/components/organisms/tabNavigation';
 import { BookPage } from '@/components/pages/book/page';
 import { LoginPage } from '@/components/pages/login/page';
 import { RegisterPage } from '@/components/pages/register/page';
+import { RecoverPage } from '@/components/pages/recover/page';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,7 @@ const StackNavigation = () => {
 		>
 			<Stack.Screen name="Login" component={LoginPage} />
 			<Stack.Screen name="Register" component={RegisterPage} />
+			<Stack.Screen name="Recover" component={RecoverPage} />
 			<Stack.Screen name="Home" component={TabNavigationOrganism} />
 			<Stack.Screen name="BookDetails" component={BookPage} />
 		</Stack.Navigator>

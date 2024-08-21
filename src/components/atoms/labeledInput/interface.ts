@@ -5,7 +5,8 @@ export type LabeledInputVariant =
   | "email"
   | "search"
   | "username"
-  | "name";
+  | "name"
+  | "code";
 
 export interface LabeledInputAtomProps
   extends React.ComponentPropsWithoutRef<typeof TextInput> {
