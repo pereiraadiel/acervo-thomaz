@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react"
 import { RegisterError, RegisterFormFields } from "./interface";
 
-const useRegisterFormOrganism = () => {
+const useRegisterFormOrganism = (editingExisting: boolean = false) => {
 	const [formFields, setFormFields] = useState<RegisterFormFields>({ email: '', password: '', username: '', fullname: '' });
 	const [error, setError] = useState<RegisterError>({ email: '', password: '', username: '', fullname: '' });
 	const [loading, setLoading] = useState<boolean>(false);
@@ -12,6 +12,11 @@ const useRegisterFormOrganism = () => {
 	const handleResetPassword = () => {}
 
 	const handleSignUp = () => {
+		// if(editingExisting) {
+		// 	// enviar formulario para editar usuario ja existente ( reutilizando esse componente na tela de cadastro e de perfil do usuario)
+		// 	// retornar sem navegar para outra tela
+		// }
+
 		navigate('Login');
 	}
 

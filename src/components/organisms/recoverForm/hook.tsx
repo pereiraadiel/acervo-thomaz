@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react"
 import { RecoverError, RecoverFormFields } from "./interface";
+import useToast from "@/hooks/useToast.hook";
 
 const useRecoverFormOrganism = () => {
 	const [formFields, setFormFields] = useState<RecoverFormFields>({ email: '' });
@@ -9,6 +10,7 @@ const useRecoverFormOrganism = () => {
 	const [currentStep, setCurrentStep] = useState<0 | 1>(0);
 
 	const { navigate } = useNavigation<any>()
+	const { addToast } = useToast()
 
 	const handleResetPassword = () => {
 		// todo: implement reset password
@@ -18,6 +20,7 @@ const useRecoverFormOrganism = () => {
 	const handleRecoverAccount = () => {
 		setFormFields({ ...formFields, reset: { code: '', password: '' } });
 		setError({ email: '', reset: { code: '', password: '' } });
+		addToast('Um código de recuperação foi enviado ao email cadastrado!', 'info')
 		setCurrentStep(1);
 	}
 

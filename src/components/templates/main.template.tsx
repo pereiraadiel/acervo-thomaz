@@ -6,7 +6,7 @@ interface MainTemplateProps {
 	children: React.ReactNode;
 	headerTitle?: string;
 	headerSubtitle?: string;
-	headerVariant?: 'default' | 'with-back';
+	headerVariant?: 'default' | 'with-back' | 'profile';
 }
 
 const MainTemplate: React.FC<MainTemplateProps> = ({ children, headerTitle, headerSubtitle, headerVariant }) => {

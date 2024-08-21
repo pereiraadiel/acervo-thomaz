@@ -8,11 +8,12 @@ import { SubtitleAtom } from "@/components/atoms/subtitle";
 import { LoadingAtom } from "@/components/atoms/loading";
 
 const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
-	handleResetPassword,
 	handleSignUp,
 	handleSignIn,
 	error,
 	formFields,
+	isEditable,
+	editingExisting,
 	setFormFields,
 	loading
 }) => {
@@ -26,16 +27,20 @@ const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 
 	return (
 		<View className="flex items-center w-full">
-			<View className="w-40 h-40 rounded-full bg-gray-500 flex items-center justify-center z-10">
-				<LogoAtom className="my-2"/>
-			</View>
-			<View className=" bg-gray-500 w-full p-4 rounded-t-[64px] pt-20 z-0 -mt-20">
+			{editingExisting === false && (
+				<View className="w-40 h-40 rounded-full bg-gray-500 flex items-center justify-center z-10">
+					<LogoAtom className="my-2"/>
+				</View>
+			)}
+
+			<View className={`w-full p-4 rounded-t-[64px] pt-20 z-0 ${editingExisting ? '-mt-18': '-mt-20 bg-gray-500'}`}>
 				<LabeledInputAtom 
 					label="Nome completo" 
 					variant="name" 
 					className="mt-2"
 					value={formFields.fullname}
 					error={error.fullname}
+					editable={isEditable}
 					onChangeText={value => setFormFields({ ...formFields, fullname: value })}
 					onFocus={() => fullnameInputRef.current?.focus()}
 					ref={fullnameInputRef}
@@ -50,6 +55,7 @@ const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 					className="mt-2"
 					value={formFields.username}
 					error={error.username}
+					editable={isEditable}
 					onChangeText={value => setFormFields({ ...formFields, username: value })}
 					onFocus={() => usernameInputRef.current?.focus()}
 					ref={usernameInputRef}
@@ -64,6 +70,7 @@ const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 					className="mt-2"
 					value={formFields.email}
 					error={error.email}
+					editable={isEditable && !editingExisting}
 					onChangeText={value => setFormFields({ ...formFields, email: value })}
 					onFocus={() => emailInputRef.current?.focus()}
 					ref={emailInputRef}
@@ -78,6 +85,7 @@ const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 					className="mt-2"
 					error={error.password}
 					value={formFields.password}
+					editable={isEditable && !editingExisting}
 					onChangeText={value => setFormFields({ ...formFields, password: value })}
 					onFocus={() => passwordInputRef.current?.focus()}
 					ref={passwordInputRef} 
@@ -86,9 +94,14 @@ const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 					onSubmitEditing={handleSignUp} 
 				/>
 				
-				<ButtonAtom className="mt-6" title="Registrar-se" onPress={handleSignUp}/>
-				
-				<SubtitleAtom className="text-gray-800 my-2 text-center" onPress={handleSignIn}>Já possui uma conta? Autentique-se</SubtitleAtom>
+				{isEditable && (
+					<>
+						<ButtonAtom className="mt-6" title={editingExisting ? 'Salvar': 'Registrar-se'} onPress={handleSignUp}/>
+						{editingExisting === false && (
+							<SubtitleAtom className="text-gray-800 my-2 text-center" onPress={handleSignIn}>Já possui uma conta? Autentique-se</SubtitleAtom>
+						)}
+					</>
+				)}
 			</View>
 		</View>
 	)

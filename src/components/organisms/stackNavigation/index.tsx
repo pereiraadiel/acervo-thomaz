@@ -4,6 +4,7 @@ import { BookPage } from '@/components/pages/book/page';
 import { LoginPage } from '@/components/pages/login/page';
 import { RegisterPage } from '@/components/pages/register/page';
 import { RecoverPage } from '@/components/pages/recover/page';
+import { ProfilePage } from '@/components/pages/profile/page';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,7 @@ const StackNavigation = () => {
 		initialRouteName='Login'
 		>
 			<Stack.Screen name="Login" component={LoginPage} />
+			<Stack.Screen name="Profile" component={ProfilePage} />
 			<Stack.Screen name="Register" component={RegisterPage} />
 			<Stack.Screen name="Recover" component={RecoverPage} />
 			<Stack.Screen name="Home" component={TabNavigationOrganism} />

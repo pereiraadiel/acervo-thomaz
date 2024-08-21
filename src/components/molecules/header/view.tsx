@@ -15,7 +15,7 @@ const HeaderMoleculeView: React.FC<HeaderMoleculeViewProps> = ({
 }) => {
   const statusBarHeight = (StatusBar.currentHeight  || 0) + 8;
 
-  const { goBack } = useNavigation();
+  const { goBack, navigate } = useNavigation<any>();
 
   return (
     <View
@@ -23,7 +23,7 @@ const HeaderMoleculeView: React.FC<HeaderMoleculeViewProps> = ({
       className={`${color === "accent" ? "bg-orange-600" : "bg-gray-500"} flex flex-row gap-2 justify-between pb-2 px-4 ${className}`}
     >
 			<View className="flex-row items-center gap-2">
-				{variant === "with-back" && (
+				{variant !== "default" && (
 					<View className="py-2 pr-2" onTouchEnd={() => goBack()}>
 						<Ionicons name="chevron-back" size={24} color="white" />
 					</View>
@@ -35,9 +35,11 @@ const HeaderMoleculeView: React.FC<HeaderMoleculeViewProps> = ({
 				</View>
 			</View>
 
-      <View className="flex-row mr-4 items-center py-2">
-        <Octicons name="person" size={24} color="white" />
-      </View>
+      {variant !== 'profile' && (
+        <View className="flex-row mr-4 items-center py-2" onTouchEnd={() => navigate('Profile')}>
+          <Octicons name="person" size={24} color="white" />
+        </View>
+      )}
     </View>
   );
 };

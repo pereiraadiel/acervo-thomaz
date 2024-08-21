@@ -12,19 +12,16 @@ export interface LabeledInputAtomProps
   extends React.ComponentPropsWithoutRef<typeof TextInput> {
   label: string;
   error?: string;
+  className?: string;
   variant?: LabeledInputVariant;
+  onFocus?: () => void;
   ref?: React.RefObject<TextInput>;
 }
 
-export interface LabeledInputAtomViewProps {
-  className?: string;
+export interface LabeledInputAtomViewProps extends LabeledInputAtomProps {
   label: string;
-  error?: string;
   Icon: React.ReactElement;
   keyboardType: KeyboardTypeOptions;
-  variant?: LabeledInputVariant;
-  ref?: React.RefObject<TextInput>;
-  onFocus?: () => void;
   color: {
     border: string;
     text: string;

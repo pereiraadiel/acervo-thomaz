@@ -3,7 +3,7 @@ import { useState } from "react";
 const useHeaderMolecule = () => {
 	const [title, setTitle] = useState<string | undefined>();
 	const [subtitle, setSubtitle] = useState<string | undefined>();
-	const [variant, setVariant] = useState<"default" | "with-back">("default");
+	const [variant, setVariant] = useState<"default" | "with-back" | 'profile'>("default");
 	const [color, setColor] = useState<"accent" | "secondary">("accent");
 
 	return {

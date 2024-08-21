@@ -34,7 +34,7 @@ const LabeledInputAtom = forwardRef<React.ElementRef<typeof TextInput>, LabeledI
         error,
         keyboardType,
         variant,
-				ref,
+	    ref,
         ...rest
     }
 

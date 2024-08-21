@@ -12,12 +12,13 @@ const LabeledInputAtomView = forwardRef<React.ElementRef<typeof TextInput>, Labe
   keyboardType,
   variant,
   error,
+  editable,
   onFocus,
   ...props
 }, ref) => {
 
   return (
-    <View className={cn(`flex flex-col gap-1 rounded-lg text-white border ${color.border}`, className)}
+    <View className={cn(`flex flex-col gap-1 rounded-lg text-white border ${editable === false ? 'border-gray-700': color.border}`, className)}
       onTouchStart={onFocus}
     >
       <View className={cn('flex flex-row gap-1.5 pl-1.5 py-0.5 items-center')}>
@@ -35,10 +36,11 @@ const LabeledInputAtomView = forwardRef<React.ElementRef<typeof TextInput>, Labe
       <TextInput
         placeholderTextColor={colors.gray[800]}
         className={cn(
-          "pb-1 px-4 text-white bg-transparent rounded-lg"
+          `pb-1 px-4 text-white bg-transparent rounded-lg ${editable === false && 'text-gray-900'}`,
         )}
         keyboardType={keyboardType}
         secureTextEntry={variant === 'password'}
+        editable={editable}
         ref={ref}
         {...props}
       />
