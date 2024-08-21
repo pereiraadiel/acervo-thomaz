@@ -1,14 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react"
-
-type LoginError = {
-	email: string;
-	password: string;
-}
+import { LoginError, LoginFormFields } from "./interface";
 
 const useLoginFormOrganism = () => {
-	const [email, setEmail] = useState<string>('');
-	const [password, setPassword] = useState<string>('');
+	const [formFields, setFormFields] = useState<LoginFormFields>({ email: '', password: '' });
 	const [error, setError] = useState<LoginError>({ email: '', password: '' });
 	const [loading, setLoading] = useState<boolean>(false);
 
@@ -16,28 +11,23 @@ const useLoginFormOrganism = () => {
 
 	const handleResetPassword = () => {}
 
-	const handleSignUp = () => {}
+	const handleSignUp = () => {
+		navigate('Register');
+	}
 
 	const handleSignIn = () => {
 		navigate('Home');
-		// setLoading(true);
-		// setTimeout(() => {
-		// 	setLoading(false);
-		// 	setError({ email: 'Email is required', password: 'Password is required' });
-		// }, 1000);
 	}
 
 	useEffect(() => {
-		if(email !== '' || password !== '') {
+		if(formFields.email.length > 0 && formFields.password.length > 0) {
 			setError({ email: '', password: '' });
 		}
-	},[ email, password])
+	},[ formFields])
 
 	const methods = {
-		email,
-		setEmail,
-		password,
-		setPassword,
+		formFields,
+		setFormFields,
 		error,
 		loading,
 		handleResetPassword,

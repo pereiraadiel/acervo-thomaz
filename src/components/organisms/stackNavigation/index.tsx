@@ -1,7 +1,8 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { TabNavigationOrganism } from '@/components/organisms/tabNavigation';
 import { BookPage } from '@/components/pages/book/page';
-import { LoginPage } from '../../pages/login/page';
+import { LoginPage } from '@/components/pages/login/page';
+import { RegisterPage } from '@/components/pages/register/page';
 
 const Stack = createStackNavigator();
 
@@ -13,6 +14,7 @@ const StackNavigation = () => {
 		initialRouteName='Login'
 		>
 			<Stack.Screen name="Login" component={LoginPage} />
+			<Stack.Screen name="Register" component={RegisterPage} />
 			<Stack.Screen name="Home" component={TabNavigationOrganism} />
 			<Stack.Screen name="BookDetails" component={BookPage} />
 		</Stack.Navigator>

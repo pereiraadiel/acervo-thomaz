@@ -1,4 +1,3 @@
-import { LoadingAtom } from "@/components/atoms/loading";
 import { useDiscoverPage } from "./hook";
 import { DiscoverPageProps } from "./interface";
 import { DiscoverPageView } from "./view";
@@ -15,8 +14,6 @@ const DiscoverPage: React.FC<DiscoverPageProps> = ({}) => {
 		onSearch,
 		loading
 	}
-
-	if(loading) return <LoadingAtom/>
 
 	return <DiscoverPageView {...methods}/>
 };

@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
 import { View, TextInput } from "react-native";
-import { LoginFormOrganismViewProps } from "./interface";
+import { RegisterFormOrganismViewProps } from "./interface";
 import { LabeledInputAtom } from "@/components/atoms/labeledInput";
 import { LogoAtom } from "@/components/atoms/logo";
 import { ButtonAtom } from "@/components/atoms/button";
 import { SubtitleAtom } from "@/components/atoms/subtitle";
 import { LoadingAtom } from "@/components/atoms/loading";
 
-const LoginFormOrganismView: React.FC<LoginFormOrganismViewProps> = ({
+const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 	handleResetPassword,
 	handleSignUp,
 	handleSignIn,
@@ -19,6 +19,8 @@ const LoginFormOrganismView: React.FC<LoginFormOrganismViewProps> = ({
 
 	const passwordInputRef = useRef<TextInput>(null);
 	const emailInputRef = useRef<TextInput>(null);
+	const fullnameInputRef = useRef<TextInput>(null);
+	const usernameInputRef = useRef<TextInput>(null);
 
 	if(loading) return <LoadingAtom/>
 
@@ -29,8 +31,36 @@ const LoginFormOrganismView: React.FC<LoginFormOrganismViewProps> = ({
 			</View>
 			<View className=" bg-gray-500 w-full p-4 rounded-t-[64px] pt-20 z-0 -mt-20">
 				<LabeledInputAtom 
-					label="Usuário/email" 
+					label="Nome completo" 
+					variant="name" 
+					className="mt-2"
+					value={formFields.fullname}
+					error={error.fullname}
+					onChangeText={value => setFormFields({ ...formFields, fullname: value })}
+					onFocus={() => fullnameInputRef.current?.focus()}
+					ref={fullnameInputRef}
+					returnKeyType="next"
+					onKeyPress={key => key.nativeEvent.key === 'Enter' && usernameInputRef.current?.focus()}
+					onSubmitEditing={() => usernameInputRef.current?.focus()}
+					blurOnSubmit={false} 
+				/>
+				<LabeledInputAtom 
+					label="Usuário" 
 					variant="username" 
+					className="mt-2"
+					value={formFields.username}
+					error={error.username}
+					onChangeText={value => setFormFields({ ...formFields, username: value })}
+					onFocus={() => usernameInputRef.current?.focus()}
+					ref={usernameInputRef}
+					returnKeyType="next"
+					onKeyPress={key => key.nativeEvent.key === 'Enter' && emailInputRef.current?.focus()}
+					onSubmitEditing={() => emailInputRef.current?.focus()}
+					blurOnSubmit={false} 
+				/>
+				<LabeledInputAtom 
+					label="Email" 
+					variant="email" 
 					className="mt-2"
 					value={formFields.email}
 					error={error.email}
@@ -55,14 +85,13 @@ const LoginFormOrganismView: React.FC<LoginFormOrganismViewProps> = ({
 					onKeyPress={key => key.nativeEvent.key === 'Enter' && handleSignUp()} 
 					onSubmitEditing={handleSignUp} 
 				/>
-				<SubtitleAtom className="text-gray-800 my-2" onPress={handleResetPassword}>Esqueci minha senha</SubtitleAtom>
 				
-				<ButtonAtom className="mt-6" title="Autenticar-se" onPress={handleSignIn}/>
+				<ButtonAtom className="mt-6" title="Registrar-se" onPress={handleSignUp}/>
 				
-				<SubtitleAtom className="text-gray-800 my-2 text-center" onPress={handleSignUp}>Não tem uma conta? Cadastre-se</SubtitleAtom>
+				<SubtitleAtom className="text-gray-800 my-2 text-center" onPress={handleSignIn}>Já possui uma conta? Autentique-se</SubtitleAtom>
 			</View>
 		</View>
 	)
 }
 
-export { LoginFormOrganismView };
+export { RegisterFormOrganismView };
