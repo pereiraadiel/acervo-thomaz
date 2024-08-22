@@ -12,6 +12,7 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 	inputValue,
 	onSubmit,
 	setInputValue,
+	handleReadingRegister,
 	book,
 	notes
 }) => {
@@ -40,7 +41,7 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 			)}
 
 			<View className="z-20 flex items-center px-4">
-				<View className="bg-gray-500 w-full rounded-2xl p-4 -mt-2 pt-4 flex items-center">
+				<View className="bg-gray-500 w-full rounded-2xl p-4 -mt-2 pt-4 pb-10 flex items-center">
 					<BadgeAtom className="mb-2" variant={variant} isActive/>
 					<TitleAtom className="text-center">{book.title}</TitleAtom>
 					<SubtitleAtom className="text-center" >{book.subtitle}</SubtitleAtom>
@@ -67,7 +68,11 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 						<ParagraphAtom>páginas lidas: {book.readedPageCount}/{book.pageCount}</ParagraphAtom>
 					</View>
 				</View>
+				{isNotReaded === false && (
+					<BadgeAtom isActive variant="reading-register" className="-mt-7"  onPress={handleReadingRegister}/>
+				)}
 			</View>
+
 
 			<TitleAtom className="ml-4 mt-6">{isNotReaded ? 'Anotações': 'Minhas Resenhas'}</TitleAtom>
 			<SubtitleAtom className="ml-4 mb-2">

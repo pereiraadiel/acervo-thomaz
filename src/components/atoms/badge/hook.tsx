@@ -1,4 +1,4 @@
-import { Octicons, Ionicons } from "@expo/vector-icons";
+import { Octicons, Ionicons, FontAwesome6 } from "@expo/vector-icons";
 import { colors } from "@/styles/colors";
 import { useState, useEffect } from "react";
 import React from "react";
@@ -12,6 +12,7 @@ const variants = {
 	desired: <Octicons name="bookmark" size={20} color={colors.blue[600]} />,
 	"scan-barcode": <Ionicons name="barcode-sharp" size={20} color={colors.gray[600]} />,
 	save: <Octicons name="bookmark" size={20} color={colors.gray[600]} />,
+	'reading-register': <FontAwesome6 name="book-open-reader" size={24} color="white"/>
 };
 
 const variantTexts = {
@@ -23,6 +24,7 @@ const variantTexts = {
 	desired: 'Desejado',
 	"scan-barcode": 'Escanear ISBN',
 	save: 'Salvar',
+	'reading-register': 'Registrar Leitura'
 };
 
 const useBadgeAtom = (isActive: boolean) => {
@@ -45,6 +47,7 @@ const useBadgeAtom = (isActive: boolean) => {
 			abandoned: { text: 'text-white', background: `bg-red-600${activeColor}`, icon: colors.white },
 			desired: { text: 'text-white', background: `bg-blue-600${activeColor}`, icon: colors.white },
 			save: { text: 'text-white', background: `bg-gray-600${activeColor}`, icon: colors.white },
+			"reading-register": { text: 'text-white', background: `bg-gray-600${activeColor}`, icon: colors.white },
 		};
 
 		const selectedVariant = baseColors[variant] || baseColors.search;

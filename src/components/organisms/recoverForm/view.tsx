@@ -70,6 +70,9 @@ const RecoverFormOrganismView: React.FC<RecoverFormOrganismViewProps> = ({
 							onSubmitEditing={() => passwordInputRef.current?.focus()} 
 							blurOnSubmit={false} 
 						/>
+						
+						<SubtitleAtom className="text-gray-800 mb-2" onPress={handleRecoverAccount}>não recebeu o código? clique para solicitar novamente!</SubtitleAtom>
+						
 						<LabeledInputAtom 
 							label="Crie uma nova senha" 
 							variant="password" 

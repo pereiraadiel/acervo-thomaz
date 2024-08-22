@@ -9,7 +9,8 @@ export type BadgeVariant =
   | "abandoned"
   | "desired"
   | "scan-barcode"
-  | "save";
+  | "save"
+  | "reading-register";
 
 export interface BadgeAtomProps {
   variant?: BadgeVariant;

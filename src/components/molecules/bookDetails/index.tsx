@@ -10,6 +10,7 @@ const BookDetailsMolecule: React.FC<BookDetailsMoleculeProps> = ({
 		onSubmit,
 		inputValue,
 		setInputValue,
+		handleReadingRegister,
 		notes
 	} = useBookDetails(book.status);
 
@@ -18,6 +19,7 @@ const BookDetailsMolecule: React.FC<BookDetailsMoleculeProps> = ({
 		onSubmit,
 		inputValue,
 		setInputValue,
+		handleReadingRegister,
 		notes
 	}
 

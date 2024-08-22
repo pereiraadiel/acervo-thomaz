@@ -22,10 +22,15 @@ const useBookDetails = (bookStatus: BookStatus) => {
 		setInputValue('');
 	}
 	
+	const handleReadingRegister = () => {
+		addToast('Leitura registrada com sucesso', 'success');
+	}
+
 	return {
 		onSubmit,
 		inputValue,
 		setInputValue,
+		handleReadingRegister,
 		notes,
 	}
 }
