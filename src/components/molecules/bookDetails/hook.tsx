@@ -4,6 +4,7 @@ import { BookStatus } from "@/models/book.model";
 
 const useBookDetails = (bookStatus: BookStatus) => {
 	const [inputValue, setInputValue] = useState('');
+	const [isRegisteringReading, setIsRegisteringReading] = useState(false);
 	const { addToast } = useToast()
 	const [notes, setNotes] = useState<{content: string, date: string}[]>([]);
 
@@ -23,7 +24,12 @@ const useBookDetails = (bookStatus: BookStatus) => {
 	}
 	
 	const handleReadingRegister = () => {
+		setIsRegisteringReading(false)
 		addToast('Leitura registrada com sucesso', 'success');
+	}
+
+	const handleEnableReadingRegister = () => {
+		setIsRegisteringReading(true);
 	}
 
 	return {
@@ -31,6 +37,8 @@ const useBookDetails = (bookStatus: BookStatus) => {
 		inputValue,
 		setInputValue,
 		handleReadingRegister,
+		handleEnableReadingRegister,
+		isRegisteringReading,
 		notes,
 	}
 }

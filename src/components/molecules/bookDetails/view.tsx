@@ -7,12 +7,15 @@ import { BadgeAtom } from "@/components/atoms/badge";
 import { ProgressAtom } from "@/components/atoms/progress";
 import { InputAtom } from "@/components/atoms/input";
 import { NoteMolecule } from "@/components/molecules/note";
+import { ReadingPagesMolecule } from "../readingPages";
 
 const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 	inputValue,
 	onSubmit,
 	setInputValue,
+	handleEnableReadingRegister,
 	handleReadingRegister,
+	isRegisteringReading,
 	book,
 	notes
 }) => {
@@ -68,8 +71,11 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 						<ParagraphAtom>páginas lidas: {book.readedPageCount}/{book.pageCount}</ParagraphAtom>
 					</View>
 				</View>
-				{isNotReaded === false && (
-					<BadgeAtom isActive variant="reading-register" className="-mt-7"  onPress={handleReadingRegister}/>
+					
+				<BadgeAtom isActive variant="reading-register" className="-mt-7"  onPress={handleEnableReadingRegister}/>
+
+				{isRegisteringReading && (
+					<ReadingPagesMolecule onSubmit={handleReadingRegister} maxPages={200}/>
 				)}
 			</View>
 
@@ -79,16 +85,18 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 				{isNotReaded ? 'Registre anotações sobre o livro' : 'Minhas análises feitas ao longo da leitura do livro'}
 			</SubtitleAtom>
 			
-			<InputAtom
-				type='multiline'
-				className="mt-2 mx-4 mb-2"
-				value={inputValue}
-				onChangeText={setInputValue}
-				onSubmitEditing={() => onSubmit()}
-				onEndEditing={() => onSubmit()}
-				onSubmit={onSubmit}
-				placeholder={isNotReaded ? 'Faça uma anotação sobre o livro...': "Registre uma resenha sobre a sua leitura..."}
-			/>
+			<View className="w-full px-4">
+				<InputAtom
+					type='multiline'
+					className=""
+					value={inputValue}
+					onChangeText={setInputValue}
+					onSubmitEditing={() => onSubmit()}
+					onEndEditing={() => onSubmit()}
+					onSubmit={onSubmit}
+					placeholder={isNotReaded ? 'Faça uma anotação sobre o livro...': "Registre uma resenha sobre a sua leitura..."}
+				/>
+			</View>
 
 			{notes.map((note, index) => (
 				<NoteMolecule

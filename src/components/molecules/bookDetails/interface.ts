@@ -9,6 +9,8 @@ export interface BookDetailsMoleculeViewProps {
   setInputValue: (value: string) => void;
   onSubmit: () => void;
   handleReadingRegister: () => void;
+  handleEnableReadingRegister: () => void;
+  isRegisteringReading: boolean;
   book: BookModel;
   notes: { content: string; date: string }[];
 }
