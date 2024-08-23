@@ -41,6 +41,7 @@ const LabeledInputAtomView = forwardRef<React.ElementRef<typeof TextInput>, Labe
         keyboardType={keyboardType}
         secureTextEntry={variant === 'password'}
         editable={editable}
+        readOnly={!editable}
         ref={ref}
         {...props}
       />
