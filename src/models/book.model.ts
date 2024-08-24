@@ -8,6 +8,7 @@ export type BookStatus =
 
 export type BookModel = {
   id: string;
+  isbn: string;
   title: string;
   subtitle: string;
   description: string;

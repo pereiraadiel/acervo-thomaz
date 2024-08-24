@@ -14,7 +14,7 @@ const DiscoverPageView: React.FC<DiscoverPageViewProps> = ({
 
 	const searchComponent = (
 		<>
-			<SearchMolecule onSearch={onSearch}/>
+			<SearchMolecule onSearch={onSearch} placeholder="Buscar livros..."/>
 			{loading ? <LoadingAtom /> : (
 				<>
 				<BookListOrganism books={books}/>

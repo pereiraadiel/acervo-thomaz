@@ -14,7 +14,7 @@ const BooksProvider = ({ children }: BookProviderProps) => {
 
   useEffect(() => {
     bookMockService
-      .loadBooks()
+      .getAllMyBooks()
       .then(setBooks)
       .catch((err) => console.error('books.context.tsx: ',err));
   }, []);

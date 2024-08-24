@@ -6,12 +6,20 @@ import { apiService } from "@/services/api/api.service";
 class BookService implements BookServiceInterface {
   constructor(private readonly apiService: ApiServiceInterface) {}
 
-  async loadBooks(): Promise<BookModel[]> {
+  async getAllMyBooks(): Promise<BookModel[]> {
     return this.apiService.get("books");
   }
 
   async getById(id: string): Promise<BookModel> {
     return this.apiService.get(`books/${id}`);
+  }
+
+  async getByIsbn(isbn: string): Promise<BookModel> {
+    return this.apiService.get(`books/isbn/${isbn}`);
+  }
+
+  async search(query: string): Promise<BookModel[]> {
+    return this.apiService.get(`books/search/${query}`);
   }
 }
 

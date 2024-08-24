@@ -1,7 +1,6 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { BookModel } from "@/models/book.model";
-import { isbnApiService } from "@/services/isbn-api/google-isbn-api.service";
-import { bookMockService } from "../services/books/book.mock.service";
+import { bookMockService } from "@/services/books/book.mock.service";
 
 const BookContext = createContext<BookContextType[]>([]);
 const Provider = BookContext.Provider;
@@ -23,8 +22,8 @@ const BookProvider = ({ children }: BookProviderProps) => {
 
   const fetchBookInfoByIsbn = async (isbn: string) => {
     setFetching(true);
-    isbnApiService
-    .getBookInfoByIsbn(isbn)
+    bookMockService
+    .getByIsbn(isbn)
     .then(setBook)
     .catch((err) => console.error(err))
     .finally(() => setFetching(false));

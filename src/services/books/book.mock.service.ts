@@ -9,8 +9,16 @@ class BookMockService implements BookServiceInterface {
     return BOOKS.find((book) => book.id === id) || ({} as BookModel);
   }
 
-  async loadBooks(): Promise<BookModel[]> {
-    return BOOKS;
+  async getAllMyBooks(): Promise<BookModel[]> {
+    return BOOKS.filter((book) => book.status !== "unknown");
+  }
+
+  async getByIsbn(isbn: string): Promise<BookModel> {
+    return BOOKS.find((book) => book.isbn === isbn) || ({} as BookModel);
+  }
+
+  async search(query: string): Promise<BookModel[]> {
+    return BOOKS.filter((book) => book.title.toLowerCase().includes(query.toLowerCase()));
   }
 }
 

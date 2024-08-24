@@ -3,6 +3,7 @@ import { BookModel } from "@/models/book.model";
 export const BOOKS = [
   {
     id: "123",
+    isbn: "9788535902770",
     title: "Dom Casmurro",
     subtitle: "Texto integral - Questões de vestibular",
     description:
@@ -22,6 +23,7 @@ export const BOOKS = [
   },
   {
     id: "321",
+    isbn: "9788535902770",
     title: "Sapiens: Uma Breve História da Humanidade",
     subtitle: "",
     description:
@@ -41,6 +43,7 @@ export const BOOKS = [
   },
   {
     id: "456",
+    isbn: "9788535902770",
     title: "1984",
     subtitle: "",
     description:
@@ -58,6 +61,7 @@ export const BOOKS = [
   },
   {
     id: "654",
+    isbn: "9788535902770",
     title: "O Pequeno Príncipe",
     subtitle: "",
     description:
@@ -76,6 +80,7 @@ export const BOOKS = [
   },
   {
     id: "789",
+    isbn: "9788535902770",
     title: "A Revolução dos Bichos",
     subtitle: "",
     description:
@@ -94,6 +99,7 @@ export const BOOKS = [
   },
   {
     id: "987",
+    isbn: "9788535902770",
     title: "O Poder do Hábito",
     subtitle: "",
     description:
@@ -112,6 +118,7 @@ export const BOOKS = [
   },
   {
     id: "012",
+    isbn: "9788535902770",
     title: "Cem Anos de Solidão",
     subtitle: "",
     description:
@@ -130,6 +137,7 @@ export const BOOKS = [
   },
   {
     id: "210",
+    isbn: "9788535902770",
     title: "A Arte da Guerra",
     subtitle: "",
     description:
@@ -148,6 +156,7 @@ export const BOOKS = [
   },
   {
     id: "234",
+    isbn: "9788535902770",
     title: "O Alquimista",
     subtitle: "",
     description:
@@ -166,6 +175,7 @@ export const BOOKS = [
   },
   {
     id: "432",
+    isbn: "9788535902770",
     title: "O Hobbit",
     subtitle: "",
     description:
@@ -183,6 +193,7 @@ export const BOOKS = [
   },
   {
     id: "345",
+    isbn: "9788535902770",
     title: "SCRUM",
     subtitle: "",
     description: "A arte de fazer o dobro do trabalho na metade do tempo",
@@ -200,6 +211,7 @@ export const BOOKS = [
   },
   {
     id: "543",
+    isbn: "9788535902770",
     title: "O Alienista",
     subtitle: "",
     description:
@@ -218,6 +230,7 @@ export const BOOKS = [
   },
   {
     id: "567",
+    isbn: "9788535902770",
     title: "Padre Pio",
     subtitle: "",
     description: "Os Milagres desconhecidos do santo dos estigmas",
@@ -235,6 +248,7 @@ export const BOOKS = [
   },
   {
     id: "765",
+    isbn: "9788535902770",
     title: "Harry Poter e a pedra filosofal",
     subtitle: "",
     description: "O primeiro livro da saga de Harry Potter",
@@ -252,6 +266,7 @@ export const BOOKS = [
   },
   {
     id: "147",
+    isbn: "9788535902770",
     title: "Matilda (Edição Especial)",
     subtitle: "",
     description: "Matilda é uma menina brilhante e muito inteligente",
@@ -269,6 +284,7 @@ export const BOOKS = [
   },
   {
     id: "9",
+    isbn: "9788535902770",
     title: "Confissões",
     subtitle: "",
     description:
@@ -288,6 +304,7 @@ export const BOOKS = [
   },
   {
     id: "10",
+    isbn: "9788535902770",
     title: "O Homem Eterno",
     subtitle: "",
     description:
@@ -307,6 +324,7 @@ export const BOOKS = [
   },
   {
     id: "11",
+    isbn: "9788535902770",
     title: "A Revolta de Atlas",
     subtitle: "",
     description:
@@ -326,6 +344,7 @@ export const BOOKS = [
   },
   {
     id: "12",
+    isbn: "9788535902770",
     title: "Admirável Mundo Novo",
     subtitle: "",
     description:
@@ -345,6 +364,7 @@ export const BOOKS = [
   },
   {
     id: "13",
+    isbn: "9788535902770",
     title: "O Poderoso Chefão",
     subtitle: "",
     description:
@@ -364,6 +384,7 @@ export const BOOKS = [
   },
   {
     id: "14",
+    isbn: "9788535902770",
     title: "Mindhunter",
     subtitle: "O Primeiro Caçador de Serial Killers Americano",
     description:
@@ -383,6 +404,7 @@ export const BOOKS = [
   },
   {
     id: "15",
+    isbn: "9788535902770",
     title: "O Silêncio dos Inocentes",
     subtitle: "",
     description:
