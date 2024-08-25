@@ -36,7 +36,8 @@ const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 			<View className={`w-full p-4 rounded-t-[64px] pt-20 z-0 ${editingExisting ? '-mt-18': '-mt-20 bg-gray-500'}`}>
 				<LabeledInputAtom 
 					label="Nome completo" 
-					variant="name" 
+					variant="name"
+					placeholder="Digite seu nome completo"
 					className="mt-2"
 					value={formFields.fullname}
 					error={error.fullname}
@@ -51,7 +52,8 @@ const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 				/>
 				<LabeledInputAtom 
 					label="Usuário" 
-					variant="username" 
+					variant="username"
+					placeholder="Crie o seu usuário"
 					className="mt-2"
 					value={formFields.username}
 					error={error.username}
@@ -66,7 +68,8 @@ const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 				/>
 				<LabeledInputAtom 
 					label="Email" 
-					variant="email" 
+					variant="email"
+					placeholder="Digite seu email"
 					className="mt-2"
 					value={formFields.email}
 					error={error.email}
@@ -82,6 +85,7 @@ const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 				<LabeledInputAtom 
 					label="Senha" 
 					variant="password" 
+					placeholder="Crie sua senha"
 					className="mt-2"
 					error={error.password}
 					value={formFields.password}

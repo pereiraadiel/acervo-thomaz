@@ -8,6 +8,7 @@ const LabeledInputAtom = forwardRef<React.ElementRef<typeof TextInput>, LabeledI
     className,
     label,
     variant = 'name',
+    editable = true,
     error,
     ...rest
 }, ref) => {
@@ -34,6 +35,7 @@ const LabeledInputAtom = forwardRef<React.ElementRef<typeof TextInput>, LabeledI
         error,
         keyboardType,
         variant,
+        editable,
 	    ref,
         ...rest
     }

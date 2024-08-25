@@ -4,6 +4,7 @@ import { BookStatus } from "@/models/book.model";
 
 const useBookDetails = (bookStatus: BookStatus) => {
 	const [inputValue, setInputValue] = useState('');
+	const [hasImageRenderError, setHasImageRenderError] = useState(false);
 	const [isRegisteringReading, setIsRegisteringReading] = useState(false);
 	const { addToast } = useToast()
 	const [notes, setNotes] = useState<{content: string, date: string}[]>([]);
@@ -38,6 +39,8 @@ const useBookDetails = (bookStatus: BookStatus) => {
 		setInputValue,
 		handleReadingRegister,
 		handleEnableReadingRegister,
+		hasImageRenderError,
+		setHasImageRenderError,
 		isRegisteringReading,
 		notes,
 	}

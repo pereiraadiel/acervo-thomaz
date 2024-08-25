@@ -15,6 +15,8 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 	setInputValue,
 	handleEnableReadingRegister,
 	handleReadingRegister,
+	setHasImageRenderError,
+	hasImageRenderError,
 	isRegisteringReading,
 	book,
 	notes
@@ -34,14 +36,19 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 
 	return (
 		<>
-			{book.imageUrl && (
-				<View className="z-10 w-auto h-[580px] rounded-b-2xl overflow-hidden">
-					<Image source={{uri: book.imageUrl}} resizeMode="cover" style={{
-						width: '100%',
-						height: '100%'
-					}}/>
-				</View>
-			)}
+			<View className="z-10 w-auto h-[580px] rounded-b-2xl overflow-hidden">
+				{book.imageUrl && (
+					<Image 
+						source={ hasImageRenderError ? require('@/assets/placeholder-cover.png') : { uri:  book.imageUrl}} 
+						resizeMode="cover"
+						onError={(e) => setHasImageRenderError(true)} 
+						style={{
+							width: '100%',
+							height: '100%'
+						}}
+					/>
+				)}
+			</View>
 
 			<View className="z-20 flex items-center px-4">
 				<View className="bg-gray-500 w-full rounded-2xl p-4 -mt-2 pt-4 pb-10 flex items-center">

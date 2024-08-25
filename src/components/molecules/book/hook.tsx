@@ -3,10 +3,13 @@ import { BookModel } from "@/models/book.model";
 
 const useBookMolecule = () => {
 	const [book, setBook] = useState<BookModel>();
+	const [hasImageRenderError, setHasImageRenderError] = useState(false);
 
 	return {
 		book,
-		setBook
+		hasImageRenderError,
+		setBook,
+		setHasImageRenderError
 	}
 }
 

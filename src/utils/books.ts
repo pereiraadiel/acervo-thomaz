@@ -422,4 +422,24 @@ export const BOOKS = [
     rating: 4.9,
     progress: 40.87,
   },
+  {
+    id: "16",
+    isbn: "9788535902770",
+    title: "O Livro com erros",
+    subtitle: "",
+    description:
+      "Thriller psicológico de Thomas Harris que introduz o icônico personagem Hannibal Lecter.",
+    imageUrl:
+      "https://www.saraivaconteudo.com.br/capas/08/o-silencio-dos-inocentes-thomas-harris-ler-online-pdf.jpg",
+    author: "Thomas Harris",
+    publisher: "Editora BestBolso",
+    publishedDate: "1988-05-23",
+    pageCount: 367,
+    readedPageCount: 150,
+    categories: ["Ficção", "Thriller", "Crime"],
+    status: "reading",
+    language: "pt",
+    rating: 4.9,
+    progress: 40.87,
+  },
 ] as BookModel[];

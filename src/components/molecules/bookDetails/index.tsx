@@ -12,6 +12,8 @@ const BookDetailsMolecule: React.FC<BookDetailsMoleculeProps> = ({
 		setInputValue,
 		handleReadingRegister,
 		handleEnableReadingRegister,
+		hasImageRenderError,
+		setHasImageRenderError,
 		isRegisteringReading,
 		notes
 	} = useBookDetails(book.status);
@@ -20,9 +22,11 @@ const BookDetailsMolecule: React.FC<BookDetailsMoleculeProps> = ({
 		book,
 		onSubmit,
 		inputValue,
+		hasImageRenderError,
 		setInputValue,
 		handleReadingRegister,
 		handleEnableReadingRegister,
+		setHasImageRenderError,
 		isRegisteringReading,
 		notes
 	}

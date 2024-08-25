@@ -31,6 +31,7 @@ const LoginFormOrganismView: React.FC<LoginFormOrganismViewProps> = ({
 				<LabeledInputAtom 
 					label="Usuário/email" 
 					variant="username" 
+					placeholder="Digite seu usuário ou email"
 					className="mt-2"
 					value={formFields.email}
 					error={error.email}
@@ -44,7 +45,8 @@ const LoginFormOrganismView: React.FC<LoginFormOrganismViewProps> = ({
 				/>
 				<LabeledInputAtom 
 					label="Senha" 
-					variant="password" 
+					variant="password"
+					placeholder="Digite sua senha"
 					className="mt-2"
 					error={error.password}
 					value={formFields.password}

@@ -41,7 +41,8 @@ const RecoverFormOrganismView: React.FC<RecoverFormOrganismViewProps> = ({
 			<View className=" bg-gray-500 w-full p-4 rounded-t-[64px] pt-20 z-0 -mt-20">
 				<LabeledInputAtom 
 					label="Usuário/email" 
-					variant="username" 
+					variant="username"
+					placeholder="Digite seu usuário ou email"
 					className="mt-2"
 					value={formFields.email}
 					error={error.email}
@@ -59,6 +60,7 @@ const RecoverFormOrganismView: React.FC<RecoverFormOrganismViewProps> = ({
 						<LabeledInputAtom 
 							label="Código de recuperação" 
 							variant="code" 
+							placeholder="Digite o código recebido no seu email"
 							className="mt-2"
 							value={formFields.reset?.code}
 							error={error.reset?.code}
@@ -76,6 +78,7 @@ const RecoverFormOrganismView: React.FC<RecoverFormOrganismViewProps> = ({
 						<LabeledInputAtom 
 							label="Crie uma nova senha" 
 							variant="password" 
+							placeholder="Digite sua nova senha"
 							className="mt-2"
 							value={formFields.reset?.password}
 							error={error.reset?.password}

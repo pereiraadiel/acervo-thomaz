@@ -10,6 +10,8 @@ export interface BookDetailsMoleculeViewProps {
   onSubmit: () => void;
   handleReadingRegister: () => void;
   handleEnableReadingRegister: () => void;
+  setHasImageRenderError: (value: boolean) => void;
+  hasImageRenderError: boolean;
   isRegisteringReading: boolean;
   book: BookModel;
   notes: { content: string; date: string }[];

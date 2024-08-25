@@ -7,6 +7,8 @@ export interface BookMoleculeProps {
 
 export interface BookMoleculeViewProps {
   book: BookModel;
+  hasImageRenderError: boolean;
   setBook: (book: BookModel) => void;
+  setHasImageRenderError: (value: boolean) => void;
   onPress: () => void;
 }

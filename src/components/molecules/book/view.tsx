@@ -5,18 +5,24 @@ import { SubtitleAtom } from "@/components/atoms/subtitle"
 import { ParagraphAtom } from "@/components/atoms/paragraph"
 
 const BookMoleculeView: React.FC<BookMoleculeViewProps> = ({
-	setBook,
 	book,
+	hasImageRenderError,
+	setHasImageRenderError,
 	onPress,
 }) => {
 	return (
 		<TouchableOpacity activeOpacity={0.8} onPress={onPress} className="flex flex-row items-start justify-start gap-2 bg-gray-500 mt-2 rounded-lg overflow-hidden">
-			<View className="w-32 h-48 bg-gray-600">
+			<View className="w-32 h-48 bg-gray-500">
 				{book.imageUrl && (
-					<Image source={{uri: book.imageUrl}} resizeMode="cover" style={{
-						width: '100%',
-						height: '100%'
-					}}/>
+					<Image 
+						source={hasImageRenderError ? require('@/assets/placeholder-cover.png') : {uri: book.imageUrl}} 
+						resizeMode="cover"
+						onError={e => setHasImageRenderError(true)} 
+						style={{
+							width: '100%',
+							height: '100%'
+						}}
+					/>
 				)}
 			</View>
 

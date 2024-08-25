@@ -6,11 +6,13 @@ const BookMolecule: React.FC<BookMoleculeProps> = ({
 	book,
 	onPress,
 }) => {
-	const { setBook } = useBookMolecule();
+	const { setBook, hasImageRenderError, setHasImageRenderError } = useBookMolecule();
 
 	const methods = {
 		book,
+		hasImageRenderError,
 		setBook,
+		setHasImageRenderError,
 		onPress,
 	}
 
