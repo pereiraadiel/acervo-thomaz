@@ -102,7 +102,7 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 					</View>
 				</View>
 					
-				<BadgeAtom isActive variant="reading-register" className="-mt-7"  onPress={handleEnableReadingRegister}/>
+				<BadgeAtom isActive variant="reading-register" className="-mt-3"  onPress={handleEnableReadingRegister}/>
 
 				{isRegisteringReading && book.status !== 'unknown' && (
 					<ReadingPagesMolecule onSubmit={handleReadingRegister} maxPages={200}/>
