@@ -19,6 +19,9 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 	hasImageRenderError,
 	isRegisteringReading,
 	book,
+	handleEnableStatusChange,
+	handleStatusChange,
+	isChangingStatus,
 	notes
 }) => {
 	const variants = {
@@ -51,11 +54,31 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 			</View>
 
 			<View className="z-20 flex items-center px-4">
-				<View className="bg-gray-500 w-full rounded-2xl p-4 -mt-2 pt-4 pb-10 flex items-center">
-					<BadgeAtom className="mb-2" variant={variant} isActive/>
+				<View className="bg-gray-500 w-full rounded-2xl p-4 -mt-2 pt-4 pb-10 flex items-center relative">
+					<BadgeAtom className="mb-2" variant={variant} isActive onPress={handleEnableStatusChange} />
 					<TitleAtom className="text-center">{book.title}</TitleAtom>
 					<SubtitleAtom className="text-center" >{book.subtitle}</SubtitleAtom>
 					<ParagraphAtom className="text-left mt-4 text-gray-900">{book.description}</ParagraphAtom>
+
+
+				 {isChangingStatus && (
+					<View className="absolute inset-0 top-16 bg-gray-600 rounded-3xl p-4 z-10 flex items-center">
+						<TitleAtom className="mb-4">Selecione o status do seu livro</TitleAtom>
+						<View className="flex-row gap-x-2">
+							<View className="flex items-start gap-2">
+								<BadgeAtom className="w-full" variant='readed' isActive onPress={() => handleStatusChange('readed')} />
+								<BadgeAtom className="w-full" variant='reading' isActive onPress={() => handleStatusChange('reading')} />
+								<BadgeAtom className="w-full" variant='not-readed' isActive onPress={() => handleStatusChange('not-readed')} />
+							</View>
+
+							<View className="flex items-start gap-2">
+								<BadgeAtom className="w-full" variant='desired' isActive onPress={() => handleStatusChange('desired')} />
+								<BadgeAtom className="w-full" variant='abandoned' isActive onPress={() => handleStatusChange('abandoned')} />
+							</View>
+						</View>
+					</View>
+				 )}
+
 
 					<View className="w-full mt-4 flex flex-row justify-between gap-2">
 						<View className="flex w-1/2">
