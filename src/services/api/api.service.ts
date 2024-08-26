@@ -1,13 +1,28 @@
 import axios, { AxiosInstance } from "axios";
 import { ApiServiceInterface } from "./api.service.interface";
+import { CacheService } from "@/services/cache/cache.service";
 
 class ApiService implements ApiServiceInterface {
   private readonly api: AxiosInstance;
+  private accessToken: string | null = null;
+  private readonly cacheService: CacheService;
 
   constructor() {
     this.api = axios.create({
-      baseURL: "http://localhost:3000",
+      baseURL: "https://adiel.dev/api",
     });
+    this.cacheService = new CacheService();
+
+    this.cacheService.get<string>("accessToken").then((accessToken) => {
+      this.accessToken = accessToken;
+    });
+  }
+
+  useAuthentication() {
+    this.api.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${this.accessToken}`;
+    return this;
   }
 
   async post<T>(path: string, data: any): Promise<T> {

@@ -1,7 +1,6 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { BookModel } from "@/models/book.model";
-import { bookMockService } from "@/services/books/book.mock.service";
-import Realm from 'realm'
+import { bookService } from "../services/books/book.service";
 
 const BookContext = createContext<BookContextType[]>([]);
 const Provider = BookContext.Provider;
@@ -23,7 +22,7 @@ const BookProvider = ({ children }: BookProviderProps) => {
 
   const fetchBookInfoByIsbn = async (isbn: string) => {
     setFetching(true);
-    bookMockService
+    bookService
     .getByIsbn(isbn)
     .then(setBook)
     .catch((err) => console.error(err))
@@ -32,7 +31,7 @@ const BookProvider = ({ children }: BookProviderProps) => {
 
   const getById = useCallback((bookId: string) => {
     setFetching(true);
-    bookMockService
+    bookService
     .getById(bookId)
     .then(setBook)
     .catch((err) => console.error(err))

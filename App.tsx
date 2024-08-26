@@ -7,6 +7,7 @@ import { BooksProvider } from "@/contexts/books.context"
 import { BookProvider } from "@/contexts/book.context"
 import { StackNavigation } from "@/components/organisms/stackNavigation"
 import { useFonts, Lemon_400Regular, DaysOne_400Regular, Lexend_400Regular, Lexend_700Bold } from '@expo-google-fonts/dev';
+import { AuthProvider } from "./src/contexts/auth.context"
 
 export default function App() {  
   const [fontsLoaded] = useFonts({
@@ -20,13 +21,11 @@ export default function App() {
 
   return (
     <ToastProvider position="top">
-      <BooksProvider>
-        <BookProvider>
-          <NavigationContainer theme={DarkTheme} >
-            <StackNavigation/>
-          </NavigationContainer>
-        </BookProvider>
-      </BooksProvider>
+      <AuthProvider>
+        <NavigationContainer theme={DarkTheme} >
+          <StackNavigation/>
+        </NavigationContainer>
+      </AuthProvider>
       <StatusBar style="light" />
     </ToastProvider>
   )
