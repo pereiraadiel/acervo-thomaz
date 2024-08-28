@@ -1,6 +1,6 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { BookModel } from "@/models/book.model";
-import { bookService } from "../services/books/book.service";
+import { bookService } from "@/services/books/book.service";
 
 const BookContext = createContext<BookContextType[]>([]);
 const Provider = BookContext.Provider;

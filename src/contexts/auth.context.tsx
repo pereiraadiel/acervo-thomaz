@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { AuthModel } from "@/models/auth.model";
 import { authService } from "@/services/auth/auth.service";
-import { UserModel } from "../models/user.model";
+import { UserModel } from "@/models/user.model";
 
 const AuthContext = createContext<AuthContextType[]>([]);
 const Provider = AuthContext.Provider;

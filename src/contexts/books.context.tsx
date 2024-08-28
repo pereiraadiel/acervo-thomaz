@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { BookModel } from "@/models/book.model";
-import { bookService } from "../services/books/book.service";
-import useToast from "../hooks/useToast.hook";
+import { bookService } from "@/services/books/book.service";
+import useToast from "@/hooks/useToast.hook";
 
 const BooksContext = createContext<BookModel[]>([]);
 const Provider = BooksContext.Provider;
