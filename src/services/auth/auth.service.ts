@@ -2,14 +2,10 @@ import { AuthModel } from "@/models/auth.model";
 import { UserModel } from "@/models/user.model";
 import { apiService } from "@/services/api/api.service";
 import { ApiServiceInterface } from "@/services/api/api.service.interface";
-import { CacheService, cacheService } from "@/services/cache/cache.service";
 import { AuthServiceInterface } from "./auth.service.interface";
 
 export class AuthService implements AuthServiceInterface {
-  constructor(
-    private readonly apiService: ApiServiceInterface,
-    private readonly cacheService: CacheService
-  ) {}
+  constructor(private readonly apiService: ApiServiceInterface) {}
 
   async login(email: string, password: string): Promise<AuthModel> {
     try {
@@ -17,6 +13,7 @@ export class AuthService implements AuthServiceInterface {
         email,
         password,
       });
+
       return auth;
     } catch (error) {
       throw error;
@@ -38,6 +35,7 @@ export class AuthService implements AuthServiceInterface {
       const auth = await this.apiService.post<AuthModel>("auth/sign/refresh", {
         refreshToken: token,
       });
+
       return auth;
     } catch (error) {
       console.error(error);
@@ -75,7 +73,7 @@ class Singleton {
 
   constructor() {
     if (!this.instance) {
-      this.instance = new AuthService(apiService, cacheService);
+      this.instance = new AuthService(apiService);
     }
   }
 

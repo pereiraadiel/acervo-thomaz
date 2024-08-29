@@ -1,6 +1,11 @@
 import axios, { AxiosInstance } from "axios";
 import { ApiServiceInterface } from "./api.service.interface";
 
+const isJWT = (value: string) => {
+  const parts = value.split(".");
+  if (parts.length !== 3) return false;
+  return true;
+};
 class ApiService implements ApiServiceInterface {
   private readonly api: AxiosInstance;
 
@@ -11,9 +16,15 @@ class ApiService implements ApiServiceInterface {
   }
 
   useAuthentication(accessToken: string) {
-    this.api.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${accessToken}`;
+    if (accessToken === "") {
+      throw new Error(
+        "Invalid invocation of useAuthentication · accessToken must be provided!"
+      );
+    }
+    if(!isJWT(accessToken)) {
+      throw new Error("Invalid invocation of useAuthentication · accessToken must be an JWT")
+    }
+    this.api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
     return this;
   }
 

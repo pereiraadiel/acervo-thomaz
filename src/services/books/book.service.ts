@@ -2,23 +2,17 @@ import { BookServiceInterface } from "./book.service.interface";
 import { BookModel, BookStatus } from "@/models/book.model";
 import { ApiServiceInterface } from "@/services/api/api.service.interface";
 import { apiService } from "@/services/api/api.service";
-import { CacheService, cacheService } from "@/services/cache/cache.service";
 
 class BookService implements BookServiceInterface {
-  constructor(
-    private readonly apiService: ApiServiceInterface,
-    private readonly cacheService: CacheService
-  ) {}
+  private accessToken: string = "";
+
+  constructor(private readonly apiService: ApiServiceInterface) {}
 
   async getAllMyBooks(): Promise<BookModel[]> {
     try {
-      const cachedBooks = await this.cacheService.get<BookModel[]>("books");
-      if (cachedBooks) return cachedBooks;
-
       const books = await this.apiService
-        .useAuthentication()
+        .useAuthentication(this.accessToken)
         .get<BookModel[]>(`books/getAll`);
-      await this.cacheService.save("books", books);
 
       return books;
     } catch (error) {
@@ -29,14 +23,10 @@ class BookService implements BookServiceInterface {
 
   async getById(id: string): Promise<BookModel> {
     try {
-      const cachedBook = await this.cacheService.get<BookModel>(`book-${id}`);
-      if (cachedBook) return cachedBook;
-
       const book = await this.apiService
-        .useAuthentication()
+        .useAuthentication(this.accessToken)
         .get<BookModel>(`books/getById?id=${id}`);
 
-      await this.cacheService.save(`book-${id}`, book);
       return book;
     } catch (error) {
       console.error("book.service: ", error);
@@ -46,14 +36,10 @@ class BookService implements BookServiceInterface {
 
   async getByIsbn(isbn: string): Promise<BookModel> {
     try {
-      const cachedBook = await this.cacheService.get<BookModel>(`book-${isbn}`);
-      if (cachedBook) return cachedBook;
-
       const book = await this.apiService
-        .useAuthentication()
+        .useAuthentication(this.accessToken)
         .get<BookModel>(`books/isbn?isbn=${isbn}`);
 
-      await this.cacheService.save(`book-${isbn}`, book);
       return book;
     } catch (error) {
       console.error("book.service: ", error);
@@ -66,16 +52,10 @@ class BookService implements BookServiceInterface {
     status: BookStatus = "unknown"
   ): Promise<BookModel[]> {
     try {
-      const cachedBooks = await this.cacheService.get<BookModel[]>(
-        `books-${query}-${status}`
-      );
-      if (cachedBooks) return cachedBooks;
-
       const book = await this.apiService
-        .useAuthentication()
+        .useAuthentication(this.accessToken)
         .get<BookModel[]>(`books/search?search=${query}&status=${status}`);
 
-      await this.cacheService.save(`books-${query}-${status}`, book);
       return book;
     } catch (error) {
       console.error("book.service: ", error);
@@ -89,7 +69,7 @@ class Singleton {
 
   constructor() {
     if (!this.instance) {
-      this.instance = new BookService(apiService, cacheService);
+      this.instance = new BookService(apiService);
     }
   }
 
