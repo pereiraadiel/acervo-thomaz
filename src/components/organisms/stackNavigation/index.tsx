@@ -17,19 +17,14 @@ const StackNavigation = () => {
 		}}
 		initialRouteName='Login'
 		>
-			{auth ? (
-				<>
-					<Stack.Screen name="Profile" component={ProfilePage} />
-					<Stack.Screen name="BookDetails" component={BookPage} />
-					<Stack.Screen name="Home" component={TabNavigationOrganism} />
-				</>
-			): (
-				<>
-					<Stack.Screen name="Login" component={LoginPage} />
-					<Stack.Screen name="Recover" component={RecoverPage} />
-					<Stack.Screen name="Register" component={RegisterPage} />
-				</>
-			)}
+			<>
+				<Stack.Screen name="Profile" component={ProfilePage} />
+				<Stack.Screen name="BookDetails" component={BookPage} />
+				<Stack.Screen name="Home" component={TabNavigationOrganism} />
+				<Stack.Screen name="Login" component={LoginPage} />
+				<Stack.Screen name="Recover" component={RecoverPage} />
+				<Stack.Screen name="Register" component={RegisterPage} />
+			</>
 		</Stack.Navigator>
 	);
 }

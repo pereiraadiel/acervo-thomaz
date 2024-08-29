@@ -13,6 +13,8 @@ class BookService implements BookServiceInterface {
       const books = await this.apiService
         .useAuthentication(this.accessToken)
         .get<BookModel[]>(`books/getAll`);
+      
+      console.log('BookService · getAllMyBooks', books);
 
       return books;
     } catch (error) {
@@ -27,6 +29,8 @@ class BookService implements BookServiceInterface {
         .useAuthentication(this.accessToken)
         .get<BookModel>(`books/getById?id=${id}`);
 
+      console.log('BookService · getById', book);
+      
       return book;
     } catch (error) {
       console.error("book.service: ", error);
@@ -39,6 +43,8 @@ class BookService implements BookServiceInterface {
       const book = await this.apiService
         .useAuthentication(this.accessToken)
         .get<BookModel>(`books/isbn?isbn=${isbn}`);
+      
+      console.log('BookService · getByIsbn', book);
 
       return book;
     } catch (error) {
@@ -56,6 +62,8 @@ class BookService implements BookServiceInterface {
         .useAuthentication(this.accessToken)
         .get<BookModel[]>(`books/search?search=${query}&status=${status}`);
 
+      console.log('BookService · search', book);
+      
       return book;
     } catch (error) {
       console.error("book.service: ", error);

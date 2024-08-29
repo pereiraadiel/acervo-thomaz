@@ -12,8 +12,11 @@ export class UserService implements UserServiceInterface {
         .useAuthentication("")
         .get<UserModel>(`users/me`);
 
+      console.log("UserService · getMe", user);
+
       return user;
     } catch (error) {
+      console.error("user.service: ", error);
       throw new Error("Error getting user");
     }
   }

@@ -1,15 +1,23 @@
 import { create } from "zustand";
-import SecureStorage from "expo-secure-store";
+import * as SecureStorage from "expo-secure-store";
 
 export const storage: StorageState = {
   get: async (key) => {
     const value = await SecureStorage.getItemAsync(key);
     if (!value) return null;
-    return JSON.parse(value);
+    const data = JSON.parse(value);
+    if (data.expiresAt < new Date().getTime() ) {
+      return null;
+    }
+    return data.value;
   },
 
-  store: async (key, value) => {
-    await SecureStorage.setItemAsync(key, JSON.stringify(value));
+  store: async (key, value, expiresInSeconds = 3) => {
+    const data = {
+      value,
+      expiresAt: new Date().getTime() + expiresInSeconds * 1000,
+    }
+    await SecureStorage.setItemAsync(key, JSON.stringify(data));
     const keys = await SecureStorage.getItemAsync("keys");
     if (keys) {
       const allKeys = keys.split(",");
@@ -40,7 +48,7 @@ export const storage: StorageState = {
 
 interface StorageState {
   get: <T>(key: string) => Promise<T | null>;
-  store: <T>(key: string, value: T) => Promise<void>;
+  store: <T>(key: string, value: T, expiresInSeconds?: number) => Promise<void>;
   remove: (key: string) => Promise<void>;
   clean: () => Promise<void>;
 }

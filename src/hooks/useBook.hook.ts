@@ -17,6 +17,7 @@ const useBook = create<BookState>((set) => ({
     set({ fetching: true });
     try {
       const response = await bookService.getByIsbn(isbn);
+      console.log('useBookHook · fetchBookByIsbn', response);
       set({ book: response });
     } catch (err) {
       console.error(err);
@@ -33,6 +34,7 @@ const useBook = create<BookState>((set) => ({
     set({ fetching: true });
     try {
       const response = await bookService.getById(bookId);
+      console.log('useBookHook · getById', response);
       set({ book: response });
     } catch (err) {
       console.error(err);

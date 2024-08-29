@@ -13,15 +13,8 @@ interface AuthState {
   reset: (email: string, token: string, password: string) => void;
   setAuth: (auth: AuthModel) => void;
   fetching: boolean;
-  firstFetching: boolean;
   error: { [key: string]: string };
 }
-
-const Storage = useStorage();
-const firstFetch = async () => {
-  const auth = await Storage.get<AuthModel>("auth");
-  return auth;
-};
 
 const useAuth = create<AuthState>((set) => {
   return {
@@ -97,12 +90,8 @@ const useAuth = create<AuthState>((set) => {
     },
 
     fetching: false,
-    firstFetching: true,
     error: { email: "", password: "" },
   };
 });
 
-firstFetch().then((auth) => {
-  useAuth.setState({ firstFetching: false, auth: auth || undefined });
-});
 export default useAuth;

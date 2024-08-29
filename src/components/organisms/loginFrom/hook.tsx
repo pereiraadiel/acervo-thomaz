@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react"
 import { LoginError, LoginFormFields } from "./interface";
 import useAuth from "@/hooks/useAuth.hook";
+import { useStorage } from "@/hooks/stores/useStorage.hook";
 
 const useLoginFormOrganism = () => {
 	const [formFields, setFormFields] = useState<LoginFormFields>({ email: '', password: '' });
@@ -10,6 +11,7 @@ const useLoginFormOrganism = () => {
 	const { navigate } = useNavigation<any>()
 
 	const { auth, authenticate, fetching: loading, error: authError } = useAuth();
+	const Storage = useStorage();
 
 	const handleResetPassword = () => {
 		navigate('Recover');
@@ -39,6 +41,9 @@ const useLoginFormOrganism = () => {
 
 	useEffect(() => {
 		if(auth) {
+			const hourInSeconds = 60 * 60;
+			const daysInSeconds = 24 * hourInSeconds;
+			Storage.store('auth', auth, 90 * daysInSeconds);
 			navigate('Home');
 		}
 	}, [auth])
@@ -48,7 +53,6 @@ const useLoginFormOrganism = () => {
 		if(authError) {
 			setError({ email: authError.email || '', password: authError.password || '' });
 		}
-		console.error(authError)
 	}, [authError])
 
 	const methods = {

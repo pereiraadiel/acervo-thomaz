@@ -14,6 +14,8 @@ export class AuthService implements AuthServiceInterface {
         password,
       });
 
+      console.log('AuthService · login', auth);
+
       return auth;
     } catch (error) {
       throw error;
@@ -35,6 +37,8 @@ export class AuthService implements AuthServiceInterface {
       const auth = await this.apiService.post<AuthModel>("auth/sign/refresh", {
         refreshToken: token,
       });
+
+      console.log('AuthService · refreshToken', auth);
 
       return auth;
     } catch (error) {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BookModel } from "@/models/book.model";
-import { bookService } from "../services/books/book.service";
+import { bookService } from "@/services/books/book.service";
 
 const useSearchBooks = () => {
   const [books, setBooks] = useState<BookModel[]>([]);
