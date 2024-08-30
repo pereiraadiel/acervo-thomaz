@@ -14,11 +14,20 @@ export class AuthService implements AuthServiceInterface {
         password,
       });
 
-      console.log('AuthService · login', auth);
+      console.log("AuthService · login", auth);
 
       return auth;
     } catch (error) {
       throw error;
+    }
+  }
+
+  async verifyToken(token: string): Promise<boolean> {
+    try {
+      return await this.apiService.post("auth/verify", { refreshToken: token });
+    } catch (error) {
+      console.error(error);
+      return false;
     }
   }
 
@@ -38,7 +47,7 @@ export class AuthService implements AuthServiceInterface {
         refreshToken: token,
       });
 
-      console.log('AuthService · refreshToken', auth);
+      console.log("AuthService · refreshToken", auth);
 
       return auth;
     } catch (error) {

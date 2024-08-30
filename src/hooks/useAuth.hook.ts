@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { AuthModel } from "@/models/auth.model";
 import { authService } from "@/services/auth/auth.service";
 import { UserModel } from "@/models/user.model";
-import { useStorage } from "@/hooks/stores/useStorage.hook";
 
 interface AuthState {
   auth: AuthModel | undefined;

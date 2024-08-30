@@ -2,35 +2,43 @@ import { BookServiceInterface } from "./book.service.interface";
 import { BookModel, BookStatus } from "@/models/book.model";
 import { ApiServiceInterface } from "@/services/api/api.service.interface";
 import { apiService } from "@/services/api/api.service";
+import { storage } from "@/hooks/stores/useStorage.hook";
+import { AuthModel } from "@/models/auth.model";
 
 class BookService implements BookServiceInterface {
-  private accessToken: string = "";
-
   constructor(private readonly apiService: ApiServiceInterface) {}
 
   async getAllMyBooks(): Promise<BookModel[]> {
     try {
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        return [];
+      }
       const books = await this.apiService
-        .useAuthentication(this.accessToken)
+        .useAuthentication(auth.accessToken)
         .get<BookModel[]>(`books/getAll`);
-      
-      console.log('BookService · getAllMyBooks', books);
+
+      console.log("BookService · getAllMyBooks", books);
 
       return books;
-    } catch (error) {
-      console.error("book.service: ", error);
+    } catch (error: any) {
+      console.error("book.service: ", Object.keys(error), error.request);
       throw new Error("Oops!! Ocorreu uma falha ao buscar seus livros.");
     }
   }
 
   async getById(id: string): Promise<BookModel> {
     try {
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
       const book = await this.apiService
-        .useAuthentication(this.accessToken)
+        .useAuthentication(auth.accessToken)
         .get<BookModel>(`books/getById?id=${id}`);
 
-      console.log('BookService · getById', book);
-      
+      console.log("BookService · getById", book);
+
       return book;
     } catch (error) {
       console.error("book.service: ", error);
@@ -40,11 +48,15 @@ class BookService implements BookServiceInterface {
 
   async getByIsbn(isbn: string): Promise<BookModel> {
     try {
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
       const book = await this.apiService
-        .useAuthentication(this.accessToken)
+        .useAuthentication(auth.accessToken)
         .get<BookModel>(`books/isbn?isbn=${isbn}`);
-      
-      console.log('BookService · getByIsbn', book);
+
+      console.log("BookService · getByIsbn", book);
 
       return book;
     } catch (error) {
@@ -58,12 +70,16 @@ class BookService implements BookServiceInterface {
     status: BookStatus = "unknown"
   ): Promise<BookModel[]> {
     try {
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
       const book = await this.apiService
-        .useAuthentication(this.accessToken)
+        .useAuthentication(auth.accessToken)
         .get<BookModel[]>(`books/search?search=${query}&status=${status}`);
 
-      console.log('BookService · search', book);
-      
+      console.log("BookService · search", book);
+
       return book;
     } catch (error) {
       console.error("book.service: ", error);

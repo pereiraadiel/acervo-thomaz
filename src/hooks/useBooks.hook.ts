@@ -1,9 +1,8 @@
 import { create } from "zustand";
 import { BookModel, BookStatus } from "@/models/book.model";
 import { bookService } from "@/services/books/book.service";
-import useToast from "@/hooks/useToast.hook";
 
-interface BooksState {
+export interface BooksState {
   allBooks: BookModel[];
   readedBooks: BookModel[];
   readingBooks: BookModel[];
@@ -28,7 +27,6 @@ const useBooks = create<BooksState>((set, get) => {
     desiredBooks: [],
 
     fetchBooks: async () => {
-      const { addToast } = useToast();
       try {
         const response = await bookService.getAllMyBooks();
         set({ allBooks: response });
@@ -41,12 +39,10 @@ const useBooks = create<BooksState>((set, get) => {
           desiredBooks: getBooksByStatus("desired"),
         });
       } catch (err: any) {
-        addToast(err.message, "error");
+        console.error("useBooks.fetchBooks", err);
       }
     },
   };
 });
-
-useBooks.getState().fetchBooks();
 
 export default useBooks;

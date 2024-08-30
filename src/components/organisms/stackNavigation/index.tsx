@@ -15,7 +15,7 @@ const StackNavigation = () => {
 		<Stack.Navigator screenOptions={{
 			headerShown: false,
 		}}
-		initialRouteName='Login'
+		initialRouteName={auth && auth.accessToken ? 'Home' :'Login'}
 		>
 			<>
 				<Stack.Screen name="Profile" component={ProfilePage} />
