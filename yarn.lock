@@ -6421,6 +6421,13 @@ react-is@^17.0.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
+react-jwt@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-jwt/-/react-jwt-1.2.2.tgz#768d5584438a6f7ce4b138f09c3c9f73c4cb1b64"
+  integrity sha512-1I0Ei1F9m7Nzo1jaeeZk7dpUC4srIVC3bUxDqgD9mFltoTyytp5TFPkK3XMWfLE5iYUsQ+C7tNYbf/gd61D4Sw==
+  optionalDependencies:
+    fsevents "^2.3.2"
+
 react-native-css-interop@0.0.36:
   version "0.0.36"
   resolved "https://registry.npmjs.org/react-native-css-interop/-/react-native-css-interop-0.0.36.tgz"

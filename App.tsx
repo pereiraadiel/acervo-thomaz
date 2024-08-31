@@ -10,9 +10,11 @@ import { useStorage } from "@/hooks/stores/useStorage.hook"
 import { useEffect, useState } from "react"
 import { AuthModel } from "@/models/auth.model"
 import { authService } from "@/services/auth/auth.service"
+import { useJwt } from "react-jwt"
 
 const Application = () => {
-  const [retrivingAuthFromStorage, setRetrivingAuthFromStorage] = useState(true)
+  const [retrivingAuthFromStorage, setRetrivingAuthFromStorage] = useState(true);
+  const { isExpired, reEvaluateToken} = useJwt('')
   
   const Storage = useStorage();
   const { setAuth } = useAuth();
@@ -25,24 +27,40 @@ const Application = () => {
   });
   
   useEffect(() => {
-    Storage.get<AuthModel>('auth')
-    .then(auth => {
-      console.log('App auth:', auth)
-      if(auth) {
-        authService.verifyToken(auth.accessToken).then(result => {
-          if(result) setAuth(auth)
-          authService.refreshToken(auth.refreshToken).then(result => {
-            if(result) setAuth(result)
-          }).catch(err => {
-            Storage.clean().then(() => navigate('Login'))
-          })
-        })
+    const retrieveAndVerifyAuth = async () => {
+      try {
+        const auth = await Storage.get<AuthModel>('auth');
+        console.log('App auth:', auth);
+  
+        if (!auth || !auth.accessToken.length) {
+          return;
+        }
+  
+        reEvaluateToken(auth.accessToken);
+  
+        if (isExpired) {
+          const refreshedAuth = await authService.refreshToken(auth.refreshToken);
+  
+          if (!refreshedAuth) {
+            throw new Error('Failed to refresh auth token');
+          }
+  
+          await Storage.store('auth', refreshedAuth);
+          setAuth(refreshedAuth);
+        } else {
+          setAuth(auth);
+        }
+      } catch (err) {
+        console.error(err);
+        await Storage.clean();
+        navigate('Login');
+      } finally {
+        setRetrivingAuthFromStorage(false);
       }
-      if(auth) setAuth(auth)
-    })
-    .catch(err => console.error(err))
-    .finally(() => setRetrivingAuthFromStorage(false));
-  }, [])
+    };
+  
+    retrieveAndVerifyAuth();
+  }, []);
   
   if (!fontsLoaded || retrivingAuthFromStorage) {
     // return splash screen

@@ -35,6 +35,8 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 
 	const variant = variants[book.status];
 
+	console.log('BookDetailsMoleculeView', book);
+
 	const isNotReaded = book.status === 'not-readed' || book.status === 'desired' || book.status === 'unknown';
 
 	return (

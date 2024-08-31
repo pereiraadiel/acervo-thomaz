@@ -5,4 +5,5 @@ export interface BookServiceInterface {
   getById(id: string): Promise<BookModel>;
   getByIsbn(isbn: string): Promise<BookModel>;
   search(query: string, status?: BookStatus): Promise<BookModel[]>;
+  changeStatus(id: string, status: BookStatus): Promise<void>;
 }

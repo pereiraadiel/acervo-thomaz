@@ -2,6 +2,7 @@ import { useState } from "react";
 import useToast from "@/hooks/useToast.hook";
 import { BookStatus } from "@/models/book.model";
 import useBook from "../../../hooks/useBook.hook";
+import { bookService } from "../../../services/books/book.service";
 
 const useBookDetails = (bookStatus: BookStatus) => {
 	const [inputValue, setInputValue] = useState('');
@@ -42,9 +43,15 @@ const useBookDetails = (bookStatus: BookStatus) => {
 	}
 
 	const handleStatusChange = (status: BookStatus) => {
-		if(book) setBook({...book, status });
+		if(book) {
+			bookService.changeStatus(book.id, status).then(() => {
+				addToast('Status do livro alterado com sucesso', 'success');
+			}).catch(() => {
+				addToast('Ocorreu um erro ao alterar status do livro', 'error');
+			});
+			setBook({...book, status });
+		}
 		setIsChangingStatus(false);
-		addToast('Status do livro alterado com sucesso', 'success');
 	}
 
 	return {

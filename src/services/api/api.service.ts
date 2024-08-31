@@ -85,7 +85,7 @@ class ApiService implements ApiServiceInterface {
 
   async patch<T>(path: string, data: any): Promise<T> {
     try {
-      const response = await this.api.patch<T>(path);
+      const response = await this.api.patch<T>(path, data);
       return response.data;
     } catch (error: any) {
       console.error("ApiService · patch", {

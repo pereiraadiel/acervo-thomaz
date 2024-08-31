@@ -35,7 +35,7 @@ class BookService implements BookServiceInterface {
       }
       const book = await this.apiService
         .useAuthentication(auth.accessToken)
-        .get<BookModel>(`books/getById?id=${id}`);
+        .get<BookModel>(`books/get?id=${id}`);
 
       console.log("BookService · getById", book);
 
@@ -54,7 +54,7 @@ class BookService implements BookServiceInterface {
       }
       const book = await this.apiService
         .useAuthentication(auth.accessToken)
-        .get<BookModel>(`books/isbn?isbn=${isbn}`);
+        .get<BookModel>(`books/get?isbn=${isbn}`);
 
       console.log("BookService · getByIsbn", book);
 
@@ -84,6 +84,25 @@ class BookService implements BookServiceInterface {
     } catch (error) {
       console.error("book.service: ", error);
       throw new Error("Oops!! Ocorreu uma falha ao buscar o livro.");
+    }
+  }
+
+  async changeStatus(id: string, status: BookStatus): Promise<void> {
+    try {
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
+      await this.apiService
+        .useAuthentication(auth.accessToken)
+        .patch(`books/update?id=${id}`, { status });
+
+      console.log("BookService · changeStatus");
+
+      return;
+    } catch (error) {
+      console.error("book.service: ", error);
+      throw new Error("Oops!! Ocorreu uma falha ao alterar status do livro.");
     }
   }
 }

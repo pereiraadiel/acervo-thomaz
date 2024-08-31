@@ -24,9 +24,10 @@ export class AuthService implements AuthServiceInterface {
 
   async verifyToken(token: string): Promise<boolean> {
     try {
-      return await this.apiService.post("auth/verify", { refreshToken: token });
+      console.info("AuthService · verifyToken", token);
+      return await this.apiService.post("auth/verify", { token });
     } catch (error) {
-      console.error(error);
+      console.error("AuthService · verifyToken", error);
       return false;
     }
   }
