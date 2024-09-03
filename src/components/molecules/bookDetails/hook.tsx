@@ -29,9 +29,14 @@ const useBookDetails = (bookStatus: BookStatus) => {
 		setInputValue('');
 	}
 	
-	const handleReadingRegister = () => {
+	const handleReadingRegister = (id:string, readedPageCount: number) => {
 		setIsRegisteringReading(false)
-		addToast('Leitura registrada com sucesso', 'success');
+		bookService.readingRegister(id, readedPageCount).then(() => {
+			if(book) setBook({...book, readedPageCount, progress: Number(((readedPageCount / book.pageCount) * 100).toFixed(2))});
+			addToast('Leitura registrada com sucesso', 'success');
+		}).catch(() => {
+			addToast('Ocorreu um erro ao registrar leitura', 'error');
+		});
 	}
 
 	const handleEnableReadingRegister = () => {

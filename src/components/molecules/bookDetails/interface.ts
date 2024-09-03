@@ -8,7 +8,7 @@ export interface BookDetailsMoleculeViewProps {
   inputValue: string;
   setInputValue: (value: string) => void;
   onSubmit: () => void;
-  handleReadingRegister: () => void;
+  handleReadingRegister: (id: string, readedPageCount: number) => void;
   handleEnableReadingRegister: () => void;
   setHasImageRenderError: (value: boolean) => void;
   hasImageRenderError: boolean;

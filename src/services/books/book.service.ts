@@ -105,6 +105,24 @@ class BookService implements BookServiceInterface {
       throw new Error("Oops!! Ocorreu uma falha ao alterar status do livro.");
     }
   }
+  async readingRegister(id: string, value: number): Promise<void> {
+    try {
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
+      await this.apiService
+        .useAuthentication(auth.accessToken)
+        .patch(`books?id=${id}`, { readedPageCount: value });
+
+      console.log("BookService · readingRegister");
+
+      return;
+    } catch (error) {
+      console.error("book.service: ", error);
+      throw new Error("Oops!! Ocorreu uma falha ao alterar status do livro.");
+    }
+  }
 }
 
 class Singleton {

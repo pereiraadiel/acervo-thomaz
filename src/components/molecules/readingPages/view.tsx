@@ -11,7 +11,7 @@ const ReadingPagesMoleculeView: React.FC<ReadingPagesMoleculeViewProps> = ({ max
 			<View className="w-full">
 				<InputAtom 
 					type="numeric" 
-					placeholder="0/200" 
+					placeholder={`0/${maxPages}`} 
 					className="p-2 bg-transparent" 
 					maxLength={maxPages}
 					value={inputValue}
