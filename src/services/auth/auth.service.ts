@@ -44,7 +44,7 @@ export class AuthService implements AuthServiceInterface {
 
   async refreshToken(token: string): Promise<AuthModel> {
     try {
-      const auth = await this.apiService.post<AuthModel>("auth/sign/refresh", {
+      const auth = await this.apiService.post<AuthModel>("auth/refresh", {
         refreshToken: token,
       });
 

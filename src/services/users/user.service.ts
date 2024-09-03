@@ -10,7 +10,7 @@ export class UserService implements UserServiceInterface {
     try {
       const user = await this.apiService
         .useAuthentication("")
-        .get<UserModel>(`users/me`);
+        .get<UserModel>(`users`);
 
       console.log("UserService · getMe", user);
 

@@ -13,7 +13,8 @@ class ApiService implements ApiServiceInterface {
 
   constructor() {
     this.api = axios.create({
-      baseURL: "https://thz.adiel.dev/api",
+      // baseURL: "https://thz.adiel.dev/api",
+      baseURL: "http://10.14.95.209:3000",
     });
   }
 
@@ -102,8 +103,11 @@ class ApiService implements ApiServiceInterface {
       const response = await this.api.delete<T>(path);
       return response.data;
     } catch (error: any) {
-      console.error("ApiService · delete", { path, error: error.response.data });
-      throw error
+      console.error("ApiService · delete", {
+        path,
+        error: error.response.data,
+      });
+      throw error;
     }
   }
 }

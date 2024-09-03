@@ -16,7 +16,7 @@ class BookService implements BookServiceInterface {
       }
       const books = await this.apiService
         .useAuthentication(auth.accessToken)
-        .get<BookModel[]>(`books/getAll`);
+        .get<BookModel[]>(`books`);
 
       console.log("BookService · getAllMyBooks", books);
 
@@ -35,7 +35,7 @@ class BookService implements BookServiceInterface {
       }
       const book = await this.apiService
         .useAuthentication(auth.accessToken)
-        .get<BookModel>(`books/get?id=${id}`);
+        .get<BookModel>(`books?id=${id}`);
 
       console.log("BookService · getById", book);
 
@@ -54,7 +54,7 @@ class BookService implements BookServiceInterface {
       }
       const book = await this.apiService
         .useAuthentication(auth.accessToken)
-        .get<BookModel>(`books/get?isbn=${isbn}`);
+        .get<BookModel>(`books?isbn=${isbn}`);
 
       console.log("BookService · getByIsbn", book);
 
@@ -76,7 +76,7 @@ class BookService implements BookServiceInterface {
       }
       const book = await this.apiService
         .useAuthentication(auth.accessToken)
-        .get<BookModel[]>(`books/search?search=${query}&status=${status}`);
+        .get<BookModel[]>(`books/search?term=${query}&status=${status}`);
 
       console.log("BookService · search", book);
 
@@ -95,7 +95,7 @@ class BookService implements BookServiceInterface {
       }
       await this.apiService
         .useAuthentication(auth.accessToken)
-        .patch(`books/update?id=${id}`, { status });
+        .patch(`books?id=${id}`, { status });
 
       console.log("BookService · changeStatus");
 
