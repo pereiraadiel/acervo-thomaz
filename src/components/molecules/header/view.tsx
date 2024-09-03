@@ -30,8 +30,8 @@ const HeaderMoleculeView: React.FC<HeaderMoleculeViewProps> = ({
 				)}
 
 				<View>
-					<TitleAtom>{title}</TitleAtom>
-					{subtitle && <SubtitleAtom>{subtitle}</SubtitleAtom> }
+					<TitleAtom className="line-clamp-1 max-w-80">{title}</TitleAtom>
+					{subtitle && <SubtitleAtom className="line-clamp-1 max-w-84">{subtitle}</SubtitleAtom> }
 				</View>
 			</View>
 

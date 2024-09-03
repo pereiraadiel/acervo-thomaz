@@ -37,9 +37,15 @@ class BookService implements BookServiceInterface {
         .useAuthentication(auth.accessToken)
         .get<BookModel>(`books?id=${id}`);
 
+      let imageUrl = book.imageUrl || "";
+
+      if (imageUrl.includes("zoom=")) {
+        imageUrl = imageUrl.replace(/zoom=\d*/, "zoom=6");
+      }
+
       console.log("BookService · getById", book);
 
-      return book;
+      return { ...book, imageUrl };
     } catch (error) {
       console.error("book.service: ", error);
       throw new Error("Oops!! Ocorreu uma falha ao buscar o livro.");
@@ -56,9 +62,15 @@ class BookService implements BookServiceInterface {
         .useAuthentication(auth.accessToken)
         .get<BookModel>(`books?isbn=${isbn}`);
 
+      let imageUrl = book.imageUrl || "";
+
+      if (imageUrl.includes("zoom=")) {
+        imageUrl = imageUrl.replace(/zoom=\d*/, "zoom=6");
+      }
+
       console.log("BookService · getByIsbn", book);
 
-      return book;
+      return { ...book, imageUrl };
     } catch (error) {
       console.error("book.service: ", error);
       throw new Error("Oops!! Ocorreu uma falha ao buscar o livro.");
@@ -105,6 +117,7 @@ class BookService implements BookServiceInterface {
       throw new Error("Oops!! Ocorreu uma falha ao alterar status do livro.");
     }
   }
+
   async readingRegister(id: string, value: number): Promise<void> {
     try {
       const auth = await storage.get<AuthModel>("auth");
@@ -121,6 +134,33 @@ class BookService implements BookServiceInterface {
     } catch (error) {
       console.error("book.service: ", error);
       throw new Error("Oops!! Ocorreu uma falha ao alterar status do livro.");
+    }
+  }
+
+  async createNote(
+    bookId: string,
+    content: string
+  ): Promise<{ bookId: string; content: string }> {
+    try {
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
+      const note = await this.apiService
+        .useAuthentication(auth.accessToken)
+        .post<{ bookId: string; content: string }>(
+          `books/notes?bookId=${bookId}`,
+          {
+            content,
+          }
+        );
+
+      console.log("BookService · createNote", note);
+
+      return note;
+    } catch (error) {
+      console.error("book.service: ", error);
+      throw new Error("Oops!! Ocorreu uma falha ao criar anotação.");
     }
   }
 }

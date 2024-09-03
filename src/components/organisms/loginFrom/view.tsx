@@ -20,13 +20,18 @@ const LoginFormOrganismView: React.FC<LoginFormOrganismViewProps> = ({
 	const passwordInputRef = useRef<TextInput>(null);
 	const emailInputRef = useRef<TextInput>(null);
 
-	if(loading) return <LoadingAtom/>
-
 	return (
-		<View className="flex items-center w-full">
+		<View className="flex items-center w-full relative">
 			<View className="w-40 h-40 rounded-full bg-gray-500 flex items-center justify-center z-10">
 				<LogoAtom className="my-2"/>
 			</View>
+			{loading && (
+				<>
+					<View className="w-full h-full bg-gray-500/50 rounded-t-[64px] absolute inset-0 z-10 top-40 backdrop-blur-lg flex align-center justify-center">
+						<LoadingAtom variant="large" />
+					</View>
+				</>
+			)}
 			<View className=" bg-gray-500 w-full p-4 rounded-t-[64px] pt-20 z-0 -mt-20">
 				<LabeledInputAtom 
 					label="Usuário/email" 

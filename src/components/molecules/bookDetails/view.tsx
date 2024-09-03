@@ -40,7 +40,7 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 	const isNotReaded = book.status === 'not-readed' || book.status === 'desired' || book.status === 'unknown';
 
 	function isAcceptStatus(status: string) {
-		return status === 'reading' || status === 'abandoned';
+		return status === 'reading';
 	}
 
 	return (
@@ -121,8 +121,8 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 			</View>
 
 
-			<TitleAtom className="ml-4 mt-6">{isNotReaded ? 'Anotações': 'Minhas Resenhas'}</TitleAtom>
-			<SubtitleAtom className="ml-4 mb-2">
+			<TitleAtom className="ml-6 mt-6">{isNotReaded ? 'Anotações': 'Minhas Resenhas'}</TitleAtom>
+			<SubtitleAtom className="ml-6 mb-4">
 				{isNotReaded ? 'Registre anotações sobre o livro' : 'Minhas análises feitas ao longo da leitura do livro'}
 			</SubtitleAtom>
 			
