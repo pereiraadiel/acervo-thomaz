@@ -36,7 +36,11 @@ const HeaderMoleculeView: React.FC<HeaderMoleculeViewProps> = ({
 			</View>
 
       {variant !== 'profile' && (
-        <View className="flex-row mr-4 items-center py-2" onTouchEnd={() => navigate('Profile')}>
+        <View className="flex-row mr-4 items-center py-2" onTouchEnd={
+          () => {
+            // navigate('Profile')
+          }
+        }>
           <Octicons name="person" size={24} color="white" />
         </View>
       )}

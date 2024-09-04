@@ -9,7 +9,7 @@ export interface AuthServiceInterface {
   verifyToken(token: string): Promise<boolean>;
   resetPassword(
     email: string,
-    token: string,
+    code: string,
     password: string
   ): Promise<boolean>;
 }

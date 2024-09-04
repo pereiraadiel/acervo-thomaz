@@ -69,11 +69,11 @@ export class AuthService implements AuthServiceInterface {
 
   async resetPassword(
     email: string,
-    token: string,
+    code: string,
     password: string
   ): Promise<boolean> {
     try {
-      await this.apiService.post("auth/reset", { email, token, password });
+      await this.apiService.post("auth/reset", { email, code, password });
       return true;
     } catch (error) {
       console.error(error);

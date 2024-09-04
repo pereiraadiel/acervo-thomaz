@@ -14,7 +14,7 @@ const useBookDetails = (bookStatus: BookStatus) => {
 
   const notes = useMemo(() => {
     if (book) {
-      return (book as any).notes.map((note: any) => ({
+      return (book as any).notes?.map((note: any) => ({
         content: note.content,
         date: note.createdAt
       })) || [];
