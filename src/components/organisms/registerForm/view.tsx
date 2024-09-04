@@ -23,7 +23,6 @@ const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 	const fullnameInputRef = useRef<TextInput>(null);
 	const usernameInputRef = useRef<TextInput>(null);
 
-	if(loading) return <LoadingAtom/>
 
 	return (
 		<View className="flex items-center w-full">
@@ -33,6 +32,13 @@ const RegisterFormOrganismView: React.FC<RegisterFormOrganismViewProps> = ({
 				</View>
 			)}
 
+			{loading && (
+				<>
+					<View className="w-full h-full bg-gray-500/50 rounded-t-[64px] absolute inset-0 z-10 top-40 backdrop-blur-lg flex align-center justify-center">
+						<LoadingAtom variant="large" />
+					</View>
+				</>
+			)}
 			<View className={`w-full p-4 rounded-t-[64px] pt-20 z-0 ${editingExisting ? '-mt-18': '-mt-20 bg-gray-500'}`}>
 				<LabeledInputAtom 
 					label="Nome completo" 

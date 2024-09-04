@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { BookModel } from "@/models/book.model"
 import { useNavigation } from "@react-navigation/native"
 import useBook from "@/hooks/useBook.hook"

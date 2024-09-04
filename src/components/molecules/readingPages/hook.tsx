@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 type UseReadingPagesProps = {
-	onSubmit: () => void;
+	onSubmit: (value: number) => void;
 	maxPages: number;
 }
 
@@ -11,7 +11,7 @@ const useReadingPages = ({onSubmit, maxPages}: UseReadingPagesProps) => {
 
 	const onButtonPress = () => {
 		if(error || inputValue === '') return;
-		onSubmit();
+		onSubmit(+inputValue);
 	}
 
 	const onChangeValue = (value: string) => {

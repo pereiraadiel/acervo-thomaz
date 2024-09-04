@@ -9,7 +9,7 @@ const WishlistPageView: React.FC<WishlistPageViewProps> = ({
 }) =>{
 	return (
 		<MainTemplate headerTitle="Lista de desejados" headerSubtitle="Livros que você deseja adquirir">
-			<SearchMolecule onSearch={onSearch}/>
+			<SearchMolecule onSearch={onSearch} placeholder="Buscar na lista de desejos..."/>
 			<BookListOrganism books={books}/>
 		</MainTemplate>
 	)

@@ -30,13 +30,17 @@ const HeaderMoleculeView: React.FC<HeaderMoleculeViewProps> = ({
 				)}
 
 				<View>
-					<TitleAtom>{title}</TitleAtom>
-					{subtitle && <SubtitleAtom>{subtitle}</SubtitleAtom> }
+					<TitleAtom className="line-clamp-1 max-w-80">{title}</TitleAtom>
+					{subtitle && <SubtitleAtom className="line-clamp-1 max-w-84">{subtitle}</SubtitleAtom> }
 				</View>
 			</View>
 
       {variant !== 'profile' && (
-        <View className="flex-row mr-4 items-center py-2" onTouchEnd={() => navigate('Profile')}>
+        <View className="flex-row mr-4 items-center py-2" onTouchEnd={
+          () => {
+            // navigate('Profile')
+          }
+        }>
           <Octicons name="person" size={24} color="white" />
         </View>
       )}

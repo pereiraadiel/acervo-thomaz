@@ -15,7 +15,8 @@ const SearchMoleculeView: React.FC<SearchMoleculeViewProps> = ({
 				label="Pesquisar" 
 				placeholder={placeholder}
 				onChangeText={setSearchTerm}
-				onEndEditing={onEndEditing}
+				// onEndEditing={onEndEditing}
+				onSubmitEditing={onEndEditing}
 				editable={true}
 				value={searchTerm}/>
 		</View>

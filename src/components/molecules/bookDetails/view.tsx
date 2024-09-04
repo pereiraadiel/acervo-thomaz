@@ -35,7 +35,13 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 
 	const variant = variants[book.status];
 
+	console.log('BookDetailsMoleculeView', book);
+
 	const isNotReaded = book.status === 'not-readed' || book.status === 'desired' || book.status === 'unknown';
+
+	function isAcceptStatus(status: string) {
+		return status === 'reading';
+	}
 
 	return (
 		<>
@@ -96,22 +102,27 @@ const BookDetailsMoleculeView: React.FC<BookDetailsMoleculeViewProps> = ({
 						</View>
 					</View>
 
+					{isAcceptStatus(book.status) && (
+
 					<View className="mt-4 flex items-center">
 						<ProgressAtom progress={book.progress} variant="default" />
 						<ParagraphAtom>páginas lidas: {book.readedPageCount}/{book.pageCount}</ParagraphAtom>
 					</View>
+					)}
 				</View>
 					
-				<BadgeAtom isActive variant="reading-register" className="-mt-3"  onPress={handleEnableReadingRegister}/>
+					{isAcceptStatus(book.status) && (
+						<BadgeAtom isActive variant="reading-register" className="-mt-3"  onPress={handleEnableReadingRegister}/>
+					)}
 
 				{isRegisteringReading && book.status !== 'unknown' && (
-					<ReadingPagesMolecule onSubmit={handleReadingRegister} maxPages={200}/>
+					<ReadingPagesMolecule onSubmit={(readedPageCount) => handleReadingRegister(book.id, readedPageCount)} maxPages={book.pageCount}/>
 				)}
 			</View>
 
 
-			<TitleAtom className="ml-4 mt-6">{isNotReaded ? 'Anotações': 'Minhas Resenhas'}</TitleAtom>
-			<SubtitleAtom className="ml-4 mb-2">
+			<TitleAtom className="ml-6 mt-6">{isNotReaded ? 'Anotações': 'Minhas Resenhas'}</TitleAtom>
+			<SubtitleAtom className="ml-6 mb-4">
 				{isNotReaded ? 'Registre anotações sobre o livro' : 'Minhas análises feitas ao longo da leitura do livro'}
 			</SubtitleAtom>
 			

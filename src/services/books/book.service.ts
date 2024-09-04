@@ -2,42 +2,50 @@ import { BookServiceInterface } from "./book.service.interface";
 import { BookModel, BookStatus } from "@/models/book.model";
 import { ApiServiceInterface } from "@/services/api/api.service.interface";
 import { apiService } from "@/services/api/api.service";
-import { CacheService, cacheService } from "@/services/cache/cache.service";
+import { storage } from "@/hooks/stores/useStorage.hook";
+import { AuthModel } from "@/models/auth.model";
 
 class BookService implements BookServiceInterface {
-  constructor(
-    private readonly apiService: ApiServiceInterface,
-    private readonly cacheService: CacheService
-  ) {}
+  constructor(private readonly apiService: ApiServiceInterface) {}
 
   async getAllMyBooks(): Promise<BookModel[]> {
     try {
-      const cachedBooks = await this.cacheService.get<BookModel[]>("books");
-      if (cachedBooks) return cachedBooks;
-
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        return [];
+      }
       const books = await this.apiService
-        .useAuthentication()
-        .get<BookModel[]>(`books/getAll`);
-      await this.cacheService.save("books", books);
+        .useAuthentication(auth.accessToken)
+        .get<BookModel[]>(`books`);
+
+      console.log("BookService · getAllMyBooks", books);
 
       return books;
-    } catch (error) {
-      console.error("book.service: ", error);
+    } catch (error: any) {
+      console.error("book.service: ", Object.keys(error), error.request);
       throw new Error("Oops!! Ocorreu uma falha ao buscar seus livros.");
     }
   }
 
   async getById(id: string): Promise<BookModel> {
     try {
-      const cachedBook = await this.cacheService.get<BookModel>(`book-${id}`);
-      if (cachedBook) return cachedBook;
-
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
       const book = await this.apiService
-        .useAuthentication()
-        .get<BookModel>(`books/getById?id=${id}`);
+        .useAuthentication(auth.accessToken)
+        .get<BookModel>(`books?id=${id}`);
 
-      await this.cacheService.save(`book-${id}`, book);
-      return book;
+      let imageUrl = book.imageUrl || "";
+
+      if (imageUrl.includes("zoom=")) {
+        imageUrl = imageUrl.replace(/zoom=\d*/, "zoom=6");
+      }
+
+      console.log("BookService · getById", book);
+
+      return { ...book, imageUrl };
     } catch (error) {
       console.error("book.service: ", error);
       throw new Error("Oops!! Ocorreu uma falha ao buscar o livro.");
@@ -46,15 +54,23 @@ class BookService implements BookServiceInterface {
 
   async getByIsbn(isbn: string): Promise<BookModel> {
     try {
-      const cachedBook = await this.cacheService.get<BookModel>(`book-${isbn}`);
-      if (cachedBook) return cachedBook;
-
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
       const book = await this.apiService
-        .useAuthentication()
-        .get<BookModel>(`books/isbn?isbn=${isbn}`);
+        .useAuthentication(auth.accessToken)
+        .get<BookModel>(`books?isbn=${isbn}`);
 
-      await this.cacheService.save(`book-${isbn}`, book);
-      return book;
+      let imageUrl = book.imageUrl || "";
+
+      if (imageUrl.includes("zoom=")) {
+        imageUrl = imageUrl.replace(/zoom=\d*/, "zoom=6");
+      }
+
+      console.log("BookService · getByIsbn", book);
+
+      return { ...book, imageUrl };
     } catch (error) {
       console.error("book.service: ", error);
       throw new Error("Oops!! Ocorreu uma falha ao buscar o livro.");
@@ -66,20 +82,85 @@ class BookService implements BookServiceInterface {
     status: BookStatus = "unknown"
   ): Promise<BookModel[]> {
     try {
-      const cachedBooks = await this.cacheService.get<BookModel[]>(
-        `books-${query}-${status}`
-      );
-      if (cachedBooks) return cachedBooks;
-
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
       const book = await this.apiService
-        .useAuthentication()
-        .get<BookModel[]>(`books/search?search=${query}&status=${status}`);
+        .useAuthentication(auth.accessToken)
+        .get<BookModel[]>(`books/search?term=${query}&status=${status}`);
 
-      await this.cacheService.save(`books-${query}-${status}`, book);
+      console.log("BookService · search", book);
+
       return book;
     } catch (error) {
       console.error("book.service: ", error);
       throw new Error("Oops!! Ocorreu uma falha ao buscar o livro.");
+    }
+  }
+
+  async changeStatus(id: string, status: BookStatus): Promise<void> {
+    try {
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
+      await this.apiService
+        .useAuthentication(auth.accessToken)
+        .patch(`books?id=${id}`, { status });
+
+      console.log("BookService · changeStatus");
+
+      return;
+    } catch (error) {
+      console.error("book.service: ", error);
+      throw new Error("Oops!! Ocorreu uma falha ao alterar status do livro.");
+    }
+  }
+
+  async readingRegister(id: string, value: number): Promise<void> {
+    try {
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
+      await this.apiService
+        .useAuthentication(auth.accessToken)
+        .patch(`books?id=${id}`, { readedPageCount: value });
+
+      console.log("BookService · readingRegister");
+
+      return;
+    } catch (error) {
+      console.error("book.service: ", error);
+      throw new Error("Oops!! Ocorreu uma falha ao alterar status do livro.");
+    }
+  }
+
+  async createNote(
+    bookId: string,
+    content: string
+  ): Promise<{ bookId: string; content: string }> {
+    try {
+      const auth = await storage.get<AuthModel>("auth");
+      if (!auth) {
+        throw new Error("Oops!! Ocorreu uma falha ao buscar suas credenciais.");
+      }
+      const note = await this.apiService
+        .useAuthentication(auth.accessToken)
+        .post<{ bookId: string; content: string }>(
+          `books/notes?bookId=${bookId}`,
+          {
+            content,
+          }
+        );
+
+      console.log("BookService · createNote", note);
+
+      return note;
+    } catch (error) {
+      console.error("book.service: ", error);
+      throw new Error("Oops!! Ocorreu uma falha ao criar anotação.");
     }
   }
 }
@@ -89,7 +170,7 @@ class Singleton {
 
   constructor() {
     if (!this.instance) {
-      this.instance = new BookService(apiService, cacheService);
+      this.instance = new BookService(apiService);
     }
   }
 

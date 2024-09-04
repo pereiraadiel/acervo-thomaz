@@ -1,10 +1,10 @@
 import React from 'react';
-import useBooks from '@/hooks/useBooks.hook';
+import useBooks, { BooksState } from '@/hooks/useBooks.hook';
 import { MainTemplate } from '@/components/templates/main.template';
 import { TabsMolecule } from '@/components/molecules/tabs';
 import { BookListOrganism } from '@/components/organisms/bookList';
 
-const HomeView : React.FC<ReturnType<typeof useBooks>> = ({
+const HomeView : React.FC<BooksState> = ({
 	readedBooks,
 	notReadedBooks,
 	abandonedBooks,

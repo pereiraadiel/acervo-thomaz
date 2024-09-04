@@ -1,5 +1,5 @@
 export interface ReadingPagesMoleculeProps {
-  onSubmit: () => void;
+  onSubmit: (value: number) => void;
   maxPages: number;
 }
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BookModel } from "@/models/book.model";
-import { bookMockService } from "../services/books/book.mock.service";
+import { bookService } from "@/services/books/book.service";
 
 const useSearchBooks = () => {
   const [books, setBooks] = useState<BookModel[]>([]);
@@ -13,7 +13,7 @@ const useSearchBooks = () => {
       return;
     }
     setLoading(true);
-    bookMockService
+    bookService
       .search(query)
       .then(setBooks)
       .catch((err) => setError(err))

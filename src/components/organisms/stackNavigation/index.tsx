@@ -5,42 +5,26 @@ import { LoginPage } from '@/components/pages/login/page';
 import { RegisterPage } from '@/components/pages/register/page';
 import { RecoverPage } from '@/components/pages/recover/page';
 import { ProfilePage } from '@/components/pages/profile/page';
-import { BooksProvider } from '@/contexts/books.context';
-import { BookProvider } from '@/contexts/book.context';
+import useAuth from '@/hooks/useAuth.hook';
 
 const Stack = createStackNavigator();
 
 const StackNavigation = () => {
-	const TabNav = () => {
-		return (
-			<BooksProvider>
-				<BookProvider>
-					<TabNavigationOrganism />
-				</BookProvider>
-			</BooksProvider>
-		)
-	}
-
-	const Book = () => {
-		return (
-			<BookProvider>
-				<BookPage />
-			</BookProvider>
-		)
-	}
-
+	const { auth } = useAuth()
 	return (
 		<Stack.Navigator screenOptions={{
 			headerShown: false,
 		}}
-		initialRouteName='Login'
+		initialRouteName={auth && auth.accessToken ? 'Home' :'Login'}
 		>
-			<Stack.Screen name="Login" component={LoginPage} />
-			<Stack.Screen name="Profile" component={ProfilePage} />
-			<Stack.Screen name="Register" component={RegisterPage} />
-			<Stack.Screen name="Recover" component={RecoverPage} />
-			<Stack.Screen name="Home" component={TabNav} />
-			<Stack.Screen name="BookDetails" component={Book} />
+			<>
+				<Stack.Screen name="Profile" component={ProfilePage} />
+				<Stack.Screen name="BookDetails" component={BookPage} />
+				<Stack.Screen name="Home" component={TabNavigationOrganism} />
+				<Stack.Screen name="Login" component={LoginPage} />
+				<Stack.Screen name="Recover" component={RecoverPage} />
+				<Stack.Screen name="Register" component={RegisterPage} />
+			</>
 		</Stack.Navigator>
 	);
 }

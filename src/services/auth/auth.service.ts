@@ -2,14 +2,10 @@ import { AuthModel } from "@/models/auth.model";
 import { UserModel } from "@/models/user.model";
 import { apiService } from "@/services/api/api.service";
 import { ApiServiceInterface } from "@/services/api/api.service.interface";
-import { CacheService, cacheService } from "@/services/cache/cache.service";
 import { AuthServiceInterface } from "./auth.service.interface";
 
 export class AuthService implements AuthServiceInterface {
-  constructor(
-    private readonly apiService: ApiServiceInterface,
-    private readonly cacheService: CacheService
-  ) {}
+  constructor(private readonly apiService: ApiServiceInterface) {}
 
   async login(email: string, password: string): Promise<AuthModel> {
     try {
@@ -17,9 +13,22 @@ export class AuthService implements AuthServiceInterface {
         email,
         password,
       });
+
+      console.log("AuthService · login", auth);
+
       return auth;
     } catch (error) {
       throw error;
+    }
+  }
+
+  async verifyToken(token: string): Promise<boolean> {
+    try {
+      console.info("AuthService · verifyToken", token);
+      return await this.apiService.post("auth/verify", { token });
+    } catch (error) {
+      console.error("AuthService · verifyToken", error);
+      return false;
     }
   }
 
@@ -35,9 +44,12 @@ export class AuthService implements AuthServiceInterface {
 
   async refreshToken(token: string): Promise<AuthModel> {
     try {
-      const auth = await this.apiService.post<AuthModel>("auth/sign/refresh", {
+      const auth = await this.apiService.post<AuthModel>("auth/refresh", {
         refreshToken: token,
       });
+
+      console.log("AuthService · refreshToken", auth);
+
       return auth;
     } catch (error) {
       console.error(error);
@@ -57,11 +69,11 @@ export class AuthService implements AuthServiceInterface {
 
   async resetPassword(
     email: string,
-    token: string,
+    code: string,
     password: string
   ): Promise<boolean> {
     try {
-      await this.apiService.post("auth/reset", { email, token, password });
+      await this.apiService.post("auth/reset", { email, code, password });
       return true;
     } catch (error) {
       console.error(error);
@@ -75,7 +87,7 @@ class Singleton {
 
   constructor() {
     if (!this.instance) {
-      this.instance = new AuthService(apiService, cacheService);
+      this.instance = new AuthService(apiService);
     }
   }
 

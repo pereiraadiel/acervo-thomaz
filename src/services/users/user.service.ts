@@ -1,28 +1,22 @@
 import { UserModel } from "@/models/user.model";
 import { apiService } from "@/services/api/api.service";
 import { ApiServiceInterface } from "@/services/api/api.service.interface";
-import { CacheService, cacheService } from "@/services/cache/cache.service";
 import { UserServiceInterface } from "./user.service.interface";
 
 export class UserService implements UserServiceInterface {
-  constructor(
-    private readonly apiService: ApiServiceInterface,
-    private readonly cacheService: CacheService
-  ) {}
+  constructor(private readonly apiService: ApiServiceInterface) {}
 
   async getMe() {
     try {
-      const cachedUser = await this.cacheService.get<UserModel>("user");
-      if (cachedUser) return cachedUser;
+      const user = await this.apiService
+        .useAuthentication("")
+        .get<UserModel>(`users`);
 
-      const user = this.apiService
-        .useAuthentication()
-        .get<UserModel>(`users/me`);
-
-      await this.cacheService.save("user", user);
+      console.log("UserService · getMe", user);
 
       return user;
     } catch (error) {
+      console.error("user.service: ", error);
       throw new Error("Error getting user");
     }
   }
@@ -33,7 +27,7 @@ class Singleton {
 
   constructor() {
     if (!this.instance) {
-      this.instance = new UserService(apiService, cacheService);
+      this.instance = new UserService(apiService);
     }
   }
 
