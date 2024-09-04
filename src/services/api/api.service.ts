@@ -14,8 +14,7 @@ class ApiService implements ApiServiceInterface {
   constructor() {
     this.api = axios.create({
       // baseURL: "https://thz.adiel.dev/api",
-      // baseURL: "http://10.14.95.209:3000",
-      baseURL: "http://192.168.100.108:3000",
+      baseURL: "https://thz.up.railway.app",
     });
   }
 
