@@ -20,7 +20,15 @@ class BookService implements BookServiceInterface {
 
       console.log("BookService · getAllMyBooks", books);
 
-      return books;
+      return books.map((book) => {
+        let imageUrl = book.imageUrl || "";
+
+        if (imageUrl.includes("http://")) {
+          imageUrl = imageUrl.replace("http://", "https://");
+        }
+
+        return { ...book, imageUrl };
+      });
     } catch (error: any) {
       console.error("book.service: ", Object.keys(error), error.request);
       throw new Error("Oops!! Ocorreu uma falha ao buscar seus livros.");
@@ -41,6 +49,9 @@ class BookService implements BookServiceInterface {
 
       if (imageUrl.includes("zoom=")) {
         imageUrl = imageUrl.replace(/zoom=\d*/, "zoom=6");
+      }
+      if (imageUrl.includes("http://")) {
+        imageUrl = imageUrl.replace("http://", "https://");
       }
 
       console.log("BookService · getById", book);
