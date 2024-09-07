@@ -1,10 +1,11 @@
 import useBook from "@/hooks/useBook.hook";
 
 const useBookPage = () => {
-	const { book } = useBook();
+	const { book, fetching } = useBook();
 
 	return {
-		book
+		book,
+		fetching
 	}
 }
 

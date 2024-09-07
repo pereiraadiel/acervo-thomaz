@@ -5,6 +5,7 @@ import { DiscoverPageViewProps } from "./interface";
 import { LoadingAtom } from "@/components/atoms/loading";
 import { TabsMolecule } from "@/components/molecules/tabs";
 import { BookScanner } from "@/components/organisms/bookScanner";
+import { View } from "react-native";
 
 const DiscoverPageView: React.FC<DiscoverPageViewProps> = ({
 	books,
@@ -14,7 +15,7 @@ const DiscoverPageView: React.FC<DiscoverPageViewProps> = ({
 
 	const searchComponent = (
 		<>
-			<SearchMolecule onSearch={onSearch} placeholder="Buscar livros..."/>
+			<SearchMolecule onSearch={onSearch} placeholder="Encontre novos livros e adicione-os a sua estante..."/>
 			{loading ? <LoadingAtom /> : (
 				<>
 				<BookListOrganism books={books}/>
@@ -36,7 +37,7 @@ const DiscoverPageView: React.FC<DiscoverPageViewProps> = ({
 					{ name: 'scan-barcode', component: scanBarcodeComponent }
 				]}
 			/>
-			
+			<View className='mb-20'></View>
 		</MainTemplate>
 	)
 };

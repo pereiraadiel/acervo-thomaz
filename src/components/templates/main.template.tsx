@@ -18,7 +18,7 @@ const MainTemplate: React.FC<MainTemplateProps> = ({ children, headerTitle, head
 				subtitle={headerSubtitle} 
 				variant={headerVariant}
 			/>
-			<ScrollView className={cn(`flex-1 bg-gray-400`)}>
+			<ScrollView className={cn(`flex-1 bg-gray-400 px-2`)}>
 				{children}
 			</ScrollView>
 			{/* <Footer /> */}

@@ -6,6 +6,7 @@ const useWishlistPage = () => {
 	const [books, setBooks] = useState(desiredBooks);
 
 	const onSearch = (text: string) => {
+		if(text === '') return setBooks(desiredBooks);
 		const filteredBooks = desiredBooks
 			.filter(book => {
 				if(book.title.toLowerCase().includes(text.toLowerCase())) return true;

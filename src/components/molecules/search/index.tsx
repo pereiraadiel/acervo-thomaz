@@ -10,7 +10,7 @@ const SearchMolecule: React.FC<SearchMoleculeProps> = ({
 	const { searchTerm, setSearchTerm } = useSearchMolecule('');
 
 	useEffect(() => {
-		if(searchTerm.length > 3) {
+		if(searchTerm.length > 3 || searchTerm === '') {
 			onSearch(searchTerm);
 		}
 	}, [searchTerm])

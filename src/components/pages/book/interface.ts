@@ -6,4 +6,5 @@ export interface BookPageProps {
 
 export interface BookPageViewProps {
   book: BookModel;
+  fetching: boolean;
 }

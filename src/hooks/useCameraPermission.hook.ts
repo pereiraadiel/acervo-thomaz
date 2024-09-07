@@ -32,10 +32,12 @@ const useCameraPermissions = () => {
       }
     } else {
       setHasPermission(false);
-      addToast(
-        "Por favor permita o acesso a sua câmera nas configurações do seu dispositivo.",
-        "error"
-      );
+      if (canAskAgain === false) {
+        addToast(
+          "Por favor permita o acesso a sua câmera nas configurações do seu dispositivo.",
+          "error"
+        );
+      }
     }
   };
 

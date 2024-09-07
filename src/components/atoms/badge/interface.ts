@@ -10,19 +10,22 @@ export type BadgeVariant =
   | "desired"
   | "scan-barcode"
   | "save"
-  | "reading-register";
+  | "reading-register"
+  | "all";
 
 export interface BadgeAtomProps {
   variant?: BadgeVariant;
   onPress?: () => void;
   isActive: boolean;
   className?: string;
+  size?: "small" | "medium" | "large";
 }
 
 export interface BadgeAtomViewProps extends TouchableOpacityProps {
   text: string;
   Icon: React.ReactElement;
   className?: string;
+  size?: "small" | "medium" | "large";
   color: {
     text: string;
     background: string;

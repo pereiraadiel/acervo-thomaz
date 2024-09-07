@@ -19,7 +19,7 @@ const TabsMoleculeView: React.FC<TabsMoleculeViewProps> = ({ children, onChangeT
         ))}
       </ScrollView>
 
-      <View className="w-full flex items-center mb-2">
+      <View className="w-full flex items-center mb-2 mt-1">
         <View className="w-[90%] h-0.5 bg-gray-600" />
       </View>
         <View style={[{ flex: 1}]}>

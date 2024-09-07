@@ -4,13 +4,15 @@ import { LoadingAtom } from "@/components/atoms/loading";
 
 const BookPage = () => {
 	const {
-		book
+		book,
+		fetching
 	 } = useBookPage();
 
 	if(!book) return <LoadingAtom/>
 
 	 const methods = {
-		 book
+		 book,
+		 fetching
 	 } as const
 
 	return <BookPageView {...methods}/>

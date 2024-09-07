@@ -9,7 +9,7 @@ const SearchMoleculeView: React.FC<SearchMoleculeViewProps> = ({
 	placeholder
 }) => {
 	return (
-		<View>
+		<View className="mt-2">
 			<LabeledInputAtom 
 				variant="search" 
 				label="Pesquisar" 

@@ -56,6 +56,10 @@ const useFetchBook = () => {
 	if(error)	console.error('error', error);
 	
 	useEffect(() => {
+		if(searchText === '') {
+			searchBooks('');
+			return;
+		}
 		if(searchText.length > 3) searchBooks(searchText);
 	}, [searchText])
 	

@@ -12,6 +12,7 @@ const variants = {
 	desired: <Octicons name="bookmark" size={20} color={colors.blue[600]} />,
 	"scan-barcode": <Ionicons name="barcode-sharp" size={20} color={colors.gray[600]} />,
 	save: <Octicons name="bookmark" size={20} color={colors.gray[600]} />,
+	all: <Octicons name="bookmark" size={20} color={colors.gray[600]} />,
 	'reading-register': <FontAwesome6 name="book-open-reader" size={24} color="white"/>
 };
 
@@ -24,11 +25,13 @@ const variantTexts = {
 	desired: 'Desejado',
 	"scan-barcode": 'Escanear ISBN',
 	save: 'Salvar',
+	all: 'Tudo',
 	'reading-register': 'Registrar Leitura'
 };
 
 const useBadgeAtom = (isActive: boolean) => {
-	const [variant, setVariant] = useState<keyof typeof variants>("readed");
+	const [variant, setVariant] = useState<keyof typeof variants>("all");
+	const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 	const [text, setText] = useState(variantTexts[variant]);
 	const [color, setColor] = useState({
 		text: 'text-gray-700',
@@ -44,9 +47,10 @@ const useBadgeAtom = (isActive: boolean) => {
 			"not-readed": { text: 'text-white', background: `bg-red-600${activeColor}`, icon: colors.white },
 			"scan-barcode": { text: 'text-white', background: `bg-gray-600${activeColor}`, icon: colors.white },
 			reading: { text: 'text-white', background: `bg-orange-600${activeColor}`, icon: colors.white },
-			abandoned: { text: 'text-white', background: `bg-red-600${activeColor}`, icon: colors.white },
+			abandoned: { text: 'text-white', background: `bg-purple-600${activeColor}`, icon: colors.white },
 			desired: { text: 'text-white', background: `bg-blue-600${activeColor}`, icon: colors.white },
 			save: { text: 'text-white', background: `bg-gray-600${activeColor}`, icon: colors.white },
+			all: { text: 'text-white', background: `bg-gray-600${activeColor}`, icon: colors.white },
 			"reading-register": { text: 'text-white', background: `bg-gray-600${activeColor}`, icon: colors.white },
 		};
 
@@ -56,7 +60,7 @@ const useBadgeAtom = (isActive: boolean) => {
 			text: selectedVariant.text,
 			background: selectedVariant.background,
 		});
-		setIcon(React.cloneElement(variants[variant], { color: selectedVariant.icon }));
+		setIcon(React.cloneElement(variants[variant], { color: selectedVariant.icon, size: size === 'large' ? 24 : size === 'medium' ? 16 : 14 }));
 		setText(variantTexts[variant]);
 
 	}, [variant, isActive]);
@@ -64,6 +68,7 @@ const useBadgeAtom = (isActive: boolean) => {
 	return {
 		variant,
 		setVariant,
+		setSize,
 		text,
 		color,
 		Icon,

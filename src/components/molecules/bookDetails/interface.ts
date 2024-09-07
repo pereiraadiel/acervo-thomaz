@@ -14,6 +14,7 @@ export interface BookDetailsMoleculeViewProps {
   hasImageRenderError: boolean;
   isRegisteringReading: boolean;
   isChangingStatus: boolean;
+  fetching: boolean;
   handleEnableStatusChange: () => void;
   handleStatusChange: (status: BookStatus) => void;
   book: BookModel;

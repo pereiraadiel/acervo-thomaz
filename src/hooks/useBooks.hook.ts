@@ -3,6 +3,7 @@ import { BookModel, BookStatus } from "@/models/book.model";
 import { bookService } from "@/services/books/book.service";
 
 export interface BooksState {
+  books: BookModel[];
   allBooks: BookModel[];
   readedBooks: BookModel[];
   readingBooks: BookModel[];
@@ -14,22 +15,29 @@ export interface BooksState {
 
 const useBooks = create<BooksState>((set, get) => {
   const getBooksByStatus = (status: BookStatus): BookModel[] => {
-    const { allBooks } = get();
-    return allBooks.filter((book) => book.status === status);
+    const { books } = get();
+    return books.filter((book) => book.status === status);
   };
 
   return {
+    books: [],
     allBooks: [],
     readedBooks: [],
     readingBooks: [],
     notReadedBooks: [],
     abandonedBooks: [],
     desiredBooks: [],
-
+    
     fetchBooks: async () => {
       try {
         const response = await bookService.getAllMyBooks();
-        set({ allBooks: response });
+        set({
+          books: response,
+          allBooks: response.filter((book) => {
+            if (book.status !== "desired" && book.status !== "unknown")
+              return book;
+          }),
+        });
 
         set({
           readedBooks: getBooksByStatus("readed"),

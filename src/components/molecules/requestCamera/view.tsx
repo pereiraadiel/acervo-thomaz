@@ -1,5 +1,5 @@
 import { AntDesign } from '@expo/vector-icons';
-import { View } from "react-native";
+import { Button, Linking, View } from "react-native";
 import { colors } from "@/styles/colors";
 import { ButtonAtom } from "@/components/atoms/button";
 import { SubtitleAtom } from "@/components/atoms/subtitle";
@@ -10,6 +10,9 @@ const RequestCameraMoleculeView: React.FC<RequestCameraMoleculeViewProps> = ({
 	canAskAgain,
 	requestCamera
 }) => {
+	const openSettings = () => {
+		Linking.openSettings();
+	}
 	return (
 		<View className="flex-1 px-4 items-center justify-center flex">
 			<View className="h-64 w-64 my-4 bg-gray-500 rounded-full flex items-center justify-center">
@@ -20,7 +23,10 @@ const RequestCameraMoleculeView: React.FC<RequestCameraMoleculeViewProps> = ({
 			{canAskAgain ? (
 				<ButtonAtom className="mt-4" title="Permitir acesso a câmera" onPressIn={requestCamera} variant="outlined" />
 			): (
-				<SubtitleAtom className="font-semibold text-center mt-2">Por favor permita o acesso a sua câmera nas configurações do dispositivo.</SubtitleAtom>
+				<>
+					<SubtitleAtom className="font-semibold text-center mt-2">Por favor permita o acesso a sua câmera nas configurações do dispositivo.</SubtitleAtom>
+					<ButtonAtom className="mt-4" title="Abrir configurações do dispositivo" onPressIn={openSettings} variant="outlined" />
+				</>
 			)
 			}
 		</View>

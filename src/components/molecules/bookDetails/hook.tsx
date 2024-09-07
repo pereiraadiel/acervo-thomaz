@@ -1,8 +1,9 @@
-import { useEffect, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import useToast from "@/hooks/useToast.hook";
 import { BookStatus } from "@/models/book.model";
-import useBook from "../../../hooks/useBook.hook";
-import { bookService } from "../../../services/books/book.service";
+import useBook from "@/hooks/useBook.hook";
+import { bookService } from "@/services/books/book.service";
+import useBooks from "@/hooks/useBooks.hook";
 
 const useBookDetails = (bookStatus: BookStatus) => {
   const [inputValue, setInputValue] = useState('');
@@ -10,7 +11,8 @@ const useBookDetails = (bookStatus: BookStatus) => {
   const [isRegisteringReading, setIsRegisteringReading] = useState(false);
   const [isChangingStatus, setIsChangingStatus] = useState(false);
   const { addToast } = useToast()
-  const { book, setBook } = useBook();
+  const { book, setBook, fetching } = useBook();
+  const { fetchBooks } = useBooks();
 
   const notes = useMemo(() => {
     if (book) {
@@ -66,6 +68,7 @@ const useBookDetails = (bookStatus: BookStatus) => {
       try {
         await bookService.changeStatus(book.id, status);
         addToast('Status do livro alterado com sucesso', 'success');
+        fetchBooks();
         setBook({...book, status });
       } catch {
         addToast('Ocorreu um erro ao alterar status do livro', 'error');
@@ -77,6 +80,7 @@ const useBookDetails = (bookStatus: BookStatus) => {
   return {
     onSubmit,
     inputValue,
+    fetching,
     setInputValue,
     handleReadingRegister,
     handleEnableReadingRegister,

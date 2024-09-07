@@ -15,6 +15,7 @@ const BookDetailsMolecule: React.FC<BookDetailsMoleculeProps> = ({
 		handleEnableStatusChange,
 		handleStatusChange,
 		isChangingStatus,
+		fetching,
 		hasImageRenderError,
 		setHasImageRenderError,
 		isRegisteringReading,
@@ -32,6 +33,7 @@ const BookDetailsMolecule: React.FC<BookDetailsMoleculeProps> = ({
 		handleEnableStatusChange,
 		handleStatusChange,
 		isChangingStatus,
+		fetching,
 		setHasImageRenderError,
 		isRegisteringReading,
 		notes
